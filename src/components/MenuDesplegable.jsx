@@ -6,10 +6,10 @@ function MenuDesplegable({ categoria }) {
   );
 
   return (
-    <div className="mega-menu">
-      <div className="mega-menu-content">
+    <div className="menu-desplegable">
+      <div className="menu-desplegable-content">
 
-        <div className="mega-sidebar">
+        <div className="menu-desplegable-sidebar">
           <h3>{categoria}</h3>
 
           {productosFiltrados.map((producto) => (
@@ -19,9 +19,9 @@ function MenuDesplegable({ categoria }) {
           ))}
         </div>
 
-        <div className="mega-products">
+        <div className="menu-desplegable-products">
           {productosFiltrados.map((producto) => (
-            <div className="mega-card" key={producto.id}>
+            <div className="menu-desplegable-card" key={producto.id}>
               <img src={producto.imagen} alt={producto.nombre} />
               <span>{producto.nombre}</span>
             </div>

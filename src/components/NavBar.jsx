@@ -39,6 +39,7 @@ function NavBar({ cantidadCarrito = 0 }) {
 
         <div className="navbar-right">
           <NavLink to="/nosotros" className="navbar-link">Nosotros</NavLink>
+          <NavLink to="/contacto" className="navbar-link">Contacto</NavLink>
           <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito">
             <BsBag />
             {cantidadCarrito > 0 && (
@@ -50,35 +51,84 @@ function NavBar({ cantidadCarrito = 0 }) {
 
       {/* ── FILA 2: categorías ── */}
       <nav className="navbar-categorias">
-        <NavLink to="/productos?cat=ofertas"  className={({ isActive }) => `cat-link hot ${isActive ? "active" : ""}`}>
-          🔥 Ofertas
-        </NavLink>
-        <div className="cat-sep" />
-        <div
-  className="cat-item"
-  onMouseEnter={() => setHoverMenu("iphone")}
-  onMouseLeave={() => setHoverMenu(null)}
->
-  <NavLink
-    to="/productos?cat=iphone"
-    className="cat-link"
-  >
-    Móviles
+        <NavLink to="/productos?cat=ofertas" className={({ isActive }) => `cat-link hot ${isActive ? "active" : ""}`}>
+     Ofertas
   </NavLink>
 
-  {hoverMenu === "iphone" && (
-    <MenuDesplegable categoria="iPhone" />
-  )}
-</div>
+  <div className="cat-sep" />
 
+  <div
+    className="cat-item"
+    onMouseEnter={() => setHoverMenu("iphone")}
+    onMouseLeave={() => setHoverMenu(null)}
+  >
+    <NavLink to="/productos?cat=iphone" className="cat-link">
+      Móviles
+    </NavLink>
 
+    {hoverMenu === "iphone" && (
+      <MenuDesplegable categoria="iPhone" />
+    )}
+  </div>
 
-        <NavLink to="/productos?cat=ipad"     className={({ isActive }) => `cat-link ${isActive ? "active" : ""}`}>Audio</NavLink>
-        <NavLink to="/productos?cat=mac"      className={({ isActive }) => `cat-link ${isActive ? "active" : ""}`}>Computación</NavLink>
-        <NavLink to="/productos?cat=airpods"  className={({ isActive }) => `cat-link ${isActive ? "active" : ""}`}>Accesorios</NavLink>
-        <NavLink to="/productos?cat=watch"    className={({ isActive }) => `cat-link ${isActive ? "active" : ""}`}>Otros</NavLink>
-        <div className="cat-sep" />
-      </nav>
+  <div
+    className="cat-item"
+    onMouseEnter={() => setHoverMenu("airpods")}
+    onMouseLeave={() => setHoverMenu(null)}
+  >
+    <NavLink to="/productos?cat=airpods" className="cat-link">
+      Audio
+    </NavLink>
+
+    {hoverMenu === "airpods" && (
+      <MenuDesplegable categoria="AirPods" />
+    )}
+  </div>
+
+  <div
+    className="cat-item"
+    onMouseEnter={() => setHoverMenu("mac")}
+    onMouseLeave={() => setHoverMenu(null)}
+  >
+    <NavLink to="/productos?cat=mac" className="cat-link">
+      Computación
+    </NavLink>
+
+    {hoverMenu === "mac" && (
+      <MenuDesplegable categoria="Mac" />
+    )}
+  </div>
+
+  <div
+    className="cat-item"
+    onMouseEnter={() => setHoverMenu("accesorios")}
+    onMouseLeave={() => setHoverMenu(null)}
+  >
+    <NavLink to="/productos?cat=accesorios" className="cat-link">
+      Accesorios
+    </NavLink>
+
+    {hoverMenu === "accesorios" && (
+      <MenuDesplegable categoria="Accesorios" />
+    )}
+  </div>
+
+  <div
+    className="cat-item"
+    onMouseEnter={() => setHoverMenu("otros")}
+    onMouseLeave={() => setHoverMenu(null)}
+  >
+    <NavLink to="/productos?cat=otros" className="cat-link">
+      Otros
+    </NavLink>
+
+    {hoverMenu === "otros" && (
+      <MenuDesplegable categoria="Otros" />
+    )}
+  </div>
+
+  <div className="cat-sep" />
+</nav>
 
     </header>
   );
