@@ -27,8 +27,7 @@ function CarruselProductos() {
   return (
     <section className="carrusel-section">
       <div className="carrusel-header">
-        <p className="carrusel-eyebrow">PRODUCTOS EN OFERTA</p>
-        <h2 className="carrusel-titulo">Descubre nuestras mejores ofertas</h2>
+        <h2 className="carrusel-titulo">Nuestras mejores ofertas</h2>
       </div>
 
       <div className="carrusel-wrapper">

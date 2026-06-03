@@ -1,18 +1,37 @@
-import { Link } from "react-router-dom";
-import "../styles/inicio.css";
 import CarruselProductos from "../components/CarruselProductos";
+import CarruselPublicidad from "../components/CarruselPublicidad";
+import FilaProductos from "../components/FilaProductos";
+import Beneficios from "../components/Beneficios";
 
- function Inicio() {
+function Inicio() {
   return (
     <main className="inicio">
+      <CarruselProductos />
+      <Beneficios />
+      <CarruselPublicidad />
 
-      <section className="hero">
-  
+      <FilaProductos
+        titulo="🔥 Ofertas destacadas"
+        categoria="iPhone"
+      />
 
-        <div className="hero-visual">
-          <CarruselProductos />
-        </div>
-      </section>
+
+      <FilaProductos
+        titulo="💻 Computación"
+        categoria="Mac"
+      />
+
+
+      <FilaProductos
+        titulo="🎧 Audio"
+        categoria="AirPods"
+      />
+      <CarruselPublicidad />
+
+      <FilaProductos
+        titulo="⌚ Accesorios"
+        categoria="Watch"
+      />
 
     </main>
   );
