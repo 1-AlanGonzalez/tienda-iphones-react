@@ -1,5 +1,6 @@
 // IMPORTO LAS IMAGENES
 import iphone17_orange from "../assets/images/iphone-17-pro-max-orange.jpg";
+import iphone17_white from "../assets/images/iphone-17-pro-max-white.jpg";
 
 export const productos = [
   {
@@ -17,11 +18,12 @@ export const productos = [
     nombre: "iPhone 17",
     categoria: "iPhone",
     precio: 1200,
-    imagen: "../images/iphone-17-orange.jpg",
+    imagen: iphone17_white,
     descripcion: "El iPhone 17 estándar con chip A19, pantalla de 6.1\" y 120Hz por primera vez en el modelo base.",
     stock: 15,
     tag: "Nuevo"
   },
+  
   {
     id: 3,
     nombre: "AirPods Pro 2",
@@ -30,6 +32,6 @@ export const productos = [
     imagen: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MQD83?wid=400&hei=400&fmt=png-alpha",
     descripcion: "Cancelación activa de ruido adaptativa, audio espacial personalizado y hasta 30 horas de batería.",
     stock: 30,
-    tag: "Popular"
+    tag: "Oferta"
   }
 ];
