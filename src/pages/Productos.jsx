@@ -5,9 +5,9 @@ function Productos() {
             <div >
                 <nav>
                     <ul className="tarjetaFiltro-lista">
-                       <li><a href="#">Smartphones</a></li>
-                          <li><a href="#">Reacondicionados</a></li>
-                          <li><a href="#">headphones</a></li>
+                       <li><a href="#">Categoría</a></li>
+                          <li><a href="#">Sub-Categoria</a></li>
+                          <li><a href="#"><Camara></Camara></a></li>
                           <li><a href="#">Accesorios</a></li>
                           <li><a href="#">Ofertas</a></li>
                             
