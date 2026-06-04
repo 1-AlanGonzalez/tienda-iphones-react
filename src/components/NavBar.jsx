@@ -76,7 +76,7 @@ function NavBar({ cantidadCarrito = 0 }) {
     onMouseEnter={() => setHoverMenu("airpods")}
     onMouseLeave={() => setHoverMenu(null)}
   >
-    <NavLink to="/productos?cat=airpods" className="cat-link">
+    <NavLink to="/productos?cat=audio" className="cat-link">
       Audio
     </NavLink>
 
@@ -90,7 +90,7 @@ function NavBar({ cantidadCarrito = 0 }) {
     onMouseEnter={() => setHoverMenu("mac")}
     onMouseLeave={() => setHoverMenu(null)}
   >
-    <NavLink to="/productos?cat=mac" className="cat-link">
+    <NavLink to="/productos?cat=computacion" className="cat-link">
       Computación
     </NavLink>
 
