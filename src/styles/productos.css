@@ -1,17 +1,29 @@
-.tarjetaFiltro{
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filtro-titulo {
+    display: flex;
+    justify-content: space-between;  /* texto a la izquierda, flecha a la derecha */
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+.tarjetaFiltro {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    align-items: stretch;      /* ← era center, esto desacomodaba todo */
     width: 200px;
-    height: 300px;
+    min-height: 300px;         /* ← era height fijo, ahora crece */
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgb(252, 251, 251);
+    box-shadow: 0 4px 8px rgb(220, 220, 220);
     margin: 20px;
     padding: 20px;
-    
-
+    overflow: visible;         /* ← era hidden, cortaba el contenido */
 }
 
 .tarjetaFiltro-subtitulo{
@@ -25,4 +37,76 @@
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+/* Flecha más grande */
+.flecha {
+    font-size: 1.2rem;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+}
+
+.flecha.rotada {
+    transform: rotate(180deg);  /* ← gira sobre sí mismo, no se corre */
+}
+/* Animación deslizamiento */
+.opciones {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+.opciones.abierto {
+    max-height: 300px;
+}
+
+/* Cada opción en fila */
+.opciones li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+
+.pagina-productos {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    flex: 1;
+}
+
+.card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card-imagen {
+    width: 420px;
+    aspect-ratio: 1;      /* siempre cuadrada */
+    object-fit: contain;  /* no corta la imagen */
+    border-radius: 8px;
+}
+
+.card-nombre {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.card-precio {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1d1d1f;
 }

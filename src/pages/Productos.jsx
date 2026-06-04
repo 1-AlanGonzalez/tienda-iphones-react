@@ -1,22 +1,34 @@
-function Productos() {
-    return (
-        <div className="tarjetaFiltro">
-            <h5 className="tarjetaFiltro-subtitulo">Categorías</h5>
-            <div >
-                <nav>
-                    <ul className="tarjetaFiltro-lista">
-                       <li><a href="#">Categoría</a></li>
-                          <li><a href="#">Sub-Categoria</a></li>
-                          <li><a href="#"><Camara></Camara></a></li>
-                          <li><a href="#">Accesorios</a></li>
-                          <li><a href="#">Ofertas</a></li>
-                            
-                    </ul>
-                </nav>
-            </div>
+import Filtros from '../components/Filtros'
+import Cards from '../components/Cards'
+import { useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { filtroOtros, filtrosAccesorios, filtrosComputacion, filtrosAudio, filtrosMoviles } from '../data/filtros'
 
+const mapaFiltros = {
+    iphone:      filtrosMoviles,
+    audio:       filtrosAudio,
+    computacion: filtrosComputacion,
+    accesorios:  filtrosAccesorios,
+    otros:       filtroOtros,
+}
+
+function Productos() {
+    const [searchParams] = useSearchParams()
+    const cat = searchParams.get("cat")
+    const filtrosActivos = mapaFiltros[cat] || []
+
+    const [seleccionados, setSeleccionados] = useState({})  // ← nuevo
+
+    return (
+        <div className="pagina-productos">
+            <Filtros 
+                datos={filtrosActivos}
+                seleccionados={seleccionados}         
+                setSeleccionados={setSeleccionados}   
+            />
+            <Cards seleccionados={seleccionados} datos={filtrosActivos} />    
         </div>
     )
 }
 
-export default Productos;
+export default Productos
