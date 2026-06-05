@@ -26,52 +26,46 @@ function CarruselProductos() {
 
   return (
     <section className="carrusel-section">
+
+      {/* HEADER con eyebrow + título */}
       <div className="carrusel-header">
-        <h2 className="carrusel-titulo">Nuestras mejores ofertas</h2>
+        <p className="carrusel-eyebrow">catálogo destacado</p>
+        <h2 className="carrusel-titulo">Nuestras mejores <em>ofertas.</em></h2>
       </div>
 
       <div className="carrusel-wrapper">
-        {/* Flecha izquierda */}
-        <button className="carrusel-arrow left" onClick={() => cambiar(-1)} aria-label="Anterior">
-          &#8592;
-        </button>
+        <button className="carrusel-arrow" onClick={() => cambiar(-1)} aria-label="Anterior">&#8592;</button>
 
-        {/* Card del producto */}
         <div className={`carrusel-card ${animando ? "fade-out" : "fade-in"}`}>
-          {p.tag && <span className="carrusel-tag">{p.tag}</span>}
-
-          <div className="carrusel-img">
+          
+          {/* imagen con fondo degradado sutil */}
+          <div className="carrusel-img-wrap">
+            {p.tag && <span className="carrusel-tag">{p.tag}</span>}
             <img src={p.imagen} alt={p.nombre} loading="lazy" />
           </div>
 
           <div className="carrusel-info">
-            <p className="carrusel-categoria">{p.categoria}</p>
-            <p className="carrusel-nombre">{p.nombre}</p>
+            <p className="carrusel-categoria">{p.categoria} · {p.color}</p>
+            <h3 className="carrusel-nombre">{p.nombre}</h3>
             <p className="carrusel-desc">{p.descripcion}</p>
-            <p className="carrusel-precio">
-              ${p.precio.toLocaleString("es-AR")}
-            </p>
-            <p className="carrusel-cuotas">
-              12 cuotas sin interés de ${Math.round(p.precio / 12).toLocaleString("es-AR")}
-            </p>
+
+            <div className="carrusel-precio-wrap">
+              <p className="carrusel-precio">USD ${p.precio.toLocaleString("es-AR")}</p>
+              <p className="carrusel-cuotas">
+                12 cuotas sin interés de ${Math.round(p.precio / 12).toLocaleString("es-AR")}
+              </p>
+            </div>
+
             <div className="carrusel-btns">
-              <Link to={`/productos/${p.id}`} className="carrusel-btn-detalle">
-                Ver detalle
-              </Link>
-              <Link to="/productos" className="carrusel-btn-catalogo">
-                Ver catálogo
-              </Link>
+              <Link to={`/productos/${p.id}`} className="carrusel-btn-detalle">Ver detalle</Link>
+              <Link to="/productos" className="carrusel-btn-catalogo">Ver catálogo</Link>
             </div>
           </div>
         </div>
 
-        {/* Flecha derecha */}
-        <button className="carrusel-arrow right" onClick={() => cambiar(1)} aria-label="Siguiente">
-          &#8594;
-        </button>
+        <button className="carrusel-arrow" onClick={() => cambiar(1)} aria-label="Siguiente">&#8594;</button>
       </div>
 
-      {/* Dots */}
       <div className="carrusel-dots">
         {productos.map((_, i) => (
           <button
@@ -82,6 +76,7 @@ function CarruselProductos() {
           />
         ))}
       </div>
+
     </section>
   );
 }

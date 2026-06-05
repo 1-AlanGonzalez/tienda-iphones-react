@@ -1,31 +1,109 @@
-import { productos } from "../data/productos";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { productos } from "../data/productos.jsx";
+
+const CONFIG = {
+  iPhone: {
+    titulo: "Móviles",
+    lineas: ["Standard", "Pro", "Pro Max"],
+    labelLinea: (l) => `iPhone ${l === "Standard" ? "estándar" : l}`,
+  },
+  AirPods: {
+    titulo: "Audio",
+    lineas: ["AirPods Pro", "AirPods Max", "AirPods"],
+    labelLinea: (l) => l,
+  },
+  Mac: {
+    titulo: "Computación",
+    lineas: ["MacBook Air", "MacBook Pro", "Mac Mini", "iMac"],
+    labelLinea: (l) => l,
+  },
+  Accesorios: {
+    titulo: "Accesorios",
+    lineas: ["MagSafe", "Cases", "Cables"],
+    labelLinea: (l) => l,
+  },
+  Watch: {
+    titulo: "Apple Watch",
+    lineas: ["Series", "Ultra", "SE"],
+    labelLinea: (l) => `Apple Watch ${l}`,
+  },
+};
 
 function MenuDesplegable({ categoria }) {
-  const productosFiltrados = productos.filter(
-    (p) => p.categoria.toLowerCase() === categoria.toLowerCase()
-  );
+  const config = CONFIG[categoria];
+  const [lineaActiva, setLineaActiva] = useState(0);
+
+  if (!config) return null;
+
+  const lineas = config.lineas;
+  const lineaSeleccionada = lineas[lineaActiva];
+
+  // Filtrá productos de esa categoría y línea, máximo 3 únicos por nombre
+  const productosLinea = productos
+    .filter((p) => p.categoria === categoria && p.linea === lineaSeleccionada)
+    .reduce((acc, p) => {
+      if (!acc.find((x) => x.nombre === p.nombre)) acc.push(p);
+      return acc;
+    }, [])
+    .slice(0, 3);
+
+  // Si no hay por línea exacta, mostrá los primeros 3 de la categoría
+  const productosAMostrar =
+    productosLinea.length > 0
+      ? productosLinea
+      : productos
+          .filter((p) => p.categoria === categoria)
+          .reduce((acc, p) => {
+            if (!acc.find((x) => x.nombre === p.nombre)) acc.push(p);
+            return acc;
+          }, [])
+          .slice(0, 3);
 
   return (
     <div className="menu-desplegable">
       <div className="menu-desplegable-content">
 
+        {/* SIDEBAR */}
         <div className="menu-desplegable-sidebar">
-          <h3>{categoria}</h3>
-
-          {productosFiltrados.map((producto) => (
-            <a key={producto.id} href={`/producto/${producto.id}`}>
-              {producto.nombre}
-            </a>
-          ))}
-        </div>
-
-        <div className="menu-desplegable-products">
-          {productosFiltrados.map((producto) => (
-            <div className="menu-desplegable-card" key={producto.id}>
-              <img src={producto.imagen} alt={producto.nombre} />
-              <span>{producto.nombre}</span>
+          <h3>{config.titulo}</h3>
+          {lineas.map((linea, i) => (
+            <div
+              key={linea}
+              className={`menu-sidebar-item ${i === lineaActiva ? "activo" : ""}`}
+              onMouseEnter={() => setLineaActiva(i)}
+            >
+              <span>{config.labelLinea(linea)}</span>
+              <span className="menu-sidebar-arrow">›</span>
             </div>
           ))}
+          <Link
+            to={`/productos?cat=${categoria.toLowerCase()}`}
+            className="menu-ver-todos"
+          >
+            Ver todos →
+          </Link>
+        </div>
+
+        {/* CARDS */}
+        <div className="menu-desplegable-products">
+          {productosAMostrar.length > 0 ? (
+            productosAMostrar.map((p) => (
+              <Link
+                to={`/productos/${p.id}`}
+                key={p.id}
+                className="menu-desplegable-card"
+              >
+                <img src={p.imagen} alt={p.nombre} />
+                <span className="menu-card-nombre">{p.nombre}</span>
+                <span className="menu-card-precio">
+                  USD ${p.precio.toLocaleString("es-AR")}
+                </span>
+              </Link>
+            ))
+          ) : (
+            <p className="menu-proximamente">Próximamente</p>
+          )}
         </div>
 
       </div>

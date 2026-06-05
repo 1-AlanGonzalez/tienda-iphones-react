@@ -8,29 +8,34 @@ function Inicio() {
     <main className="inicio">
       <CarruselProductos />
       <Beneficios />
-      <CarruselPublicidad />
+
+
 
       <FilaProductos
-        titulo="🔥 Ofertas destacadas"
+        titulo="Productos más vendidos"
+        subtitulo="Los favoritos de nuestros clientes"
         categoria="iPhone"
       />
 
-
-      <FilaProductos
-        titulo="💻 Computación"
-        categoria="Mac"
-      />
-
-
-      <FilaProductos
-        titulo="🎧 Audio"
-        categoria="AirPods"
-      />
       <CarruselPublicidad />
 
       <FilaProductos
-        titulo="⌚ Accesorios"
-        categoria="Watch"
+        titulo="Computación"
+        subtitulo="MacBook, Mac Mini y más"
+        categoria="Mac"
+      />
+
+      <FilaProductos
+        titulo="Audio"
+        subtitulo="AirPods para cada estilo"
+        categoria="AirPods"
+      />
+      {/* Accesorios */}
+
+      <FilaProductos
+        titulo="Accesorios"
+        subtitulo="Cargadores, fundas y más"
+        categoria="Accesorios"
       />
 
     </main>
