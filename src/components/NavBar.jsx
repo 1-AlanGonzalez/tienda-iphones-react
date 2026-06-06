@@ -3,12 +3,15 @@ import { useState } from "react";
 import { BsApple, BsBag } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import MenuDesplegable from "./MenuDesplegable";
+import { useTema } from "../context/TemaContext";
+import {BsSun, BsMoon } from "react-icons/bs";
 
 
 function NavBar({ cantidadCarrito = 0 }) {
   const [busqueda, setBusqueda] = useState("");
   const navigate = useNavigate();
   const [hoverMenu, setHoverMenu] = useState(null);
+  const { oscuro, setOscuro } = useTema();
 
   const handleBusqueda = (e) => {
     if (e.key === "Enter" && busqueda.trim()) {
@@ -40,6 +43,14 @@ function NavBar({ cantidadCarrito = 0 }) {
         <div className="navbar-right">
           <NavLink to="/nosotros" className="navbar-link">Nosotros</NavLink>
           <NavLink to="/contacto" className="navbar-link">Contacto</NavLink>
+      <button
+        className="icon-btn"
+        onClick={() => setOscuro(!oscuro)}
+        aria-label="Cambiar tema"
+      >
+        {oscuro ? <BsSun /> : <BsMoon />}
+      </button>
+
           <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito">
             <BsBag />
             {cantidadCarrito > 0 && (

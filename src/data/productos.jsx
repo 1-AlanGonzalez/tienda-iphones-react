@@ -196,7 +196,7 @@ export const productos = [
     precio: 799,
     imagen: iphone16_celeste,
     descripcion: "iPhone 16 con chip A18, pantalla Super Retina XDR de 6.1 pulgadas, cámara principal de 48MP y excelente rendimiento para el uso diario.",
-    stock: 10,
+    stock: 3,
     tag: "Oferta"
 },
 
