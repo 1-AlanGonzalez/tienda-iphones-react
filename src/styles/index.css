@@ -4,3 +4,37 @@
 body {
     background: #fff;
 }
+
+/* ── TEMA CLARO (default) ── */
+:root {
+  --bg-primary:    #ffffff;
+  --bg-secondary:  #f5f5f7;
+  --bg-tertiary:   #ebebed;
+  --text-primary:  #1d1d1f;
+  --text-secondary:#6e6e73;
+  --text-muted:    #a1a1a6;
+  --border:        #e5e5e5;
+  --blue:          #0071e3;
+  --green:         #1a7a0a;
+  --navbar-bg:     rgba(255,255,255,0.96);
+}
+
+/* ── TEMA OSCURO ── */
+.tema-oscuro {
+  --bg-primary:    #000000;
+  --bg-secondary:  #1c1c1e;
+  --bg-tertiary:   #2c2c2e;
+  --text-primary:  #f5f5f7;
+  --text-secondary:#a1a1a6;
+  --text-muted:    #6e6e73;
+  --border:        #3a3a3c;
+  --blue:          #2997ff;
+  --green:         #34c759;
+  --navbar-bg:     rgba(0,0,0,0.96);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.3s ease, color 0.3s ease;
+}
