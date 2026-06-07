@@ -4,21 +4,27 @@ import Footer from './components/Footer';
 import Inicio from "./pages/Inicio";
 import Productos from "./pages/Productos";
 import Contacto from './pages/Contacto';
+import Carrito from "./pages/Carrito";
+import { CartProvider } from "./context/CartContext";
+
 import "./App.css";
 
 function App() {
   return (
-   <BrowserRouter>
+    <CartProvider>
+      <BrowserRouter>
         <NavBar />
-        
+
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/productos" element={<Productos />} />
           <Route path="/contacto" element={<Contacto />} />
+          <Route path="/carrito" element={<Carrito />} />
         </Routes>
-        <Footer />
-   </BrowserRouter>
 
+        <Footer />
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

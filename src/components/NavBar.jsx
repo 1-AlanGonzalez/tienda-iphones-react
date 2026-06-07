@@ -3,12 +3,14 @@ import { useState } from "react";
 import { BsApple, BsBag } from "react-icons/bs";
 import { BsSearch } from "react-icons/bs";
 import MenuDesplegable from "./MenuDesplegable";
+import { useCart } from "../context/CartContext";
 
 
-function NavBar({ cantidadCarrito = 0 }) {
+function NavBar() {
   const [busqueda, setBusqueda] = useState("");
   const navigate = useNavigate();
   const [hoverMenu, setHoverMenu] = useState(null);
+  const { cantidadTotal } = useCart();
 
   const handleBusqueda = (e) => {
     if (e.key === "Enter" && busqueda.trim()) {
@@ -42,8 +44,10 @@ function NavBar({ cantidadCarrito = 0 }) {
           <NavLink to="/contacto" className="navbar-link">Contacto</NavLink>
           <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito">
             <BsBag />
-            {cantidadCarrito > 0 && (
-              <span className="cart-badge">{cantidadCarrito}</span>
+            {cantidadTotal > 0 && (
+              <span className="cart-badge">
+                {cantidadTotal}
+              </span>
             )}
           </Link>
         </div>
