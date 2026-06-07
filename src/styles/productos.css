@@ -6,7 +6,7 @@ ul {
 
 .filtro-titulo {
     display: flex;
-    justify-content: space-between;  /* texto a la izquierda, flecha a la derecha */
+    justify-content: space-between;  
     align-items: center;
     cursor: pointer;
     padding: 8px 0;
@@ -15,15 +15,15 @@ ul {
 .tarjetaFiltro {
     display: flex;
     flex-direction: column;
-    align-items: stretch;      /* ← era center, esto desacomodaba todo */
+    align-items: stretch;     
     width: 200px;
-    min-height: 300px;         /* ← era height fijo, ahora crece */
+    min-height: 300px;         
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgb(220, 220, 220);
     margin: 20px;
     padding: 20px;
-    overflow: visible;         /* ← era hidden, cortaba el contenido */
+    overflow: visible;         
 }
 
 .tarjetaFiltro-subtitulo{
@@ -39,7 +39,6 @@ ul {
     margin: 0;
 }
 
-/* Flecha más grande */
 .flecha {
     font-size: 1.2rem;
     display: inline-block;
@@ -48,9 +47,9 @@ ul {
 }
 
 .flecha.rotada {
-    transform: rotate(180deg);  /* ← gira sobre sí mismo, no se corre */
+    transform: rotate(180deg);  
 }
-/* Animación deslizamiento */
+
 .opciones {
     max-height: 0;
     overflow: hidden;
@@ -77,12 +76,11 @@ ul {
 }
 
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
     flex: 1;
 }
-
 .card {
     background-color: #ffffff;
     border-radius: 10px;
@@ -94,19 +92,88 @@ ul {
 }
 
 .card-imagen {
-    width: 420px;
-    aspect-ratio: 1;      /* siempre cuadrada */
-    object-fit: contain;  /* no corta la imagen */
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
     border-radius: 8px;
 }
 
+.card-subtitulo {
+    font-size: 12px;
+    color: #6e6e73;
+}   
+
+.card-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 20px;
+    background-color: #e8f4fd;
+    color: #0071e3;
+    align-self: flex-start;
+}
+
+.card-tag.oferta {
+    background-color: #fff0e8;
+    color: #e3500a;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .card-nombre {
-    font-size: 14px;
+    font-size: 13px; 
     font-weight: 500;
+    color: #1d1d1f;
 }
 
 .card-precio {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     color: #1d1d1f;
+}
+
+.card-boton {
+    margin-top: auto;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0071e3;
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.card-boton:hover {
+    background-color: #005bbf;
+}
+
+.cards-contenedor {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.ver-mas-boton {
+    align-self: center;
+    padding: 10px 32px;
+    border: 1px solid #0071e3;
+    border-radius: 8px;
+    background-color: white;
+    color: #0071e3;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ver-mas-boton:hover {
+    background-color: #0071e3;
+    color: white;
 }
