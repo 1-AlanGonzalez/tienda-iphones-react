@@ -12,8 +12,10 @@ function Cards({ seleccionados, datos }) {
                 const opcionesSeleccionadas = filtro.opciones.filter(op => seleccionados[op])
                 if (opcionesSeleccionadas.length === 0) return true
                 return opcionesSeleccionadas.some(op =>
-                    p[filtro.campo]?.toLowerCase() === op.toLowerCase()
-                )
+                    filtro.exacto
+                        ? p[filtro.campo]?.toLowerCase() === op.toLowerCase()
+                        : p[filtro.campo]?.toLowerCase().includes(op.toLowerCase())
+                    )
             })
         })
         : productos
