@@ -1,13 +1,27 @@
-import { useState } from 'react'
+import { useState} from 'react'
 import { productos } from '../data/productos'
 
-function Cards({ seleccionados, datos }) {
-    const [visibles, setVisibles] = useState(8)  
+const mapaCategoria = {
+    iphone:      "iPhone",
+    audio:       "AirPods",
+    computacion: "Mac",
+    accesorios:  "Accesorios",
+    otros:       "Otros",
+}
+
+
+function Cards({ seleccionados, datos, cat }) {
+    const [visibles, setVisibles] = useState(8)
+
+    const categoriaActual = mapaCategoria[cat]
+    const productosDeCat = categoriaActual
+        ? productos.filter(p => p.categoria === categoriaActual)
+        : productos
 
     const hayFiltros = Object.values(seleccionados).some(v => v === true)
 
     const productosFiltrados = hayFiltros
-        ? productos.filter(p => {
+        ? productosDeCat.filter(p => {    // ← productosDeCat
             return datos.every(filtro => {
                 const opcionesSeleccionadas = filtro.opciones.filter(op => seleccionados[op])
                 if (opcionesSeleccionadas.length === 0) return true
@@ -15,10 +29,10 @@ function Cards({ seleccionados, datos }) {
                     filtro.exacto
                         ? p[filtro.campo]?.toLowerCase() === op.toLowerCase()
                         : p[filtro.campo]?.toLowerCase().includes(op.toLowerCase())
-                    )
+                )
             })
         })
-        : productos
+        : productosDeCat   // ← productosDeCat
 
     const productosMostrados = productosFiltrados.slice(0, visibles)
 
