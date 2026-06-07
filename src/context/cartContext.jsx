@@ -7,7 +7,7 @@ export function CartProvider({ children }) {
     const [carrito, setCarrito] = useState(() => {
         const guardado = localStorage.getItem("carrito");
         return guardado ? JSON.parse(guardado) : [];
-    });
+    }); 
 
     useEffect(() => {
         localStorage.setItem(
