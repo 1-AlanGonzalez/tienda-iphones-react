@@ -1,17 +1,18 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { BsApple, BsBag } from "react-icons/bs";
-import { BsSearch } from "react-icons/bs";
+import { BsApple, BsBag, BsSearch, BsSun, BsMoon } from "react-icons/bs";
 import MenuDesplegable from "./MenuDesplegable";
 import { useTema } from "../context/TemaContext";
-import {BsSun, BsMoon } from "react-icons/bs";
-
 
 function NavBar({ cantidadCarrito = 0 }) {
   const [busqueda, setBusqueda] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const [hoverMenu, setHoverMenu] = useState(null);
   const { oscuro, setOscuro } = useTema();
+
+  // Se recalcula cada vez que cambia la URL
+  const catActiva = new URLSearchParams(location.search).get("cat");
 
   const handleBusqueda = (e) => {
     if (e.key === "Enter" && busqueda.trim()) {
@@ -21,8 +22,6 @@ function NavBar({ cantidadCarrito = 0 }) {
 
   return (
     <header className="navbar-contenedor">
-
-      {/* ── FILA 1: logo, buscador, nosotros, carrito ── */}
       <div className="navbar-top">
         <Link to="/" className="navbar-logo">
           <BsApple />
@@ -41,106 +40,53 @@ function NavBar({ cantidadCarrito = 0 }) {
         </div>
 
         <div className="navbar-right">
-          <NavLink to="/nosotros" className="navbar-link">Nosotros</NavLink>
-          <NavLink to="/contacto" className="navbar-link">Contacto</NavLink>
-      <button
-        className="icon-btn"
-        onClick={() => setOscuro(!oscuro)}
-        aria-label="Cambiar tema"
-      >
-        {oscuro ? <BsSun /> : <BsMoon />}
-      </button>
-
+          <NavLink to="/nosotros" end className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}>Nosotros</NavLink>
+          <NavLink to="/contacto" end className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}>Contacto</NavLink>
+          <button className="icon-btn" onClick={() => setOscuro(!oscuro)} aria-label="Cambiar tema">
+            {oscuro ? <BsSun /> : <BsMoon />}
+          </button>
           <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito">
             <BsBag />
-            {cantidadCarrito > 0 && (
-              <span className="cart-badge">{cantidadCarrito}</span>
-            )}
+            {cantidadCarrito > 0 && <span className="cart-badge">{cantidadCarrito}</span>}
           </Link>
         </div>
       </div>
 
-      {/* ── FILA 2: categorías ── */}
       <nav className="navbar-categorias">
-        <NavLink to="/productos?cat=ofertas" className={({ isActive }) => `cat-link hot ${isActive ? "active" : ""}`}>
-     Ofertas
-  </NavLink>
+        <NavLink
+          to="/productos?cat=ofertas"
+          className={`cat-link hot ${catActiva === "ofertas" ? "active" : ""}`}
+        >
+          Ofertas
+        </NavLink>
 
-  <div className="cat-sep" />
+        <div className="cat-sep" />
 
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("iphone")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=iphone" className="cat-link">
-      Móviles
-    </NavLink>
+        {[
+          { key: "iphone",     to: "iphone",     label: "Móviles",     cat: "iPhone"     },
+          { key: "airpods",    to: "audio",       label: "Audio",       cat: "AirPods"    },
+          { key: "mac",        to: "computacion", label: "Computación", cat: "Mac"        },
+          { key: "accesorios", to: "accesorios",  label: "Accesorios",  cat: "Accesorios" },
+          { key: "otros",      to: "otros",       label: "Otros",       cat: "Otros"      },
+        ].map(({ key, to, label, cat }) => (
+          <div
+            key={key}
+            className="cat-item"
+            onMouseEnter={() => setHoverMenu(key)}
+            onMouseLeave={() => setHoverMenu(null)}
+          >
+            <Link
+              to={`/productos?cat=${to}`}
+              className={`cat-link ${catActiva === to ? "active" : ""}`}
+            >
+              {label}
+            </Link>
+            {hoverMenu === key && <MenuDesplegable categoria={cat} />}
+          </div>
+        ))}
 
-    {hoverMenu === "iphone" && (
-      <MenuDesplegable categoria="iPhone" />
-    )}
-  </div>
-
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("airpods")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=audio" className="cat-link">
-      Audio
-    </NavLink>
-
-    {hoverMenu === "airpods" && (
-      <MenuDesplegable categoria="AirPods" />
-    )}
-  </div>
-
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("mac")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=computacion" className="cat-link">
-      Computación
-    </NavLink>
-
-    {hoverMenu === "mac" && (
-      <MenuDesplegable categoria="Mac" />
-    )}
-  </div>
-
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("accesorios")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=accesorios" className="cat-link">
-      Accesorios
-    </NavLink>
-
-    {hoverMenu === "accesorios" && (
-      <MenuDesplegable categoria="Accesorios" />
-    )}
-  </div>
-
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("otros")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=otros" className="cat-link">
-      Otros
-    </NavLink>
-
-    {hoverMenu === "otros" && (
-      <MenuDesplegable categoria="Otros" />
-    )}
-  </div>
-
-  <div className="cat-sep" />
-</nav>
-
+        <div className="cat-sep" />
+      </nav>
     </header>
   );
 }
