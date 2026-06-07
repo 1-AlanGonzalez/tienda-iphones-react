@@ -1,8 +1,8 @@
 export const filtrosMoviles = [
-    { id: "modelo",         titulo: "Modelo",         campo: "nombre",         opciones: ["iPhone 14", "iPhone 15", "iPhone 16", "iPhone 17"] },
-    { id: "almacenamiento", titulo: "Almacenamiento",  campo: "almacenamiento", opciones: ["128GB", "256GB", "512GB"] },
-    { id: "color",          titulo: "Color",           campo: "color",          opciones: ["Negro", "Blanco", "Verde", "Azul", "Celeste"] },
-    { id: "linea",          titulo: "Linea",           campo: "linea",          opciones: ["Standard", "Plus", "Pro", "Pro Max"] },
+    { id: "modelo",         titulo: "Modelo",         campo: "nombre",         exacto: false, opciones: ["iPhone 14", "iPhone 15", "iPhone 16", "iPhone 17"] },
+    { id: "almacenamiento", titulo: "Almacenamiento",  campo: "almacenamiento", exacto: true,  opciones: ["128GB", "256GB", "512GB"] },
+    { id: "color",          titulo: "Color",           campo: "color",          exacto: true,  opciones: ["Negro", "Blanco", "Verde", "Azul", "Celeste"] },
+    { id: "linea",          titulo: "Linea",           campo: "linea",          exacto: true,  opciones: ["Standard", "Plus", "Pro", "Pro Max"] },
 ]
 
 export const filtrosAudio = [

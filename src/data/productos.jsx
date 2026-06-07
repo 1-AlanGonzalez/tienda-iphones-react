@@ -28,6 +28,15 @@ import iphone17_promax_blanco from "../assets/images/iphone-17-promax-blanco.png
 import iphone17_promax_azul from "../assets/images/iphone-17-promax-negro.png"
 import iphone17_promax_naranja from "../assets/images/iphone-17-promax-naranja.png"
 
+// Airpods
+
+import airpods_2 from "../assets/images/airpods-2.png"
+import airpods_3 from "../assets/images/airpods-3.png"
+import airpods_4 from "../assets/images/airpods-4.png"
+import airpods_pro_2 from "../assets/images/airpods-pro-2.png"
+import airpods_pro_3 from "../assets/images/airpods-pro-3.png"
+import airpods_max from "../assets/images/airpods-max.png"
+
 export const productos = [
   {
     id: 1,
@@ -379,4 +388,85 @@ export const productos = [
       tag: "Oferta"
   },
 
+  // SECCION DE AUDIO
+
+    {
+    id: 26,
+    nombre: "AirPods 2",
+    categoria: "AirPods",
+    cancelacion: "No",
+    conector: "Lightning",
+    precio: 99,
+    imagen: airpods_2,
+    descripcion: "AirPods 2 con chip H1, conexión rápida con dispositivos Apple, controles por voz mediante Siri y hasta 24 horas de autonomía con el estuche de carga.",
+    stock: 10,
+    tag: "Oferta"
+},
+
+{
+    id: 27,
+    nombre: "AirPods 3",
+    categoria: "AirPods",
+    cancelacion: "No",
+    conector: "Lightning",
+    precio: 149,
+    imagen: airpods_3,
+    descripcion: "AirPods 3 con audio espacial personalizado, chip H1, resistencia al agua IPX4 y hasta 30 horas de autonomía con el estuche de carga.",
+    stock: 10,
+    tag: "Oferta"
+},
+
+{   
+    id: 28,
+    nombre: "AirPods 4",
+    categoria: "AirPods",
+    cancelacion: "No",
+    conector: "USB-C",
+    precio: 179,
+    imagen: airpods_4,
+    descripcion: "AirPods 4 con chip H2, audio espacial personalizado, mejor calidad de sonido, llamadas más nítidas y estuche de carga USB-C.",
+    stock: 10,
+    tag: "Nuevo"
+},
+
+{
+    id: 29,
+    nombre: "AirPods Pro 2",
+    categoria: "AirPods",
+    cancelacion: "Sí",
+    conector: "USB-C",
+    precio: 199,
+    imagen: airpods_pro_2,
+    descripcion: "AirPods Pro 2 con chip H2, cancelación activa de ruido, modo transparencia, audio espacial personalizado y estuche de carga USB-C.",
+    stock: 10,
+    tag: "Oferta"
+},
+
+{
+    id: 30,
+    nombre: "AirPods Pro 3",
+    categoria: "AirPods",
+    cancelacion: "Sí",
+    conector: "USB-C",
+    precio: 249,
+    imagen: airpods_pro_3,
+    descripcion: "AirPods Pro 3 con cancelación activa de ruido mejorada, medición de frecuencia cardíaca, audio espacial personalizado y hasta 8 horas de autonomía por carga.",
+    stock: 10,
+    tag: "Nuevo"
+},
+
+{
+    id: 31,
+    nombre: "AirPods Max",
+    categoria: "AirPods",
+    cancelacion: "Sí",
+    conector: "Bluetooth",
+    precio: 549,
+    imagen: airpods_max,
+    descripcion: "AirPods Max con cancelación activa de ruido, audio espacial personalizado, sonido de alta fidelidad, conector USB-C y hasta 20 horas de autonomía. Su diseño premium de aluminio ofrece una experiencia de audio envolvente y cómoda para todo el día.",
+    stock: 5,
+    tag: "Premium"
+}
+
 ];
+    
