@@ -1,16 +1,19 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { BsApple, BsBag } from "react-icons/bs";
-import { BsSearch } from "react-icons/bs";
-import MenuDesplegable from "./MenuDesplegable";
-import { useCart } from "../context/CartContext";
+import { BsApple, BsBag, BsSearch, BsSun, BsMoon } from "react-icons/bs";
 
+import MenuDesplegable from "./MenuDesplegable";
+
+import { useCart } from "../context/CartContext";
+import { useTema } from "../context/TemaContext";
 
 function NavBar() {
   const [busqueda, setBusqueda] = useState("");
   const navigate = useNavigate();
   const [hoverMenu, setHoverMenu] = useState(null);
+
   const { cantidadTotal } = useCart();
+  const { oscuro, setOscuro } = useTema();
 
   const handleBusqueda = (e) => {
     if (e.key === "Enter" && busqueda.trim()) {
@@ -20,8 +23,7 @@ function NavBar() {
 
   return (
     <header className="navbar-contenedor">
-
-      {/* ── FILA 1: logo, buscador, nosotros, carrito ── */}
+      {/* FILA 1 */}
       <div className="navbar-top">
         <Link to="/" className="navbar-logo">
           <BsApple />
@@ -40,10 +42,29 @@ function NavBar() {
         </div>
 
         <div className="navbar-right">
-          <NavLink to="/nosotros" className="navbar-link">Nosotros</NavLink>
-          <NavLink to="/contacto" className="navbar-link">Contacto</NavLink>
-          <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito">
+          <NavLink to="/nosotros" className="navbar-link">
+            Nosotros
+          </NavLink>
+
+          <NavLink to="/contacto" className="navbar-link">
+            Contacto
+          </NavLink>
+
+          <button
+            className="icon-btn"
+            onClick={() => setOscuro(!oscuro)}
+            aria-label="Cambiar tema"
+          >
+            {oscuro ? <BsSun /> : <BsMoon />}
+          </button>
+
+          <Link
+            to="/carrito"
+            className="icon-btn cart-btn"
+            aria-label="Carrito"
+          >
             <BsBag />
+
             {cantidadTotal > 0 && (
               <span className="cart-badge">
                 {cantidadTotal}
@@ -53,87 +74,91 @@ function NavBar() {
         </div>
       </div>
 
-      {/* ── FILA 2: categorías ── */}
+      {/* FILA 2 */}
       <nav className="navbar-categorias">
-        <NavLink to="/productos?cat=ofertas" className={({ isActive }) => `cat-link hot ${isActive ? "active" : ""}`}>
-     Ofertas
-  </NavLink>
+        <NavLink
+          to="/productos?cat=ofertas"
+          className={({ isActive }) =>
+            `cat-link hot ${isActive ? "active" : ""}`
+          }
+        >
+          Ofertas
+        </NavLink>
 
-  <div className="cat-sep" />
+        <div className="cat-sep" />
 
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("iphone")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=iphone" className="cat-link">
-      Móviles
-    </NavLink>
+        <div
+          className="cat-item"
+          onMouseEnter={() => setHoverMenu("iphone")}
+          onMouseLeave={() => setHoverMenu(null)}
+        >
+          <NavLink to="/productos?cat=iphone" className="cat-link">
+            Móviles
+          </NavLink>
 
-    {hoverMenu === "iphone" && (
-      <MenuDesplegable categoria="iPhone" />
-    )}
-  </div>
+          {hoverMenu === "iphone" && (
+            <MenuDesplegable categoria="iPhone" />
+          )}
+        </div>
 
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("airpods")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=audio" className="cat-link">
-      Audio
-    </NavLink>
+        <div
+          className="cat-item"
+          onMouseEnter={() => setHoverMenu("airpods")}
+          onMouseLeave={() => setHoverMenu(null)}
+        >
+          <NavLink to="/productos?cat=audio" className="cat-link">
+            Audio
+          </NavLink>
 
-    {hoverMenu === "airpods" && (
-      <MenuDesplegable categoria="AirPods" />
-    )}
-  </div>
+          {hoverMenu === "airpods" && (
+            <MenuDesplegable categoria="AirPods" />
+          )}
+        </div>
 
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("mac")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=computacion" className="cat-link">
-      Computación
-    </NavLink>
+        <div
+          className="cat-item"
+          onMouseEnter={() => setHoverMenu("mac")}
+          onMouseLeave={() => setHoverMenu(null)}
+        >
+          <NavLink to="/productos?cat=computacion" className="cat-link">
+            Computación
+          </NavLink>
 
-    {hoverMenu === "mac" && (
-      <MenuDesplegable categoria="Mac" />
-    )}
-  </div>
+          {hoverMenu === "mac" && (
+            <MenuDesplegable categoria="Mac" />
+          )}
+        </div>
 
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("accesorios")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=accesorios" className="cat-link">
-      Accesorios
-    </NavLink>
+        <div
+          className="cat-item"
+          onMouseEnter={() => setHoverMenu("accesorios")}
+          onMouseLeave={() => setHoverMenu(null)}
+        >
+          <NavLink to="/productos?cat=accesorios" className="cat-link">
+            Accesorios
+          </NavLink>
 
-    {hoverMenu === "accesorios" && (
-      <MenuDesplegable categoria="Accesorios" />
-    )}
-  </div>
+          {hoverMenu === "accesorios" && (
+            <MenuDesplegable categoria="Accesorios" />
+          )}
+        </div>
 
-  <div
-    className="cat-item"
-    onMouseEnter={() => setHoverMenu("otros")}
-    onMouseLeave={() => setHoverMenu(null)}
-  >
-    <NavLink to="/productos?cat=otros" className="cat-link">
-      Otros
-    </NavLink>
+        <div
+          className="cat-item"
+          onMouseEnter={() => setHoverMenu("otros")}
+          onMouseLeave={() => setHoverMenu(null)}
+        >
+          <NavLink to="/productos?cat=otros" className="cat-link">
+            Otros
+          </NavLink>
 
-    {hoverMenu === "otros" && (
-      <MenuDesplegable categoria="Otros" />
-    )}
-  </div>
+          {hoverMenu === "otros" && (
+            <MenuDesplegable categoria="Otros" />
+          )}
+        </div>
 
-  <div className="cat-sep" />
-</nav>
-
+        <div className="cat-sep" />
+      </nav>
     </header>
   );
 }
