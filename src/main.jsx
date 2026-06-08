@@ -12,16 +12,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from "react";
 
-// Importo reactDom para renderizar la aplicación y el TemaProvider para envolver la app y proporcionar el contexto de tema a toda la aplicación.
-import ReactDOM from "react-dom/client";
 import { TemaProvider } from "./context/TemaContext";
 
-createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
     <TemaProvider>
       <App />
     </TemaProvider>
-  </React.StrictMode>
-)
-
-
+  </StrictMode>
+);
