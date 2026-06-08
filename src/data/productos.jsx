@@ -216,7 +216,7 @@ export const productos = [
     precio: 699,
     imagen: iphone16_celeste,
     descripcion: "iPhone 16 con chip A18, pantalla Super Retina XDR de 6.1 pulgadas, cámara principal de 48MP y excelente rendimiento para el uso diario.",
-    stock: 3,
+    stock: 2,
     tag: "Oferta"
 },
 
@@ -272,7 +272,7 @@ export const productos = [
     precio: 599,
     imagen: iphone15_negro,
     descripcion: "iPhone 15 con chip A16 Bionic, pantalla Super Retina XDR de 6.1 pulgadas, cámara principal de 48MP y un diseño elegante con Dynamic Island.",
-    stock: 3,
+    stock: 5,
     tag: "Oferta"
 },
 

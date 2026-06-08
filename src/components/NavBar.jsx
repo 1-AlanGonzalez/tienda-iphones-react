@@ -1,13 +1,12 @@
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { BsApple, BsBag, BsSearch, BsSun, BsMoon } from "react-icons/bs";
-
 import MenuDesplegable from "./MenuDesplegable";
 
 import { useCart } from "../context/CartContext";
 import { useTema } from "../context/TemaContext";
 
-function NavBar() {
+function NavBar({ cantidadCarrito = 0 }) {
   const [busqueda, setBusqueda] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
