@@ -1,14 +1,14 @@
-import { useState} from 'react'
-import { productos } from '../data/productos'
+import { useState } from "react";
+import { productos } from "../data/productos";
+import { useCart } from "../context/CartContext";
 
 const mapaCategoria = {
-    iphone:      "iPhone",
-    audio:       "AirPods",
+    iphone: "iPhone",
+    audio: "AirPods",
     computacion: "Mac",
-    accesorios:  "Accesorios",
-    otros:       "Otros",
-}
-
+    accesorios: "Accesorios",
+    otros: "Otros",
+};
 
 function Cards({ seleccionados, datos, cat }) {
     const [visibles, setVisibles] = useState(8)
@@ -60,12 +60,14 @@ function Cards({ seleccionados, datos, cat }) {
                         <button className="card-boton">Agregar al carrito</button>
                     </div>
                 ))}
+
             </div>
 
             {visibles < productosFiltrados.length && (
                 <button className="ver-mas-boton" onClick={() => setVisibles(visibles + 8)}>
                     Ver más
                 </button>
+
             )}
         </div>
     )
