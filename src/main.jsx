@@ -6,6 +6,7 @@ import './styles/productos.css'
 import './styles/carrusel.css'
 import './styles/filaProductos.css'
 import './styles/temaOscuro.css'
+import './styles/beneficios.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 // icons bootstrap

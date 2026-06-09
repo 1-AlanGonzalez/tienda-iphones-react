@@ -39,7 +39,6 @@ function Inicio() {
         subtitulo="Cargadores, fundas y más"
         categoria="Accesorios"
       />
-      <CarruselPublicidad />
 
     </main>
   );

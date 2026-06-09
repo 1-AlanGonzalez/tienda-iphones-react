@@ -245,7 +245,7 @@ export const productos = [
     imagen: iphone16_blanco,
     descripcion: "iPhone 16 Plus con chip A18, pantalla Super Retina XDR de 6.7 pulgadas, cámara de 48MP, gran autonomía y un diseño elegante pensado para disfrutar contenido en pantalla grande.",
     stock: 10,
-    tag: "Oferta"
+    tag: "Nuevo"
 },
 
 {

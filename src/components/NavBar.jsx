@@ -1,33 +1,48 @@
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { BsApple, BsBag, BsSearch, BsSun, BsMoon } from "react-icons/bs";
+import { BsApple, BsBag, BsSearch, BsSun, BsMoon, BsList, BsX, BsChevronRight } from "react-icons/bs";
 import MenuDesplegable from "./MenuDesplegable";
 
 import { useCart } from "../context/CartContext";
 import { useTema } from "../context/TemaContext";
 
+const CATEGORIAS = [
+  { key: "iphone",     to: "iphone",     label: "Móviles",     cat: "iPhone"     },
+  { key: "airpods",    to: "audio",       label: "Audio",       cat: "AirPods"    },
+  { key: "mac",        to: "computacion", label: "Computación", cat: "Mac"        },
+  { key: "accesorios", to: "accesorios",  label: "Accesorios",  cat: "Accesorios" },
+  { key: "otros",      to: "otros",       label: "Otros",       cat: "Otros"      },
+];
+
 function NavBar({ cantidadCarrito = 0 }) {
-  const [busqueda, setBusqueda] = useState("");
-  const navigate = useNavigate();
-  const location = useLocation();
-  const [hoverMenu, setHoverMenu] = useState(null);
+  const [busqueda, setBusqueda]     = useState("");
+  const [hoverMenu, setHoverMenu]   = useState(null);
+  const [menuOpen, setMenuOpen]     = useState(false);
+
+  const navigate  = useNavigate();
+  const location  = useLocation();
 
   const { cantidadTotal } = useCart();
   const { oscuro, setOscuro } = useTema();
 
-  // Se recalcula cada vez que cambia la URL
   const catActiva = new URLSearchParams(location.search).get("cat");
 
   const handleBusqueda = (e) => {
     if (e.key === "Enter" && busqueda.trim()) {
       navigate(`/productos?busqueda=${busqueda}`);
+      setMenuOpen(false);
     }
   };
 
+  const cerrarMenu = () => setMenuOpen(false);
+
   return (
     <header className="navbar-contenedor">
+
+      {/* ── FILA SUPERIOR ── */}
       <div className="navbar-top">
-        <Link to="/" className="navbar-logo">
+
+        <Link to="/" className="navbar-logo" onClick={cerrarMenu}>
           <BsApple />
           <span className="logo-text">Apple Store</span>
         </Link>
@@ -44,18 +59,31 @@ function NavBar({ cantidadCarrito = 0 }) {
         </div>
 
         <div className="navbar-right">
-          <NavLink to="/nosotros" end className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}>Nosotros</NavLink>
-          <NavLink to="/contacto" end className={({ isActive }) => `navbar-link ${isActive ? "active" : ""}`}>Contacto</NavLink>
+          {/* Links solo visibles en desktop */}
+          <NavLink to="/nosotros" end className={({ isActive }) => `navbar-link navbar-link--desktop ${isActive ? "active" : ""}`}>Nosotros</NavLink>
+          <NavLink to="/contacto" end className={({ isActive }) => `navbar-link navbar-link--desktop ${isActive ? "active" : ""}`}>Contacto</NavLink>
+
           <button className="icon-btn" onClick={() => setOscuro(!oscuro)} aria-label="Cambiar tema">
             {oscuro ? <BsSun /> : <BsMoon />}
           </button>
-          <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito">
+
+          <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito" onClick={cerrarMenu}>
             <BsBag />
             {cantidadCarrito > 0 && <span className="cart-badge">{cantidadCarrito}</span>}
           </Link>
+
+          {/* Hamburguesa — solo mobile */}
+          <button
+            className="icon-btn navbar-hamburguesa"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Menú"
+          >
+            {menuOpen ? <BsX style={{ fontSize: 22 }} /> : <BsList style={{ fontSize: 22 }} />}
+          </button>
         </div>
       </div>
 
+      {/* ── CATEGORÍAS DESKTOP ── */}
       <nav className="navbar-categorias">
         <NavLink
           to="/productos?cat=ofertas"
@@ -66,13 +94,7 @@ function NavBar({ cantidadCarrito = 0 }) {
 
         <div className="cat-sep" />
 
-        {[
-          { key: "iphone",     to: "iphone",     label: "Móviles",     cat: "iPhone"     },
-          { key: "airpods",    to: "audio",       label: "Audio",       cat: "AirPods"    },
-          { key: "mac",        to: "computacion", label: "Computación", cat: "Mac"        },
-          { key: "accesorios", to: "accesorios",  label: "Accesorios",  cat: "Accesorios" },
-          { key: "otros",      to: "otros",       label: "Otros",       cat: "Otros"      },
-        ].map(({ key, to, label, cat }) => (
+        {CATEGORIAS.map(({ key, to, label, cat }) => (
           <div
             key={key}
             className="cat-item"
@@ -91,6 +113,53 @@ function NavBar({ cantidadCarrito = 0 }) {
 
         <div className="cat-sep" />
       </nav>
+
+      {/* ── MENÚ MOBILE ── */}
+      {menuOpen && (
+        <div className="navbar-mobile-menu">
+
+          {/* Categorías */}
+          <p className="mobile-menu-section-label">Catálogo</p>
+
+          <Link
+            to="/productos?cat=ofertas"
+            className="mobile-menu-item mobile-menu-item--hot"
+            onClick={cerrarMenu}
+          >
+            <span>🔥 Ofertas</span>
+            <BsChevronRight className="mobile-menu-chevron" />
+          </Link>
+
+          {CATEGORIAS.map(({ key, to, label }) => (
+            <Link
+              key={key}
+              to={`/productos?cat=${to}`}
+              className={`mobile-menu-item ${catActiva === to ? "mobile-menu-item--active" : ""}`}
+              onClick={cerrarMenu}
+            >
+              <span>{label}</span>
+              <BsChevronRight className="mobile-menu-chevron" />
+            </Link>
+          ))}
+
+          <div className="mobile-menu-divider" />
+
+          {/* Links secundarios */}
+          <p className="mobile-menu-section-label">Más</p>
+
+          <Link to="/nosotros" className="mobile-menu-item" onClick={cerrarMenu}>
+            <span>Nosotros</span>
+            <BsChevronRight className="mobile-menu-chevron" />
+          </Link>
+
+          <Link to="/contacto" className="mobile-menu-item" onClick={cerrarMenu}>
+            <span>Contacto</span>
+            <BsChevronRight className="mobile-menu-chevron" />
+          </Link>
+
+        </div>
+      )}
+
     </header>
   );
 }
