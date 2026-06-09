@@ -246,7 +246,7 @@ const Contacto = ({ carrito = [] }) => {
             <ul className="aside-list">
               <li><span className="aside-check">✓</span> Productos 100% originales</li>
               <li><span className="aside-check">✓</span> Garantía oficial Apple</li>
-              <li><span className="aside-check">✓</span> Hasta 12 cuotas sin interés</li>
+              <li><span className="aside-check">✓</span> Hasta 12 cuotas sin interés</li>   
               <li><span className="aside-check">✓</span> Envíos a todo el país</li>
               <li><span className="aside-check">✓</span> Atención personalizada</li>
             </ul>

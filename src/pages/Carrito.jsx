@@ -57,7 +57,7 @@ function Carrito() {
       <div className="carrito-layout">
 
         {/* ── LISTA DE PRODUCTOS ── */}
-        <div className="carrito-lista">
+        <div className="carrito-lista"> 
           {carrito.map(producto => (
             <div key={producto.id} className="carrito-item">
 

@@ -69,7 +69,7 @@ function NavBar({ cantidadCarrito = 0 }) {
 
           <Link to="/carrito" className="icon-btn cart-btn" aria-label="Carrito" onClick={cerrarMenu}>
             <BsBag />
-            {cantidadCarrito > 0 && <span className="cart-badge">{cantidadCarrito}</span>}
+            {cantidadTotal > 0 && <span className="cart-badge">{cantidadTotal}</span>}
           </Link>
 
           {/* Hamburguesa — solo mobile */}
