@@ -8,6 +8,7 @@ import Nosotros from "./pages/Nosotros";
 import Carrito from "./pages/Carrito";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./context/CartContext";
+import DetalleProducto from "./pages/DetalleProducto";
 
 import "./App.css";
 
@@ -20,9 +21,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/productos" element={<Productos />} />
+          <Route path="/producto/:id" element={<DetalleProducto />} />
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/nosotros" element={<Nosotros />} />
           <Route path="/carrito" element={<Carrito />} />
+          
         </Routes>
 
         <Footer />

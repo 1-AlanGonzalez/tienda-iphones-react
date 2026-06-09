@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { productos } from "../data/productos";
 import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const mapaCategoria = {
     iphone: "iPhone",
@@ -21,6 +22,7 @@ function Cards({
     const [visibles, setVisibles] = useState(8);
 
     const { agregarAlCarrito } = useCart();
+    const navigate = useNavigate();
 
     const categoriaActual = mapaCategoria[cat];
 
@@ -149,7 +151,10 @@ function Cards({
                                     }
                                 </p>
                             </div>
-                            <button className="card-detalles">
+                            <button
+                                className="card-detalles"
+                                onClick={() => navigate(`/producto/${producto.id}`)}
+                                >
                                 Ver detalles
                             </button>
                             <button

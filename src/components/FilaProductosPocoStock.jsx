@@ -66,7 +66,7 @@ function FilaProductosPocoStock({ titulo, subtitulo }) {
 
       <div className="fila-scroll" ref={scrollRef}>
         {items.map((p) => (
-          <Link key={p.id} to={`/productos/${p.id}`} className="fila-card fila-card-urgente">
+          <Link key={p.id} to={`/producto/${p.id}`} className="fila-card fila-card-urgente">
             <span className="fila-stock-badge">
               🔥 Solo {p.stock} {p.stock === 1 ? "unidad" : "unidades"}
             </span>

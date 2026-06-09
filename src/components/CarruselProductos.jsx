@@ -60,7 +60,7 @@ function CarruselProductos() {
             </div>
 
             <div className="carrusel-btns">
-              <Link to={`/productos/${p.id}`} className="carrusel-btn-detalle">Ver detalle</Link>
+              <Link to={`/producto/${p.id}`} className="carrusel-btn-detalle">Ver detalle</Link>
               <Link to="/productos" className="carrusel-btn-catalogo">Ver catálogo</Link>
             </div>
           </div>

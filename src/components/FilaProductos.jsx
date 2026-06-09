@@ -74,7 +74,7 @@ function FilaProductos({ titulo, subtitulo, categoria }) {
 
       <div className="fila-scroll" ref={scrollRef}>
         {items.map((p, i) => (
-          <Link key={p.id} to={`/productos/${p.id}`} className="fila-card">
+          <Link key={p.id} to={`/producto/${p.id}`} className="fila-card">
             {p.tag && <span className="fila-tag">{p.tag}</span>}
             {i === 0 && <span className="fila-mas-vendido">⭐ Más vendido</span>}
 
