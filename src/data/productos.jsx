@@ -60,6 +60,25 @@ import macmini_m4 from "../assets/images/mac-mini-m4.png"
 
 import magsafe from "../assets/images/magsafe.png"
 import case_iphone17st from "../assets/images/case-iphone17-st.png"
+import case_iphone17pro from "../assets/images/case-iphone17-pro.png"
+import case_iphone17promax from "../assets/images/case-iphone17-promax.png"
+import case_silicona_iphone17st from "../assets/images/case-silicona-iphone17-st.png"
+import case_silicona_iphone17st2 from "../assets/images/case-silicona-iphone17-st-2.png"
+import case_silicona_iphone17pro from "../assets/images/case-silicona-iphone17-pro.png"
+import case_silicona_iphone17pro2 from "../assets/images/case-silicona-iphone17-pro-2.png"
+import case_silicona_iphone17promax from "../assets/images/case-silicona-iphone17-promax.png"
+import case_silicona_iphone17promax2 from "../assets/images/case-silicona-iphone17-promax-2.png"
+import case_iphone16st from "../assets/images/case-iphone16-st.png"
+import case_silicona_iphone16st from "../assets/images/case-silicona-iphone16-st.png"
+import case_iphone15st from "../assets/images/case-iphone15-st.png"
+import case_iphone15promax from "../assets/images/case-iphone15-promax.png"
+import case_silicona_iphone15promax from "../assets/images/case-silicona-iphone15-promax.png"
+import case_iphone14st from "../assets/images/case-iphone14-st.png"
+import cable_c from "../assets/images/cable-usb-c.png"
+import cable_a from "../assets/images/cable-usb-a.png"
+import watch_se from "../assets/images/watch-SE.png"
+import watch_s10 from "../assets/images/watch-S10.png"
+
 
 export const productos = [
   {
@@ -717,7 +736,243 @@ export const productos = [
     descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
     stock: 8,
     tag: "Popular"
-}
+},
+
+{
+    id: 49,
+    nombre: "Case Transparente Iphone 17 Pro",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: case_iphone17pro,
+    descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 50,
+    nombre: "Case Transparente Iphone 17 Pro Max",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: case_iphone17promax,
+    descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
+    stock: 8,
+    tag: "Popular"
+},
+
+
+{
+    id: 51,
+    nombre: "Case de Silicona Iphone 17",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone17st,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 52,
+    nombre: "Case de Silicona Iphone 17",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone17st2,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 53,
+    nombre: "Case de Silicona Iphone 17 Pro",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone17pro,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 54,
+    nombre: "Case de Silicona Iphone 17 Pro",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone17pro2,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 55,
+    nombre: "Case de Silicona Iphone 17 Pro Max",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone17promax,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 56,
+    nombre: "Case de Silicona Iphone 17 Pro Max",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone17promax2,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 57,
+    nombre: "Case transparente Iphone 16",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: case_iphone16st,
+    descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 58,
+    nombre: "Case de Silicona Iphone 16",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone16st,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 59,
+    nombre: "Case transparente Iphone 15",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: case_iphone15st,
+    descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 60,
+    nombre: "Case transparente Iphone 15 Pro Max",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: case_iphone15promax,
+    descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 58,
+    nombre: "Case de Silicona Iphone 15",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 59,
+    imagen: case_silicona_iphone15promax,
+    descripcion: "Funda de silicona con acabado suave al tacto y protección adicional contra golpes y rayones.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 61,
+    nombre: "Case transparente Iphone 14",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: case_iphone14st,
+    descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 62,
+    nombre: "Cable USB-C",
+    tipo: "Cables",
+    categoria: "Accesorios",
+    compatible: "iPhone iPad Mac",
+    precio: 79,
+    imagen: cable_c,
+    descripcion: "Cable USB-C de alta velocidad para carga y transferencia de datos entre dispositivos Apple compatibles.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 63,
+    nombre: "Cable USB-A",
+    tipo: "Cables",
+    categoria: "Accesorios",
+    compatible: "iPhone iPad",
+    precio: 79,
+    imagen: cable_a,
+    descripcion: "Cable Lightning original para carga rápida y sincronización de datos en dispositivos compatibles.",
+    stock: 8,
+    tag: "Popular"
+},
+
+{
+    id: 64,
+    nombre: "Apple Watch SE",
+    tipo: "Apple Watch",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 249,
+    imagen: watch_se,
+    descripcion: "Apple Watch SE con seguimiento de actividad física, notificaciones inteligentes y monitoreo básico de salud.",
+    stock: 8,
+    tag: "Oferta"
+},
+
+{
+    id: 65,
+    nombre: "Apple Watch Series 10",
+    tipo: "Apple Watch",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 399,
+    imagen: watch_s10,
+    descripcion: "Apple Watch Series 10 con pantalla avanzada, sensores de salud mejorados y rendimiento optimizado.",
+    stock: 8,
+    tag: "Nuevo"
+},
+
 
 
 ];
