@@ -90,7 +90,7 @@ function MenuDesplegable({ categoria }) {
           {productosAMostrar.length > 0 ? (
             productosAMostrar.map((p) => (
               <Link
-                to={`/productos/${p.id}`}
+                to={`/producto/${p.id}`}
                 key={p.id}
                 className="menu-desplegable-card"
               >
