@@ -11,9 +11,7 @@
   overflow: hidden;
   padding: 90px 80px 80px;
   background:
-    radial-gradient(circle at top right, rgba(0,113,227,0.09), transparent 35%),
-    radial-gradient(circle at bottom left, rgba(0,113,227,0.05), transparent 30%),
-    #fff;
+    var(--bg-primary)
 }
 
 .nos-hero-inner {
@@ -29,7 +27,7 @@
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.03em;
-  color: #1d1d1f;
+  color: var(--text-primary);
   margin-bottom: 20px;
   animation: fadeUp 0.6s 0.1s ease both;
 }
@@ -41,7 +39,7 @@
 
 .nos-sub {
   font-size: 17px;
-  color: #515154;
+  color: var(--text-secondary);
   line-height: 1.65;
   max-width: 480px;
   font-weight: 300;
@@ -88,16 +86,16 @@
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   padding: 60px 80px;
-  background: #f5f5f7;
-  border-top: 1px solid #e5e5e5;
-  border-bottom: 1px solid #e5e5e5;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .nos-mv-card {
-  background: #fff;
+  background: var(--bg-primary);
   border-radius: 20px;
   padding: 40px 36px;
-  border: 0.7px solid #e5e5e7;
+  border: 0.7px solid var(--border);
   transition: transform 0.25s, box-shadow 0.25s;
 }
 
@@ -123,7 +121,7 @@
   font-family: 'Playfair Display', serif;
   font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 700;
-  color: #1d1d1f;
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.15;
   margin-bottom: 14px;
@@ -131,7 +129,7 @@
 
 .nos-mv-card p {
   font-size: 15px;
-  color: #515154;
+  color: var(--text-secondary);
   line-height: 1.7;
   font-weight: 300;
 }
@@ -140,6 +138,7 @@
 .nos-numeros {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  background: var(--bg-primary);
   padding: 60px 80px;
   gap: 0;
 }
@@ -150,7 +149,7 @@
   align-items: center;
   gap: 8px;
   padding: 20px 10px;
-  border-right: 0.7px solid #e5e5e7;
+  border-right: 0.7px solid var(--border);
 }
 
 .nos-numero:last-child {
@@ -168,7 +167,7 @@
 
 .nos-num-label {
   font-size: 13px;
-  color: #6e6e73;
+  color: var(--text-secondary);
   text-align: center;
   font-weight: 400;
 }
@@ -176,16 +175,17 @@
 /* POR QUÉ ELEGIRNOS */
 .nos-porque {
   padding: 70px 80px 80px;
-  background: #fff;
+  background: var(--bg-primary);
 }
 
 .nos-porque-titulo {
   font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 3.5vw, 40px);
   font-weight: 700;
-  color: #1d1d1f;
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   text-align: center;
+  
   margin-bottom: 48px;
 }
 
@@ -198,10 +198,10 @@
 }
 
 .nos-porque-item {
-  background: #f5f5f7;
+  background: var(--bg-secondary);
   border-radius: 20px;
   padding: 32px 28px;
-  border: 0.7px solid #e5e5e7;
+  border: 0.7px solid var(--border);
   transition: transform 0.25s, box-shadow 0.25s;
 }
 
@@ -220,14 +220,14 @@
 .nos-porque-item h3 {
   font-size: 16px;
   font-weight: 600;
-  color: #1d1d1f;
+  color: var(--text-primary);
   margin-bottom: 10px;
   letter-spacing: -0.01em;
 }
 
 .nos-porque-item p {
   font-size: 14px;
-  color: #515154;
+  color: var(--text-secondary);
   line-height: 1.65;
   font-weight: 300;
 }
