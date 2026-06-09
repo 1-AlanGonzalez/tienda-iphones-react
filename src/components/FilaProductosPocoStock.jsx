@@ -1,9 +1,38 @@
+import { useRef, useState, useEffect } from "react";
 import { productos } from "../data/productos";
 import { Link } from "react-router-dom";
 
 function FilaProductosPocoStock({ titulo, subtitulo }) {
+  const scrollRef = useRef(null);
+  const [canLeft, setCanLeft]   = useState(false);
+  const [canRight, setCanRight] = useState(true);
 
-  const items = productos.filter(p => p.stock <= 5);
+  const items = productos.filter(p => p.stock <= 5 && p.stock > 0);
+
+  const checkArrows = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 8);
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkArrows();
+    el.addEventListener("scroll", checkArrows, { passive: true });
+    window.addEventListener("resize", checkArrows);
+    return () => {
+      el.removeEventListener("scroll", checkArrows);
+      window.removeEventListener("resize", checkArrows);
+    };
+  }, []);
+
+  const scroll = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 440, behavior: "smooth" });
+  };
 
   if (items.length === 0) return null;
 
@@ -15,12 +44,29 @@ function FilaProductosPocoStock({ titulo, subtitulo }) {
           <h2 className="fila-titulo">{titulo}</h2>
           {subtitulo && <p className="fila-subtitulo">{subtitulo}</p>}
         </div>
+        <div className="fila-arrows">
+          <button
+            className="fila-arrow fila-arrow--urgente"
+            onClick={() => scroll(-1)}
+            disabled={!canLeft}
+            aria-label="Anterior"
+          >
+            ‹
+          </button>
+          <button
+            className="fila-arrow fila-arrow--urgente"
+            onClick={() => scroll(1)}
+            disabled={!canRight}
+            aria-label="Siguiente"
+          >
+            ›
+          </button>
+        </div>
       </div>
 
-      <div className="fila-scroll">
+      <div className="fila-scroll" ref={scrollRef}>
         {items.map((p) => (
-          <Link key={p.id} to={`/productos/${p.id}`} className="fila-card">
-
+          <Link key={p.id} to={`/productos/${p.id}`} className="fila-card fila-card-urgente">
             <span className="fila-stock-badge">
               🔥 Solo {p.stock} {p.stock === 1 ? "unidad" : "unidades"}
             </span>
@@ -37,7 +83,6 @@ function FilaProductosPocoStock({ titulo, subtitulo }) {
                 12x ${Math.round(p.precio / 12).toLocaleString("es-AR")} sin interés
               </p>
             </div>
-
           </Link>
         ))}
       </div>

@@ -1,15 +1,43 @@
+import { useRef, useState, useEffect } from "react";
 import { productos } from "../data/productos";
 import { Link } from "react-router-dom";
 
 function FilaProductos({ titulo, subtitulo, categoria }) {
+  const scrollRef = useRef(null);
+  const [canLeft, setCanLeft]   = useState(false);
+  const [canRight, setCanRight] = useState(true);
 
-  // Deduplica por nombre, toma el primero de cada modelo
   const items = productos
     .filter(p => p.categoria === categoria)
     .reduce((acc, p) => {
       if (!acc.find(x => x.nombre === p.nombre)) acc.push(p);
       return acc;
     }, []);
+
+  const checkArrows = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanLeft(el.scrollLeft > 8);
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 8);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkArrows();
+    el.addEventListener("scroll", checkArrows, { passive: true });
+    window.addEventListener("resize", checkArrows);
+    return () => {
+      el.removeEventListener("scroll", checkArrows);
+      window.removeEventListener("resize", checkArrows);
+    };
+  }, []);
+
+  const scroll = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: dir * 440, behavior: "smooth" });
+  };
 
   return (
     <section className="fila-section">
@@ -19,12 +47,32 @@ function FilaProductos({ titulo, subtitulo, categoria }) {
           <h2 className="fila-titulo">{titulo}</h2>
           {subtitulo && <p className="fila-subtitulo">{subtitulo}</p>}
         </div>
-        <Link to={`/productos?cat=${categoria.toLowerCase()}`} className="fila-ver-todos">
-          Ver todos →
-        </Link>
+        <div className="fila-header-right">
+          <div className="fila-arrows">
+            <button
+              className="fila-arrow"
+              onClick={() => scroll(-1)}
+              disabled={!canLeft}
+              aria-label="Anterior"
+            >
+              ‹
+            </button>
+            <button
+              className="fila-arrow"
+              onClick={() => scroll(1)}
+              disabled={!canRight}
+              aria-label="Siguiente"
+            >
+              ›
+            </button>
+          </div>
+          <Link to={`/productos?cat=${categoria.toLowerCase()}`} className="fila-ver-todos">
+            Ver todos →
+          </Link>
+        </div>
       </div>
 
-      <div className="fila-scroll">
+      <div className="fila-scroll" ref={scrollRef}>
         {items.map((p, i) => (
           <Link key={p.id} to={`/productos/${p.id}`} className="fila-card">
             {p.tag && <span className="fila-tag">{p.tag}</span>}

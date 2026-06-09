@@ -1,7 +1,5 @@
-
 /* ── FILA PRODUCTOS ── */
 .fila-section {
-  max-width: 1100px;
   margin: 0 auto;
   padding: 48px 2rem 0;
 }
@@ -11,6 +9,13 @@
   align-items: flex-end;
   justify-content: space-between;
   margin-bottom: 24px;
+}
+
+.fila-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
 }
 
 .fila-titulo {
@@ -32,14 +37,57 @@
 
 .fila-ver-todos {
   font-size: 13px;
-  color: #0071e3;
+  color: var(--blue);
   text-decoration: none;
   font-weight: 500;
   white-space: nowrap;
-  flex-shrink: 0;
   transition: opacity 0.2s;
 }
 .fila-ver-todos:hover { opacity: 0.7; }
+
+/* ── FLECHAS ── */
+.fila-arrows {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.fila-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s, opacity 0.2s;
+  padding: 0;
+  padding-bottom: 2px; /* compensa el carácter › ‹ */
+}
+
+.fila-arrow:hover:not(:disabled) {
+  background: var(--bg-tertiary);
+  border-color: var(--text-muted);
+}
+
+.fila-arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* variante urgente: borde azul */
+.fila-arrow--urgente {
+  border-color: #246aff;
+  color: #246aff;
+}
+.fila-arrow--urgente:hover:not(:disabled) {
+  background: rgba(36, 106, 255, 0.08);
+}
 
 /* scroll horizontal */
 .fila-scroll {
@@ -48,6 +96,7 @@
   overflow-x: auto;
   padding-bottom: 16px;
   scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 }
 .fila-scroll::-webkit-scrollbar { display: none; }
 
@@ -66,6 +115,7 @@
   position: relative;
   transition: background 0.2s, transform 0.2s;
   overflow: hidden;
+  scroll-snap-align: start;
 }
 .fila-card:hover {
   background: var(--bg-tertiary);
@@ -76,7 +126,7 @@
   position: absolute;
   top: 12px;
   left: 12px;
-  background: #0071e3;
+  background: var(--blue);
   color: #fff;
   font-size: 9px;
   font-weight: 700;
@@ -98,6 +148,12 @@
   padding: 3px 8px;
   border-radius: 980px;
   white-space: nowrap;
+}
+
+/* en dark mode el badge "más vendido" tiene mejor contraste */
+.tema-oscuro .fila-mas-vendido {
+  background: rgba(230, 92, 0, 0.18);
+  color: #ff9f45;
 }
 
 .fila-img {
@@ -153,18 +209,9 @@
   font-weight: 500;
 }
 
-/* responsive */
-@media (max-width: 600px) {
-  .fila-section { padding: 36px 1rem 0; }
-  .fila-card { width: 160px; }
-  .fila-img { height: 110px; }
-}
-
-/* ── FILA DE PRODUCTOS CON POCO STOCK ── */
+/* ── POCO STOCK ── */
 .fila-poco-stock {
-  max-width: 1100px;
-  margin: 48px auto 0;
-  padding: 0 2rem;
+  margin-top: 48px;
 }
 
 .fila-poco-eyebrow {
@@ -173,23 +220,22 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #e60000;
-}
-
-.fila-poco-stock .fila-titulo {
-  color: #1d1d1f;
-}
-
-.fila-poco-stock .fila-subtitulo {
-  color: #a1a1a6;
+  margin: 0 0 4px;
 }
 
 .fila-card-urgente {
-  background: #fff !important;
-  border: 1px solid #c0ceff;
+  background: var(--bg-secondary) !important;
 }
 .fila-card-urgente:hover {
-  background: #fff8f0 !important;
+  background: var(--bg-tertiary) !important;
   border-color: #a2a9ff;
+}
+
+.tema-oscuro .fila-card-urgente {
+  border-color: rgba(36, 106, 255, 0.3);
+}
+.tema-oscuro .fila-card-urgente:hover {
+  border-color: rgba(36, 106, 255, 0.55);
 }
 
 .fila-stock-badge {
@@ -205,4 +251,12 @@
   border-radius: 980px;
   white-space: nowrap;
   z-index: 1;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+  .fila-section { padding: 36px 1rem 0; }
+  .fila-card { width: 160px; }
+  .fila-img { height: 110px; }
+  .fila-arrow { width: 28px; height: 28px; font-size: 17px; }
 }

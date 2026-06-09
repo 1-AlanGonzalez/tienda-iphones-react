@@ -4,9 +4,11 @@ import { productos } from "../data/productos.jsx";
 import "../styles/Inicio.css";
 
 function CarruselProductos() {
-  const [actual, setActual] = useState(0);
+  const ofertas = productos.filter(p => p.tag === "Oferta");
+  const total   = ofertas.length;
+
+  const [actual, setActual]   = useState(0);
   const [animando, setAnimando] = useState(false);
-  const total = productos.length;
 
   const cambiar = (dir) => {
     if (animando) return;
@@ -18,16 +20,18 @@ function CarruselProductos() {
   };
 
   useEffect(() => {
+    if (total === 0) return;
     const timer = setInterval(() => cambiar(1), 4000);
     return () => clearInterval(timer);
-  }, [actual]);
+  }, [actual, total]);
 
-  const p = productos[actual];
+  if (total === 0) return null;
+
+  const p = ofertas[actual];
 
   return (
     <section className="carrusel-section">
 
-      {/* HEADER con eyebrow + título */}
       <div className="carrusel-header">
         <p className="carrusel-eyebrow">catálogo destacado</p>
         <h2 className="carrusel-titulo">Nuestras mejores <em>ofertas.</em></h2>
@@ -37,10 +41,9 @@ function CarruselProductos() {
         <button className="carrusel-arrow" onClick={() => cambiar(-1)} aria-label="Anterior">&#8592;</button>
 
         <div className={`carrusel-card ${animando ? "fade-out" : "fade-in"}`}>
-          
-          {/* imagen con fondo degradado sutil */}
+
           <div className="carrusel-img-wrap">
-            {p.tag && <span className="carrusel-tag">{p.tag}</span>}
+            <span className="carrusel-tag">Oferta</span>
             <img src={p.imagen} alt={p.nombre} loading="lazy" />
           </div>
 
@@ -67,12 +70,12 @@ function CarruselProductos() {
       </div>
 
       <div className="carrusel-dots">
-        {productos.map((_, i) => (
+        {ofertas.map((_, i) => (
           <button
             key={i}
             className={`dot ${i === actual ? "dot-activo" : ""}`}
             onClick={() => setActual(i)}
-            aria-label={`Producto ${i + 1}`}
+            aria-label={`Oferta ${i + 1}`}
           />
         ))}
       </div>
