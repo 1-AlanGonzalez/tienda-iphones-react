@@ -1,199 +1,272 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import {
+  BsPerson, BsEnvelope, BsTelephone, BsGeoAlt,
+  BsTruck, BsChat, BsArrowRight
+} from "react-icons/bs";
+import "../styles/contacto.css";
 
-const Contacto = ({ carrito = [{ id: 1, nombre: "iPhone de prueba" }] }) => {
-  // En vez de tener: const [nombre, setNombre] = useState("");
-  // Usamos UN SOLO objeto para agrupar los datos:
+const Contacto = ({ carrito = [] }) => {
+  const esModoCompra = carrito.length > 0;
+
   const [formData, setFormData] = useState({
-    nombre: "",
-    email: "",
-    telefono: "",
+    nombre:    "",
+    email:     "",
+    telefono:  "",
     direccion: "",
-    entrega: "correo",
-    mensaje: "" 
+    entrega:   "correo",
+    mensaje:   "",
   });
 
-  // Y para los errores, también usamos un objeto:
-  const [errores, setErrores] = useState({
-    nombre: "",
-    email: "",
-    telefono: "",
-    direccion: ""
-  });
+  const [errores, setErrores] = useState({});
+  const [enviado, setEnviado] = useState(false);
 
- // 1. FUNCIÓN QUE ESCUCHA TODOS LOS INPUTS
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value // Guarda dinámicamente en nombre o email
-    });
-
-    // Si escribe y había error en ese campo, lo limpia
-    if (errores[name]) {
-      setErrores({ ...errores, [name]: "" });
-    }
+    setFormData({ ...formData, [name]: value });
+    if (errores[name]) setErrores({ ...errores, [name]: "" });
   };
 
-  // 2. FUNCIÓN QUE VALIDA AL ENVIAR
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Validación del carrito vacío (Freno de mano inicial). Si esta vacion no hace falta que verifique lo demas
-    if (carrito.length === 0) {
-      alert("Tu carrito está vacío. Agregá algún Producto antes de finalizar la compra.");
-      return; // Corta la función acá, no deja avanzar a los errores ni al éxito
-    }
-    
-    // Objeto temporal para juntar los errores que encontremos
+
     const nuevosErrores = {};
+    const regexLetras  = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
+    const regexNumeros = /^[0-9\s+-]+$/;
 
-    // Validación de Nombre (ahora se lee desde formData.nombre)
-    const regexLetras = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/; // Expresión regular que solo acepta letras y espacios
-    if (formData.nombre.trim() === "") {
+    if (!formData.nombre.trim())
       nuevosErrores.nombre = "El nombre y apellido son obligatorios.";
-    } else if (!regexLetras.test(formData.nombre)) {
-      nuevosErrores.nombre = "El nombre solo puede contener letras."; 
-    }
+    else if (!regexLetras.test(formData.nombre))
+      nuevosErrores.nombre = "El nombre solo puede contener letras.";
 
-    // VALIDACIÓN DE EMAIL
-    if (formData.email.trim() === "") {
+    if (!formData.email.trim())
       nuevosErrores.email = "El email es obligatorio.";
-    } else if (!formData.email.includes("@") || !formData.email.includes(".")) {
+    else if (!formData.email.includes("@") || !formData.email.includes("."))
       nuevosErrores.email = "El formato del email no es válido.";
-    }
 
-    // Validacion de telefono
-    const regexNumeros = /^[0-9\s+-]+$/; // Expresión regular que solo acepta números, espacios, + y -
-    if (formData.telefono.trim() === "") {
-      nuevosErrores.telefono = "El telefono es obligatorio"
-    } else if (!regexNumeros.test(formData.telefono)) {
-      nuevosErrores.telefono = "El teléfono solo puede contener números.";
-    }
+    if (!formData.telefono.trim())
+      nuevosErrores.telefono = "El teléfono es obligatorio.";
+    else if (!regexNumeros.test(formData.telefono))
+      nuevosErrores.telefono = "Solo se permiten números.";
 
-    // Validacion para la Direccion
-    if (formData.direccion.trim() === "") {
-      nuevosErrores.direccion = "La direccion o localidad es obligatoria"
-    }
+    if (!formData.direccion.trim())
+      nuevosErrores.direccion = "La dirección o localidad es obligatoria.";
 
-    // Si encontramos algún error, lo guardamos en el estado y frenamos
     if (Object.keys(nuevosErrores).length > 0) {
       setErrores(nuevosErrores);
-      return; // Freno de mano
+      return;
     }
 
-    // Si pasó todo, procesa
-    alert(`¡Formulario válido! Procesando compra para: ${formData.nombre}`);
+    setEnviado(true);
   };
 
-  return (
-    <div className="container my-5">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
-          <div className="card shadow-sm p-4">
-            <h2 className="mb-4 text-center fw-bold">Contacto</h2>
-            
-            <form onSubmit={handleSubmit}>
-              
-              {/* Input de Nombre */}
-              <div className="mb-3">
-                <label className="form-label fw-semibold">Nombre y Apellido</label>
-                <input
-                  type="text"
-                  name="nombre" // <--- Clave para que handleChange sepa qué campo es
-                  className={`form-control ${errores.nombre ? "is-invalid" : ""}`}
-                  placeholder="Pepito Pérez"
-                  value={formData.nombre} // <--- Ahora lee del objeto formData
-                  onChange={handleChange} // <--- Usa la nueva función unificada
-                />
-                {errores.nombre && (
-                  <div className="invalid-feedback">{errores.nombre}</div>
-                )}
-              </div>
-
-              {/* Input de Email */}
-              <div className="mb-3">
-                <label className="form-label fw-semibold">Email</label>
-                <input
-                  type="email"
-                  name="email" // <--- Clave para el email
-                  className={`form-control ${errores.email ? "is-invalid" : ""}`}
-                  placeholder="pepito@ejemplo.com"
-                  value={formData.email} // <--- Lee el email del objeto formData
-                  onChange={handleChange} // <--- Usa la misma función de arriba
-                />
-                {errores.email && (
-                  <div className="invalid-feedback">{errores.email}</div>
-                )}
-              </div>
-
-              {/* Input del Telefono */}
-              <div className="mb-3">
-                <label className="form-label fw-semibold">Telefono</label>
-                <input
-                  type="tel"
-                  name="telefono" // <--- Clave para que handleChange sepa qué campo es
-                  className={`form-control ${errores.telefono ? "is-invalid" : ""}`}
-                  placeholder="123456"
-                  value={formData.telefono} // <--- Ahora lee del objeto formData
-                  onChange={handleChange} // <--- Usa la nueva función unificada
-                />
-                {errores.telefono && (
-                  <div className="invalid-feedback">{errores.telefono}</div>
-                )}
-              </div>
-
-              {/* Input para la direccion */}
-              <div className="mb-3">
-                <label className="form-label fw-semibold">Direccion o localidad</label>
-                <input
-                  type="text"
-                  name="direccion" // <--- Clave para que handleChange sepa qué campo es
-                  className={`form-control ${errores.direccion ? "is-invalid" : ""}`}
-                  placeholder="Direccion"
-                  value={formData.direccion} // <--- Ahora lee del objeto formData
-                  onChange={handleChange} // <--- Usa la nueva función unificada
-                />
-                {errores.direccion && (
-                  <div className="invalid-feedback">{errores.direccion}</div>
-                )}
-              </div>
-
-              {/* Select: Método de Entrega */}
-              <div className="mb-3">
-                <label className="form-label fw-semibold">Método de Entrega</label>
-                <select
-                  name="entrega" // <--- Conecta con formData.entrega
-                  className="form-select"
-                  value={formData.entrega}
-                  onChange={handleChange}
-                >
-                  <option value="correo">Envío por Correo Argentino</option>
-                  <option value="sucursal">Retiro en Sucursal</option>
-                </select>
-              </div>
-
-              {/* Textarea: Mensaje Opcional */}
-              <div className="mb-4">
-                <label className="form-label fw-semibold">Mensaje o Aclaración (Opcional)</label>
-                <textarea
-                  name="mensaje" // <--- Conecta con formData.mensaje
-                  className="form-control"
-                  rows="3"
-                  placeholder="Ej: Tocar timbre 2B, dejar en recepción..."
-                  value={formData.mensaje}
-                  onChange={handleChange}
-                ></textarea>
-              </div>
-
-              {/* Botón */}
-              <button type="submit" className="btn btn-dark w-100 py-2.5 fw-semibold shadow-sm">
-                Finalizar compra
-              </button>
-            </form>
-          </div>
+  /* ── PANTALLA DE ÉXITO ── */
+  if (enviado) {
+    return (
+      <main className="contacto-page">
+        <div className="contacto-success">
+          <div className="success-icon">✓</div>
+          <h2>{esModoCompra ? "¡Pedido recibido!" : "¡Mensaje enviado!"}</h2>
+          <p>
+            {esModoCompra
+              ? `Nos contactaremos con ${formData.nombre} a la brevedad para confirmar tu compra.`
+              : `Recibimos tu consulta. Te respondemos a la brevedad en ${formData.email}.`}
+          </p>
+          {esModoCompra && <p className="success-email">{formData.email}</p>}
         </div>
+      </main>
+    );
+  }
+
+  return (
+    <main className="contacto-page">
+
+      {/* ── HERO ── */}
+      <div className="contacto-hero">
+        <p className="eyebrow">{esModoCompra ? "Finalizá tu compra" : "Contacto"}</p>
+        <h1 className="contacto-titulo">
+          {esModoCompra
+            ? <><span>Un paso más</span><br /><em>y es tuyo.</em></>
+            : <><span>¿Tenés alguna</span><br /><em>consulta?</em></>}
+        </h1>
+        <p className="contacto-sub">
+          {esModoCompra
+            ? "Completá tus datos para que podamos procesar tu pedido y coordinar la entrega."
+            : "Completá el formulario y te respondemos a la brevedad. También podés escribirnos por WhatsApp."}
+        </p>
       </div>
-    </div>
+
+      <div className="contacto-layout">
+
+        {/* ── FORMULARIO ── */}
+        <form className="contacto-form" onSubmit={handleSubmit} noValidate>
+
+          <div className="form-grid">
+
+            {/* Nombre */}
+            <div className={`form-field ${errores.nombre ? "form-field--error" : ""}`}>
+              <label htmlFor="nombre">Nombre y apellido</label>
+              <div className="input-wrap">
+                <BsPerson className="input-icon" />
+                <input
+                  id="nombre" type="text" name="nombre"
+                  placeholder="Pepito Pérez"
+                  value={formData.nombre}
+                  onChange={handleChange}
+                  autoComplete="name"
+                />
+              </div>
+              {errores.nombre && <p className="form-error">{errores.nombre}</p>}
+            </div>
+
+            {/* Email */}
+            <div className={`form-field ${errores.email ? "form-field--error" : ""}`}>
+              <label htmlFor="email">Email</label>
+              <div className="input-wrap">
+                <BsEnvelope className="input-icon" />
+                <input
+                  id="email" type="email" name="email"
+                  placeholder="pepito@ejemplo.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  autoComplete="email"
+                />
+              </div>
+              {errores.email && <p className="form-error">{errores.email}</p>}
+            </div>
+
+            {/* Teléfono */}
+            <div className={`form-field ${errores.telefono ? "form-field--error" : ""}`}>
+              <label htmlFor="telefono">Teléfono</label>
+              <div className="input-wrap">
+                <BsTelephone className="input-icon" />
+                <input
+                  id="telefono" type="tel" name="telefono"
+                  placeholder="11 1234-5678"
+                  value={formData.telefono}
+                  onChange={handleChange}
+                  autoComplete="tel"
+                />
+              </div>
+              {errores.telefono && <p className="form-error">{errores.telefono}</p>}
+            </div>
+
+            {/* Dirección */}
+            <div className={`form-field ${errores.direccion ? "form-field--error" : ""}`}>
+              <label htmlFor="direccion">Dirección o localidad</label>
+              <div className="input-wrap">
+                <BsGeoAlt className="input-icon" />
+                <input
+                  id="direccion" type="text" name="direccion"
+                  placeholder="Av. Corrientes 1234, CABA"
+                  value={formData.direccion}
+                  onChange={handleChange}
+                  autoComplete="street-address"
+                />
+              </div>
+              {errores.direccion && <p className="form-error">{errores.direccion}</p>}
+            </div>
+
+          </div>
+
+          {/* Método de entrega */}
+          <div className="form-field form-field--full">
+            <label>
+              <BsTruck style={{ marginRight: 6 }} />
+              Método de entrega
+            </label>
+            <div className="entrega-opciones">
+              {[
+                { value: "correo",   label: "Correo Argentino",   desc: "3 a 7 días hábiles" },
+                { value: "sucursal", label: "Retiro en sucursal",  desc: "Disponible en 24 hs" },
+              ].map(({ value, label, desc }) => (
+                <label
+                  key={value}
+                  className={`entrega-opcion ${formData.entrega === value ? "entrega-opcion--activa" : ""}`}
+                >
+                  <input
+                    type="radio" name="entrega" value={value}
+                    checked={formData.entrega === value}
+                    onChange={handleChange}
+                  />
+                  <BsTruck className="entrega-icon" />
+                  <div>
+                    <span className="entrega-label">{label}</span>
+                    <span className="entrega-desc">{desc}</span>
+                  </div>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          {/* Mensaje */}
+          <div className="form-field form-field--full">
+            <label htmlFor="mensaje">
+              <BsChat style={{ marginRight: 6 }} />
+              {esModoCompra ? "Mensaje o aclaración" : "Mensaje o consulta"}
+              <span className="label-opcional">{esModoCompra ? " (opcional)" : ""}</span>
+            </label>
+            <textarea
+              id="mensaje" name="mensaje" rows={3}
+              placeholder={
+                esModoCompra
+                  ? "Ej: Tocar timbre 2B, dejar en recepción..."
+                  : "Escribinos tu consulta y te respondemos a la brevedad."
+              }
+              value={formData.mensaje}
+              onChange={handleChange}
+            />
+          </div>
+
+          {/* Resumen carrito / aviso */}
+          {esModoCompra ? (
+            <div className="contacto-resumen">
+              <span className="resumen-label">Productos en el carrito</span>
+              <span className="resumen-count">
+                {carrito.length} {carrito.length === 1 ? "artículo" : "artículos"}
+              </span>
+            </div>
+          ) : (
+            <p className="contacto-aviso">
+              Si querés finalizar una compra, primero agregá productos al carrito.
+            </p>
+          )}
+
+          <button type="submit" className="contacto-submit">
+            {esModoCompra ? "Finalizar compra" : "Enviar consulta"}
+            <BsArrowRight />
+          </button>
+
+        </form>
+
+        {/* ── ASIDE ── */}
+        <aside className="contacto-aside">
+
+          <div className="aside-card">
+            <h3>¿Por qué elegirnos?</h3>
+            <ul className="aside-list">
+              <li><span className="aside-check">✓</span> Productos 100% originales</li>
+              <li><span className="aside-check">✓</span> Garantía oficial Apple</li>
+              <li><span className="aside-check">✓</span> Hasta 12 cuotas sin interés</li>
+              <li><span className="aside-check">✓</span> Envíos a todo el país</li>
+              <li><span className="aside-check">✓</span> Atención personalizada</li>
+            </ul>
+          </div>
+
+          <div className="aside-card aside-card--contacto">
+            <h3>¿Preferís hablar?</h3>
+            <p>Escribinos por WhatsApp o por mail y te respondemos en minutos.</p>
+            <a href="https://wa.me/5491128555086" className="aside-wa-btn" target="_blank" rel="noreferrer">
+              WhatsApp
+            </a>
+            <a href="mailto:soporte@applestore.com" className="aside-mail">
+              soporte@applestore.com
+            </a>
+          </div>
+
+        </aside>
+
+      </div>
+    </main>
   );
 };
 
