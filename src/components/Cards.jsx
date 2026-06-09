@@ -149,7 +149,9 @@ function Cards({
                                     }
                                 </p>
                             </div>
-
+                            <button className="card-detalles">
+                                Ver detalles
+                            </button>
                             <button
                                 className="card-boton"
                                 onClick={() =>
