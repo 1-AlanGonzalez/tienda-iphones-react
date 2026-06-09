@@ -19,8 +19,8 @@ export const filtrosComputacion = [
 ]
 
 export const filtrosAccesorios = [
-    { id: "tipo",       titulo: "Tipo",          campo: "tipo",       opciones: ["MagSafe", "Cases", "Cables", "Apple Watch", "iPad"] },
-    { id: "compatible", titulo: "Compatible", campo: "compatible", opciones: ["Iphone", "iPad", "Mac", "Apple Watch"] },
+    { id: "tipo",       titulo: "Tipo",          campo: "tipo",       opciones: ["MagSafe", "Cases", "Cables", "Apple Watch"] },
+    { id: "compatible", titulo: "Compatible", campo: "compatible", opciones: ["Iphone", "iPad", "Mac"] },
 ]
 
 export const filtroOtros = [
