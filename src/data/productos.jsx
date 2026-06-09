@@ -37,6 +37,25 @@ import airpods_pro_2 from "../assets/images/airpods-pro-2.png"
 import airpods_pro_3 from "../assets/images/airpods-pro-3.png"
 import airpods_max from "../assets/images/airpods-max.png"
 
+
+// COMPUTACION
+import macbok_air_m1 from "../assets/images/macbok-air-m1.png"
+import macbok_air_m2 from "../assets/images/macbok-air-m2.png"
+import macbok_air_m3 from "../assets/images/macbok-air-m3.png"
+import macbok_air_m4 from "../assets/images/macbok-air-m4.png"
+import macbok_pro_m1 from "../assets/images/macbok-pro-m1.png"
+import macbok_pro_m2 from "../assets/images/macbok-pro-m2.png"
+import macbok_pro_m3 from "../assets/images/macbok-pro-m3.png"
+// import macbok_pro_m4 from "../assets/images/macbok-pro-m4.png"
+import imac_m1 from "../assets/images/imac-m1.png"
+import imac_m2 from "../assets/images/imac-m2.png"
+import imac_m3 from "../assets/images/imac-m3.png"
+import imac_m4 from "../assets/images/imac-m4.png"
+import macmini_m1 from "../assets/images/mac-mini-m1.png"
+import macmini_m2 from "../assets/images/mac-mini-m2.png"
+import macmini_m3 from "../assets/images/mac-mini-m3.png"
+import macmini_m4 from "../assets/images/mac-mini-m4.png"
+
 export const productos = [
   {
     id: 1,
@@ -466,7 +485,209 @@ export const productos = [
     descripcion: "AirPods Max con cancelación activa de ruido, audio espacial personalizado, sonido de alta fidelidad, conector USB-C y hasta 20 horas de autonomía. Su diseño premium de aluminio ofrece una experiencia de audio envolvente y cómoda para todo el día.",
     stock: 5,
     tag: "Premium"
-}
+},
+
+// COMPUTACION
+
+{
+    id: 32,
+    nombre: "MacBook Air",
+    categoria: "Mac",
+    chip: "M1",
+    ram: "8GB",
+    almacenamiento: "256GB",
+    precio: 799,
+    imagen: macbok_air_m1 ,
+    descripcion: "MacBook Air con chip M1, pantalla Retina de 13.3 pulgadas, 8GB de memoria unificada y hasta 18 horas de autonomía. Ideal para estudio, trabajo y uso diario.",
+    tag: "Oferta"
+},
+
+{
+    id: 33,
+    nombre: "MacBook Air",
+    categoria: "Mac",
+    chip: "M2",
+    ram: "8GB",
+    almacenamiento: "256GB",
+    precio: 999,
+    imagen: macbok_air_m2 ,
+    descripcion: "MacBook Air con chip M2, pantalla Liquid Retina de 13.6 pulgadas, diseño ultradelgado y excelente rendimiento para productividad y creatividad.",
+    tag: "Oferta"
+},
+
+{
+    id: 34,
+    nombre: "MacBook Air",
+    categoria: "Mac",
+    chip: "M3",
+    ram: "16GB",
+    almacenamiento: "512GB",
+    precio: 1199,
+    imagen: macbok_air_m3 ,
+    descripcion: "MacBook Air con chip M3, pantalla Liquid Retina de 13.6 pulgadas, 16GB de memoria unificada y un rendimiento optimizado para multitarea y aplicaciones exigentes.",
+    tag: "Oferta"
+},
+
+{
+    id: 35,
+    nombre: "MacBook Air",
+    categoria: "Mac",
+    chip: "M4",
+    ram: "16GB",
+    almacenamiento: "512GB",
+    precio: 1399,
+    imagen: macbok_air_m4 ,
+    descripcion: "MacBook Air con chip M4, pantalla Liquid Retina de 13.6 pulgadas, inteligencia avanzada, gran eficiencia energética y rendimiento excepcional para cualquier tarea.",
+    tag: "Nuevo"
+},
+
+{
+    id: 36,
+    nombre: "MacBook Pro",
+    categoria: "Mac",
+    chip: "M1",
+    ram: "8GB",
+    almacenamiento: "256GB",
+    precio: 1299,
+    imagen: macbok_pro_m1 ,
+    descripcion: "MacBook Pro con chip M1, pantalla Retina de 13 pulgadas, batería de larga duración y rendimiento ideal para estudio, programación y edición ligera.",
+    tag: "Nuevo"
+},
+
+{
+    id: 37,
+    nombre: "MacBook Pro",
+    categoria: "Mac",
+    chip: "M2",
+    ram: "8GB",
+    almacenamiento: "512GB",
+    precio: 1499,
+    imagen: macbok_pro_m1 ,
+    descripcion: "MacBook Pro con chip M2, pantalla Retina de 13 pulgadas, mayor potencia gráfica y excelente autonomía para trabajo y productividad.",
+    tag: "Oferta"
+},
+
+{
+    id: 38,
+    nombre: "MacBook Pro",
+    categoria: "Mac",
+    chip: "M3",
+    ram: "16GB",
+    almacenamiento: "512GB",
+    precio: 1799,
+    imagen: macbok_pro_m3 ,
+    descripcion: "MacBook Pro con chip M3, pantalla Liquid Retina XDR, 16GB de memoria unificada y rendimiento avanzado para tareas profesionales.",
+    tag: "Nuevo"
+},
+
+{
+    id: 39,
+    nombre: "iMac",
+    categoria: "Mac",
+    chip: "M1",
+    ram: "8GB",
+    almacenamiento: "256GB",
+    precio: 1299,
+    imagen: imac_m1,
+    descripcion: "iMac con chip M1, pantalla Retina 4.5K de 24 pulgadas, diseño ultradelgado y rendimiento ideal para estudio, trabajo y entretenimiento.",
+    tag: "Oferta"
+},
+
+{
+    id: 40,
+    nombre: "iMac",
+    categoria: "Mac",
+    chip: "M2",
+    ram: "8GB",
+    almacenamiento: "512GB",
+    precio: 1499,
+    imagen: imac_m2,
+    descripcion: "iMac con chip M2, pantalla Retina 4.5K de 24 pulgadas, mayor rendimiento gráfico y excelente fluidez para productividad y creatividad.",
+    tag: "Oferta"
+},
+
+{
+    id: 41,
+    nombre: "iMac",
+    categoria: "Mac",
+    chip: "M3",
+    ram: "16GB",
+    almacenamiento: "512GB",
+    precio: 1799,
+    imagen: imac_m3,
+    descripcion: "iMac con chip M3, pantalla Retina 4.5K de 24 pulgadas, 16GB de memoria unificada y potencia avanzada para diseño, programación y edición multimedia.",
+    tag: "Nuevo"
+},
+
+{
+    id: 42,
+    nombre: "iMac",
+    categoria: "Mac",
+    chip: "M4",
+    ram: "16GB",
+    almacenamiento: "1TB",
+    precio: 1999,
+    imagen: imac_m4,
+    descripcion: "iMac con chip M4, pantalla Retina 4.5K de 24 pulgadas, almacenamiento de 1TB y rendimiento profesional para trabajo creativo y multitarea exigente.",
+    tag: "Nuevo"
+},
+
+
+{
+    id: 43,
+    nombre: "Mac Mini",
+    categoria: "Mac",
+    chip: "M1",
+    ram: "8GB",
+    almacenamiento: "256GB",
+    precio: 699,
+    imagen: macmini_m1,
+    descripcion: "Mac Mini con chip M1, diseño compacto, gran eficiencia energética y rendimiento ideal para estudio, oficina y programación.",
+    tag: "Oferta"
+},
+
+{
+    id: 44,
+    nombre: "Mac Mini",
+    categoria: "Mac",
+    chip: "M2",
+    ram: "8GB",
+    almacenamiento: "512GB",
+    precio: 899,
+    imagen: macmini_m2,
+    descripcion: "Mac Mini con chip M2, mayor potencia gráfica y excelente rendimiento para multitarea, productividad y desarrollo de software.",
+    tag: "Oferta"
+},
+
+{
+    id: 45,
+    nombre: "Mac Mini",
+    categoria: "Mac",
+    chip: "M3",
+    ram: "16GB",
+    almacenamiento: "512GB",
+    precio: 1099,
+    imagen: macmini_m3,
+    descripcion: "Mac Mini con chip M3, 16GB de memoria unificada y potencia avanzada para programación, diseño y edición de contenido.",
+    tag: "Nuevo"
+},
+
+
+{
+    id: 46,
+    nombre: "Mac Mini",
+    categoria: "Mac",
+    chip: "M4",
+    ram: "16GB",
+    almacenamiento: "1T",
+    precio: 1299,
+    imagen: macmini_m4,
+    descripcion: "Mac Mini con chip M4, almacenamiento de 1TB y rendimiento profesional en un formato compacto ideal para flujos de trabajo exigentes.",
+    tag: "Nuevo"
+},
+
+
+
 
 ];
     
