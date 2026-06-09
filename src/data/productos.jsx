@@ -56,6 +56,11 @@ import macmini_m2 from "../assets/images/mac-mini-m2.png"
 import macmini_m3 from "../assets/images/mac-mini-m3.png"
 import macmini_m4 from "../assets/images/mac-mini-m4.png"
 
+// ACCESORIOS
+
+import magsafe from "../assets/images/magsafe.png"
+import case_iphone17st from "../assets/images/case-iphone17-st.png"
+
 export const productos = [
   {
     id: 1,
@@ -686,7 +691,33 @@ export const productos = [
     tag: "Nuevo"
 },
 
+// ACCESORIOS
 
+{
+    id: 47,
+    nombre: "MagSafe",
+    tipo: "MagSafe",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: magsafe,
+    descripcion: "Cargador MagSafe con alineación magnética precisa para una carga inalámbrica rápida y segura en modelos compatibles de iPhone.",
+    stock: 10,
+    tag: "Popular"
+},
+
+{
+    id: 48,
+    nombre: "Case Transparente Iphone 17",
+    tipo: "Cases",
+    categoria: "Accesorios",
+    compatible: "iPhone",
+    precio: 49,
+    imagen: case_iphone17st,
+    descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
+    stock: 8,
+    tag: "Popular"
+}
 
 
 ];

@@ -17,7 +17,7 @@ export function CartProvider({ children }) {
     }, [carrito]);
 
     const agregarAlCarrito = (producto) => {
-
+        //a
         setCarrito(prev => {
 
             const existe = prev.find(
