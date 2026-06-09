@@ -1,214 +1,205 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { BsTrash, BsArrowRight, BsBag, BsShieldCheck, BsTruck } from "react-icons/bs";
 import "../styles/carrito.css";
-
+import { productos } from "../data/productos";
 function Carrito() {
-    const {
-        carrito,
-        aumentarCantidad,
-        disminuirCantidad,
-        eliminarProducto,
-        vaciarCarrito,
-        cantidadTotal,
-        total
-    } = useCart();
+  const {
+    carrito,
+    aumentarCantidad,
+    disminuirCantidad,
+    eliminarProducto,
+    vaciarCarrito,
+    cantidadTotal,
+    total,
+  } = useCart();
 
-    const [mostrarModal, setMostrarModal] = useState(false);
+  const [mostrarModal, setMostrarModal] = useState(false);
+  const navigate = useNavigate();
 
-    const envio = total > 2000 ? 0 : 50;
-    const seguro = total * 0.02;
-    const importacion = total * 0.08;
-    const totalFinal = total + envio + seguro + importacion;
+  const envio       = total > 2000 ? 0 : 50;
+  const seguro      = total * 0.02;
+  const importacion = total * 0.08;
+  const totalFinal  = total + envio + seguro + importacion;
 
-    const confirmarCompra = () => {
-        vaciarCarrito();
-        setMostrarModal(false);
-        alert("¡Compra realizada con éxito!");
-    };
+  const confirmarIrAContacto = () => {
+    setMostrarModal(false);
+    navigate("/contacto");
+  };
 
-    if (carrito.length === 0) {
-        return (
-            <div className="container carrito-container text-center py-5">
-                <h1 className="carrito-titulo">Mi carrito</h1>
-                <h3>Tu carrito está vacío</h3>
-            </div>
-        );
-    }
-
+  /* ── CARRITO VACÍO ── */
+  if (carrito.length === 0) {
     return (
-        <div className="container carrito-container">
-            <h1 className="carrito-titulo">Mi carrito</h1>
+      <main className="carrito-page">
+        <div className="carrito-vacio">
+          <div className="carrito-vacio-icon"><BsBag /></div>
+          <h2>Tu carrito está vacío</h2>
+          <p>Explorá nuestro catálogo y encontrá tu próximo Apple favorito.</p>
+          <Link to="/productos" className="carrito-btn-primario">
+            Ver productos <BsArrowRight />
+          </Link>
+        </div>
+      </main>
+    );
+  }
 
-            <div className="row g-4 align-items-start">
+  return (
+    <main className="carrito-page">
 
-                <div className="col-lg-7">
+      {/* HERO */}
+      <div className="carrito-hero">
+        <p className="eyebrow">Tu selección</p>
+        <h1 className="carrito-titulo">Mi <em>carrito</em></h1>
+        <p className="carrito-sub">{cantidadTotal} {cantidadTotal === 1 ? "artículo" : "artículos"} seleccionados</p>
+      </div>
 
-                    {carrito.map(producto => (
-                        <div
-                            key={producto.id}
-                            className="card shadow-sm mb-4 carrito-card"
-                        >
-                            <div className="card-body">
-                                <div className="carrito-producto">
+      <div className="carrito-layout">
 
-                                    <img
-                                        src={producto.imagen}
-                                        alt={producto.nombre}
-                                        className="carrito-imagen"
-                                    />
+        {/* ── LISTA DE PRODUCTOS ── */}
+        <div className="carrito-lista">
+          {carrito.map(producto => (
+            <div key={producto.id} className="carrito-item">
 
-                                    <div className="carrito-info">
+              <div className="carrito-item-img">
+                <img src={producto.imagen} alt={producto.nombre} loading="lazy" />
+              </div>
 
-                                        <h4>{producto.nombre}</h4>
+              <div className="carrito-item-info">
+                <p className="carrito-item-cat">{producto.categoria}</p>
+                <h3 className="carrito-item-nombre">{producto.nombre}</h3>
+                <p className="carrito-item-variante">
+                  {[producto.color, producto.almacenamiento].filter(Boolean).join(" · ")}
+                </p>
 
-                                        <p className="text-muted">
-                                            {[producto.color, producto.almacenamiento]
-                                                .filter(Boolean)
-                                                .join(" · ")}
-                                        </p>
+                <div className="carrito-item-bottom">
+                  <div className="cantidad-control">
+                    <button onClick={() => disminuirCantidad(producto.id)} aria-label="Disminuir">−</button>
+                    <span>{producto.cantidad}</span>
+                    <button onClick={() => aumentarCantidad(producto.id)} aria-label="Aumentar">+</button>
+                  </div>
 
-                                        <p>
-                                            Precio unitario:
-                                            <strong> ${producto.precio}</strong>
-                                        </p>
+                  <div className="carrito-item-precios">
+                    <span className="carrito-item-subtotal">
+                      USD ${(producto.precio * producto.cantidad).toLocaleString("es-AR")}
+                    </span>
+                    {producto.cantidad > 1 && (
+                      <span className="carrito-item-unitario">
+                        USD ${producto.precio.toLocaleString("es-AR")} c/u
+                      </span>
+                    )}
+                  </div>
 
-                                        <div className="cantidad-control">
-
-                                            <button
-                                                className="btn btn-outline-secondary"
-                                                onClick={() => disminuirCantidad(producto.id)}
-                                            >
-                                                -
-                                            </button>
-
-                                            <span>{producto.cantidad}</span>
-
-                                            <button
-                                                className="btn btn-outline-secondary"
-                                                onClick={() => aumentarCantidad(producto.id)}
-                                            >
-                                                +
-                                            </button>
-
-                                        </div>
-
-                                        <p className="mt-3">
-                                            Subtotal:
-                                            <strong>
-                                                ${producto.precio * producto.cantidad}
-                                            </strong>
-                                        </p>
-
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => eliminarProducto(producto.id)}
-                                        >
-                                            Eliminar
-                                        </button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-
+                  <button
+                    className="carrito-item-eliminar"
+                    onClick={() => eliminarProducto(producto.id)}
+                    aria-label="Eliminar producto"
+                  >
+                    <BsTrash />
+                  </button>
                 </div>
+              </div>
 
-                <div className="col-lg-5">
+            </div>
+          ))}
 
-                    <div className="card shadow-sm resumen-card">
-                        <div className="card-body">
+          {/* Vaciar carrito */}
+          <button className="carrito-vaciar" onClick={vaciarCarrito}>
+            Vaciar carrito
+          </button>
+        </div>
 
-                            <h3>Resumen</h3>
+        {/* ── RESUMEN ── */}
+        <aside className="carrito-resumen">
 
-                            <hr />
+          <div className="resumen-card">
+            <h3 className="resumen-titulo">Resumen del pedido</h3>
 
-                            <div className="d-flex justify-content-between">
-                                <span>Productos</span>
-                                <span>{cantidadTotal}</span>
-                            </div>
-
-                            <div className="d-flex justify-content-between">
-                                <span>Subtotal</span>
-                                <span>${total.toFixed(2)}</span>
-                            </div>
-
-                            <div className="d-flex justify-content-between">
-                                <span>Envío</span>
-                                <span>
-                                    {envio === 0
-                                        ? "Gratis"
-                                        : `$${envio.toFixed(2)}`}
-                                </span>
-                            </div>
-
-                            <div className="d-flex justify-content-between">
-                                <span>Seguro</span>
-                                <span>${seguro.toFixed(2)}</span>
-                            </div>
-
-                            <div className="d-flex justify-content-between">
-                                <span>Importación</span>
-                                <span>${importacion.toFixed(2)}</span>
-                            </div>
-
-                            <hr />
-
-                            <h4>
-                                Total: ${totalFinal.toFixed(2)}
-                            </h4>
-
-                            <small className="text-muted d-block mb-3">
-                                Incluye logística y gestión de importación.
-                            </small>
-
-                            <button
-                                className="btn btn-primary w-100"
-                                onClick={() => setMostrarModal(true)}
-                            >
-                                Confirmar compra
-                            </button>
-
-                        </div>
-                    </div>
-
-                </div>
+            <div className="resumen-lineas">
+              <div className="resumen-linea">
+                <span>Subtotal ({cantidadTotal} {cantidadTotal === 1 ? "artículo" : "artículos"})</span>
+                <span>USD ${total.toLocaleString("es-AR")}</span>
+              </div>
+              <div className="resumen-linea">
+                <span>Envío</span>
+                <span className={envio === 0 ? "resumen-gratis" : ""}>
+                  {envio === 0 ? "Gratis" : `USD $${envio.toFixed(2)}`}
+                </span>
+              </div>
+              <div className="resumen-linea">
+                <span>Seguro (2%)</span>
+                <span>USD ${seguro.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              </div>
+              <div className="resumen-linea">
+                <span>Gestión de importación (8%)</span>
+                <span>USD ${importacion.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              </div>
             </div>
 
-            {mostrarModal && (
-                <div className="modal-overlay">
-                    <div className="modal-personalizado">
+            <div className="resumen-total">
+              <span>Total</span>
+              <span>USD ${totalFinal.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+            </div>
 
-                        <h3>Confirmar compra</h3>
-
-                        <p>
-                            ¿Deseás finalizar la compra por
-                            <strong> ${totalFinal.toFixed(2)}</strong>?
-                        </p>
-
-                        <div className="modal-botones">
-
-                            <button
-                                className="btn btn-secondary"
-                                onClick={() => setMostrarModal(false)}
-                            >
-                                Cancelar
-                            </button>
-
-                            <button
-                                className="btn btn-primary"
-                                onClick={confirmarCompra}
-                            >
-                                Finalizar compra
-                            </button>
-
-                        </div>
-
-                    </div>
-                </div>
+            {envio === 0 && (
+              <p className="resumen-envio-gratis">
+                <BsTruck /> Envío gratis por superar USD 2.000
+              </p>
             )}
+
+            <button
+              className="carrito-btn-primario carrito-btn-full"
+              onClick={() => setMostrarModal(true)}
+            >
+              Continuar con la compra <BsArrowRight />
+            </button>
+
+            <div className="resumen-garantias">
+              <span><BsShieldCheck /> Compra 100% segura</span>
+              <span><BsTruck /> Envíos a todo el país</span>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+
+      {/* ── MODAL ── */}
+      {mostrarModal && (
+        <div className="carrito-modal-overlay" onClick={() => setMostrarModal(false)}>
+          <div className="carrito-modal" onClick={e => e.stopPropagation()}>
+
+            <h3>¿Listo para finalizar?</h3>
+            <p>
+              Tu pedido por <strong>USD ${totalFinal.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</strong> está
+              listo. En el siguiente paso completás los datos de envío y contacto.
+            </p>
+
+            <div className="modal-lineas">
+              <div className="modal-linea">
+                <span>{cantidadTotal} {cantidadTotal === 1 ? "artículo" : "artículos"}</span>
+                <span>USD ${total.toLocaleString("es-AR")}</span>
+              </div>
+              <div className="modal-linea modal-linea--total">
+                <span>Total con cargos</span>
+                <span>USD ${totalFinal.toLocaleString("es-AR", { minimumFractionDigits: 2 })}</span>
+              </div>
+            </div>
+
+            <div className="modal-botones">
+              <button className="modal-btn-secundario" onClick={() => setMostrarModal(false)}>
+                Volver al carrito
+              </button>
+              <button className="modal-btn-primario" onClick={confirmarIrAContacto}>
+                Completar datos <BsArrowRight />
+              </button>
+            </div>
+
+          </div>
         </div>
-    );
+      )}
+
+    </main>
+  );
 }
 
 export default Carrito;
