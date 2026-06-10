@@ -8,10 +8,9 @@ import { useTema } from "../context/TemaContext";
 
 const CATEGORIAS = [
   { key: "iphone",     to: "iphone",     label: "Móviles",     cat: "iPhone"     },
-  { key: "airpods",    to: "audio",       label: "Audio",       cat: "AirPods"    },
-  { key: "mac",        to: "computacion", label: "Computación", cat: "Mac"        },
+  { key: "audio",    to: "audio",       label: "Audio",       cat: "Audio"    },
+  { key: "computación",        to: "computación", label: "Computación", cat: "Computación"        },
   { key: "accesorios", to: "accesorios",  label: "Accesorios",  cat: "Accesorios" },
-  { key: "otros",      to: "otros",       label: "Otros",       cat: "Otros"      },
 ];
 
 function NavBar({ cantidadCarrito = 0 }) {
@@ -29,7 +28,9 @@ function NavBar({ cantidadCarrito = 0 }) {
 
   const handleBusqueda = (e) => {
     if (e.key === "Enter" && busqueda.trim()) {
-      navigate(`/productos?busqueda=${busqueda}`);
+      // ✅ Navega con ?busqueda= en lugar de ?cat=
+      navigate(`/productos?busqueda=${encodeURIComponent(busqueda.trim())}`);
+      setBusqueda("");
       setMenuOpen(false);
     }
   };

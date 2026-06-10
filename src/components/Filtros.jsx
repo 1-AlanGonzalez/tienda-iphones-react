@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 function Filtros({ datos, seleccionados, setSeleccionados, precioMin, setPrecioMin, precioMax, setPrecioMax, precioLimite }) {
-    const [abiertos, setAbiertos] = useState({})
+    const [abiertos,      setAbiertos]      = useState({})
     const [precioAbierto, setPrecioAbierto] = useState(false)
 
     const toggleFiltro = (nombre) => {
@@ -42,8 +42,7 @@ function Filtros({ datos, seleccionados, setSeleccionados, precioMin, setPrecioM
 
                     {datos.map((filtro) => (
                         <li key={filtro.id}>
-                            <div className="filtro-titulo"
-                                onClick={() => toggleFiltro(filtro.id)}>
+                            <div className="filtro-titulo" onClick={() => toggleFiltro(filtro.id)}>
                                 {filtro.titulo}
                                 <span className={`flecha ${abiertos[filtro.id] ? "rotada" : ""}`}>⌄</span>
                             </div>
