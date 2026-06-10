@@ -25,13 +25,13 @@ function Inicio() {
       <FilaProductos
         titulo="Computación"
         subtitulo="MacBook, Mac Mini y más"
-        categoria="Mac"
+        categoria="Computación"
       />
 
       <FilaProductos
         titulo="Audio"
         subtitulo="AirPods para cada estilo"
-        categoria="AirPods"
+        categoria="Audio"
       />
 
       <FilaProductos
