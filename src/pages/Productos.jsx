@@ -2,7 +2,7 @@ import Filtros from '../components/Filtros'
 import Cards from '../components/Cards'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { filtroOtros, filtrosAccesorios, filtrosComputacion, filtrosAudio, filtrosMoviles } from '../data/filtros'
+import {filtrosAccesorios, filtrosComputacion, filtrosAudio, filtrosMoviles } from '../data/filtros'
 import Ordenar from '../components/Ordenar'
 
 const mapaFiltros = {
@@ -10,7 +10,6 @@ const mapaFiltros = {
     audio:       filtrosAudio,
     computacion: filtrosComputacion,
     accesorios:  filtrosAccesorios,
-    otros:       filtroOtros,
 }
 
 const PRECIO_LIMITE = 2000

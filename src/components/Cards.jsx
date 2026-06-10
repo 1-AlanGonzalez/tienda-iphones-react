@@ -8,7 +8,6 @@ const mapaCategoria = {
     audio: "AirPods",
     computacion: "Mac",
     accesorios: "Accesorios",
-    otros: "Otros",
 };
 
 function Cards({
