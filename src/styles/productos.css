@@ -117,8 +117,8 @@ ul {
     font-weight: 600;
     padding: 3px 8px;
     border-radius: 20px;
-    background-color: var(--bg-secondary);
-    color: var(--blue);
+    background-color: var(--blue);
+    color: white;
     align-self: flex-start;
 }
 
@@ -509,3 +509,4 @@ ul {
 .ordenar-opciones--inline .ordenar-opcion:last-child {
     border-bottom: none;
 }
+

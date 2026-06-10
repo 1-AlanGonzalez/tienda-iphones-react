@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { useState } from "react";
 import { BsApple, BsBag, BsSearch, BsSun, BsMoon, BsList, BsX, BsChevronRight } from "react-icons/bs";
 import MenuDesplegable from "./MenuDesplegable";
@@ -7,13 +7,13 @@ import { useCart } from "../context/CartContext";
 import { useTema } from "../context/TemaContext";
 
 const CATEGORIAS = [
-  { key: "iphone",     to: "iphone",     label: "Móviles",     cat: "iPhone"     },
-  { key: "audio",    to: "audio",       label: "Audio",       cat: "Audio"    },
-  { key: "computación",        to: "computación", label: "Computación", cat: "Computación"        },
-  { key: "accesorios", to: "accesorios",  label: "Accesorios",  cat: "Accesorios" },
+  { key: "iphone",      to: "iphone",      label: "Móviles",     cat: "iPhone"     },
+  { key: "audio",       to: "audio",       label: "Audio",       cat: "Audio"    },
+  { key: "computación",  to: "computación", label: "Computación", cat: "Computación"        },
+  { key: "accesorios",  to: "accesorios",  label: "Accesorios",  cat: "Accesorios" },
 ];
 
-function NavBar({ cantidadCarrito = 0 }) {
+function NavBar() {
   const [busqueda, setBusqueda]     = useState("");
   const [hoverMenu, setHoverMenu]   = useState(null);
   const [menuOpen, setMenuOpen]     = useState(false);
@@ -24,11 +24,12 @@ function NavBar({ cantidadCarrito = 0 }) {
   const { cantidadTotal } = useCart();
   const { oscuro, setOscuro } = useTema();
 
-  const catActiva = new URLSearchParams(location.search).get("cat");
+  // ✅ Forma recomendada en React Router para leer parámetros sin instanciar New URLSearchParams manualmente
+  const [searchParams] = useSearchParams();
+  const catActiva = searchParams.get("cat"); 
 
   const handleBusqueda = (e) => {
     if (e.key === "Enter" && busqueda.trim()) {
-      // ✅ Navega con ?busqueda= en lugar de ?cat=
       navigate(`/productos?busqueda=${encodeURIComponent(busqueda.trim())}`);
       setBusqueda("");
       setMenuOpen(false);
@@ -60,7 +61,6 @@ function NavBar({ cantidadCarrito = 0 }) {
         </div>
 
         <div className="navbar-right">
-          {/* Links solo visibles en desktop */}
           <NavLink to="/nosotros" end className={({ isActive }) => `navbar-link navbar-link--desktop ${isActive ? "active" : ""}`}>Nosotros</NavLink>
           <NavLink to="/contacto" end className={({ isActive }) => `navbar-link navbar-link--desktop ${isActive ? "active" : ""}`}>Contacto</NavLink>
 
@@ -73,7 +73,6 @@ function NavBar({ cantidadCarrito = 0 }) {
             {cantidadTotal > 0 && <span className="cart-badge">{cantidadTotal}</span>}
           </Link>
 
-          {/* Hamburguesa — solo mobile */}
           <button
             className="icon-btn navbar-hamburguesa"
             onClick={() => setMenuOpen(o => !o)}
@@ -86,12 +85,13 @@ function NavBar({ cantidadCarrito = 0 }) {
 
       {/* ── CATEGORÍAS DESKTOP ── */}
       <nav className="navbar-categorias">
-        <NavLink
+        {/* ✅ CORRECCIÓN: Evaluación estricta y limpia del string para evitar falsos positivos */}
+        <Link
           to="/productos?cat=ofertas"
           className={`cat-link hot ${catActiva === "ofertas" ? "active" : ""}`}
         >
           Ofertas
-        </NavLink>
+        </Link>
 
         <div className="cat-sep" />
 
@@ -119,12 +119,11 @@ function NavBar({ cantidadCarrito = 0 }) {
       {menuOpen && (
         <div className="navbar-mobile-menu">
 
-          {/* Categorías */}
           <p className="mobile-menu-section-label">Catálogo</p>
 
           <Link
             to="/productos?cat=ofertas"
-            className="mobile-menu-item mobile-menu-item--hot"
+            className={`mobile-menu-item mobile-menu-item--hot ${catActiva === "ofertas" ? "mobile-menu-item--active" : ""}`}
             onClick={cerrarMenu}
           >
             <span>🔥 Ofertas</span>
@@ -145,7 +144,6 @@ function NavBar({ cantidadCarrito = 0 }) {
 
           <div className="mobile-menu-divider" />
 
-          {/* Links secundarios */}
           <p className="mobile-menu-section-label">Más</p>
 
           <Link to="/nosotros" className="mobile-menu-item" onClick={cerrarMenu}>
