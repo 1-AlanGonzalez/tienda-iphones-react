@@ -436,7 +436,7 @@ export const productos = [
     {
     id: 26,
     nombre: "AirPods 2",
-    categoria: "AirPods",
+    categoria: "Audio",
     cancelacion: "No",
     conector: "Lightning",
     precio: 99,
@@ -449,7 +449,7 @@ export const productos = [
 {
     id: 27,
     nombre: "AirPods 3",
-    categoria: "AirPods",
+    categoria: "Audio",
     cancelacion: "No",
     conector: "Lightning",
     precio: 149,
@@ -462,7 +462,7 @@ export const productos = [
 {   
     id: 28,
     nombre: "AirPods 4",
-    categoria: "AirPods",
+    categoria: "Audio",
     cancelacion: "No",
     conector: "USB-C",
     precio: 179,
@@ -475,7 +475,7 @@ export const productos = [
 {
     id: 29,
     nombre: "AirPods Pro 2",
-    categoria: "AirPods",
+    categoria: "Audio",
     cancelacion: "Sí",
     conector: "USB-C",
     precio: 199,
@@ -488,7 +488,7 @@ export const productos = [
 {
     id: 30,
     nombre: "AirPods Pro 3",
-    categoria: "AirPods",
+    categoria: "Audio",
     cancelacion: "Sí",
     conector: "USB-C",
     precio: 249,
@@ -501,7 +501,7 @@ export const productos = [
 {
     id: 31,
     nombre: "AirPods Max",
-    categoria: "AirPods",
+    categoria: "Audio",
     cancelacion: "Sí",
     conector: "Bluetooth",
     precio: 549,
@@ -516,7 +516,7 @@ export const productos = [
 {
     id: 32,
     nombre: "MacBook Air",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M1",
     ram: "8GB",
     almacenamiento: "256GB",
@@ -529,7 +529,7 @@ export const productos = [
 {
     id: 33,
     nombre: "MacBook Air",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M2",
     ram: "8GB",
     almacenamiento: "256GB",
@@ -542,7 +542,7 @@ export const productos = [
 {
     id: 34,
     nombre: "MacBook Air",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M3",
     ram: "16GB",
     almacenamiento: "512GB",
@@ -555,7 +555,7 @@ export const productos = [
 {
     id: 35,
     nombre: "MacBook Air",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M4",
     ram: "16GB",
     almacenamiento: "512GB",
@@ -568,7 +568,7 @@ export const productos = [
 {
     id: 36,
     nombre: "MacBook Pro",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M1",
     ram: "8GB",
     almacenamiento: "256GB",
@@ -581,7 +581,7 @@ export const productos = [
 {
     id: 37,
     nombre: "MacBook Pro",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M2",
     ram: "8GB",
     almacenamiento: "512GB",
@@ -594,7 +594,7 @@ export const productos = [
 {
     id: 38,
     nombre: "MacBook Pro",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M3",
     ram: "16GB",
     almacenamiento: "512GB",
@@ -607,7 +607,7 @@ export const productos = [
 {
     id: 39,
     nombre: "iMac",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M1",
     ram: "8GB",
     almacenamiento: "256GB",
@@ -620,7 +620,7 @@ export const productos = [
 {
     id: 40,
     nombre: "iMac",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M2",
     ram: "8GB",
     almacenamiento: "512GB",
@@ -633,7 +633,7 @@ export const productos = [
 {
     id: 41,
     nombre: "iMac",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M3",
     ram: "16GB",
     almacenamiento: "512GB",
@@ -646,7 +646,7 @@ export const productos = [
 {
     id: 42,
     nombre: "iMac",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M4",
     ram: "16GB",
     almacenamiento: "1TB",
@@ -660,7 +660,7 @@ export const productos = [
 {
     id: 43,
     nombre: "Mac Mini",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M1",
     ram: "8GB",
     almacenamiento: "256GB",
@@ -673,7 +673,7 @@ export const productos = [
 {
     id: 44,
     nombre: "Mac Mini",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M2",
     ram: "8GB",
     almacenamiento: "512GB",
@@ -686,7 +686,7 @@ export const productos = [
 {
     id: 45,
     nombre: "Mac Mini",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M3",
     ram: "16GB",
     almacenamiento: "512GB",
@@ -700,7 +700,7 @@ export const productos = [
 {
     id: 46,
     nombre: "Mac Mini",
-    categoria: "Mac",
+    categoria: "Computación",
     chip: "M4",
     ram: "16GB",
     almacenamiento: "1T",

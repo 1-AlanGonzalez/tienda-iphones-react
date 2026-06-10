@@ -6,28 +6,26 @@ const CONFIG = {
   iPhone: {
     titulo: "Móviles",
     lineas: ["Standard", "Pro", "Pro Max"],
-    labelLinea: (l) => `iPhone ${l === "Standard" ? "estándar" : l}`,
-  },
-  AirPods: {
+    campoFiltro: "linea",
+    labelLinea: (l) => `iPhone ${l === "Standard" ? "estándar" : l}`,  },
+  Audio: {
     titulo: "Audio",
-    lineas: ["AirPods Pro", "AirPods Max", "AirPods"],
-    labelLinea: (l) => l,
+    lineas: ["AirPods Pro", "AirPods Max", "AirPods 2"],
+    campoFiltro: "nombre",
+    labelLinea: (l) => l
   },
-  Mac: {
+  Computación: {
     titulo: "Computación",
     lineas: ["MacBook Air", "MacBook Pro", "Mac Mini", "iMac"],
-    labelLinea: (l) => l,
+    campoFiltro: "nombre",
+    labelLinea: (l) => l
   },
   Accesorios: {
     titulo: "Accesorios",
     lineas: ["MagSafe", "Cases", "Cables"],
-    labelLinea: (l) => l,
-  },
-  Watch: {
-    titulo: "Apple Watch",
-    lineas: ["Series", "Ultra", "SE"],
-    labelLinea: (l) => `Apple Watch ${l}`,
-  },
+    campoFiltro: "tipo",
+    labelLinea: (l) => l
+  }
 };
 
 function MenuDesplegable({ categoria }) {
@@ -40,13 +38,14 @@ function MenuDesplegable({ categoria }) {
   const lineaSeleccionada = lineas[lineaActiva];
 
   // Filtrá productos de esa categoría y línea, máximo 3 únicos por nombre
-  const productosLinea = productos
-    .filter((p) => p.categoria === categoria && p.linea === lineaSeleccionada)
-    .reduce((acc, p) => {
-      if (!acc.find((x) => x.nombre === p.nombre)) acc.push(p);
-      return acc;
-    }, [])
-    .slice(0, 3);
+  const productosLinea = productos.filter((p) => {
+    const valor = p[config.campoFiltro];
+
+    return (
+      p.categoria === categoria &&
+      valor?.includes(lineaSeleccionada)
+    );
+  }).slice(0, 3);
 
   // Si no hay por línea exacta, mostrá los primeros 3 de la categoría
   const productosAMostrar =
