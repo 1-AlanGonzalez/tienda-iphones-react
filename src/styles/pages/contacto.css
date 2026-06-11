@@ -387,3 +387,12 @@
   .entrega-opciones { grid-template-columns: 1fr; }
   .contacto-submit  { width: 100%; }
 }
+
+.success-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+}

@@ -3,7 +3,7 @@ import {
   BsPerson, BsEnvelope, BsTelephone, BsGeoAlt,
   BsTruck, BsChat, BsArrowRight
 } from "react-icons/bs";
-
+import { Link } from "react-router-dom";
 import "../styles/pages/contacto.css";
 import { useCart } from "../context/CartContext";
 import { productos } from "../data/productos";
@@ -24,6 +24,7 @@ const Contacto = () => {
 
   const [errores, setErrores] = useState({});
   const [enviado, setEnviado] = useState(false);
+  const [eraCompra, setEraCompra] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,27 +61,43 @@ const Contacto = () => {
       setErrores(nuevosErrores);
       return;
     }
-    setEnviado(true);
-    if(esModoCompra) { return confirmarCompra()}
+    
+    if (esModoCompra) {
+  setEraCompra(true);
+  confirmarCompra();
+}
+
+setEnviado(true);
+    
   };
 
   /* ── PANTALLA DE ÉXITO ── */
   if (enviado) {
-    return (
-      <main className="contacto-page">
-        <div className="contacto-success">
-          <div className="success-icon">✓</div>
-          <h2>{esModoCompra ? "¡Pedido recibido!" : "¡Mensaje enviado!"}</h2>
-          <p>
-            {esModoCompra
-              ? `Nos contactaremos con ${formData.nombre} a la brevedad para confirmar tu compra.`
-              : `Recibimos tu consulta. Te respondemos a la brevedad en ${formData.email}.`}
-          </p>
-          {esModoCompra && <p className="success-email">{formData.email}</p>}
-        </div>
-      </main>
-    );
-  }
+  return (
+    <main className="contacto-page">
+      <div className="contacto-success">
+        <div className="success-icon">✓</div>
+
+        <h2>{eraCompra ? "¡Pedido recibido!" : "¡Mensaje enviado!"}</h2>
+
+        <p>
+          {eraCompra
+            ? `Nos contactaremos con ${formData.nombre} a la brevedad para confirmar tu compra.`
+            : `Recibimos tu consulta. Te respondemos a la brevedad en ${formData.email}.`}
+        </p>
+
+        {eraCompra && (
+          <p className="success-email">{formData.email}</p>
+        )}
+
+        <Link to="/" className="success-btn">
+          {eraCompra ? "Seguir comprando" : "Volver al inicio"}
+        </Link>
+
+      </div>
+    </main>
+  );
+}
 
   return (
     <main className="contacto-page">
