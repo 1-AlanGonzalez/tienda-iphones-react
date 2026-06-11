@@ -106,6 +106,19 @@ ul {
     border-radius: 8px;
 }
 
+.card-detalles{
+background: transparent;
+  color: #0071e3;
+  border: 1px solid rgba(0,113,227,0.4);
+  padding: 11px 15px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+
+}
+
 .card-subtitulo {
     font-size: 12px;
     color: var(--text-muted);
