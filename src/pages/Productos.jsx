@@ -64,7 +64,7 @@ function Productos() {
                     <Ordenar orden={orden} setOrden={setOrden} />
                 </div>
 
-                // PARA MOBIL
+                {/* PARA MOBIL */}
                 <div className="mobile-toolbar">
                     <div className="mobile-toolbar-inner">
                         <button
