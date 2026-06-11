@@ -87,97 +87,210 @@ ul {
     gap: 16px;
     flex: 1;
 }
-
+.cards-cantidad {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin: 0;
+}
+.cards-vacio {
+    padding: 60px 20px;
+    text-align: center;
+}
+.cards-vacio-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 8px;
+}
+.cards-vacio-sub {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+}
 .card {
-    background-color: var(--bg-secondary) !important;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: var(--bg-secondary);
     border: 1px solid var(--border);
-    padding: 16px;
+    border-radius: 12px;
+    padding: 14px 12px 12px;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0;
+    transition: box-shadow 0.2s, transform 0.2s;
 }
-
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+.card:hover .card-imagen {
+    transform: scale(1.05);
+}
+.tema-oscuro .card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+}
 .card-imagen {
-    aspect-ratio: 1;
     width: 100%;
+    height: 100%;
     object-fit: contain;
+    padding: 10px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+.card-img-link {
+    position: relative;
+    display: block;
+    background: var(--bg-primary);
     border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    aspect-ratio: 1;
+    text-decoration: none;
 }
-
-.card-detalles{
-background: transparent;
-  color: #0071e3;
-  border: 1px solid rgba(0,113,227,0.4);
-  padding: 11px 15px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: border-color 0.2s, background 0.2s;
-
+.card-detalles {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-primary);
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.card-detalles:hover {
-    filter: brightness(0.85);
-}
+.card-detalles:hover { background: var(--bg-tertiary); }
 
 
 .card-subtitulo {
-    font-size: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
     color: var(--text-muted);
-}   
+    margin: 0;
+} 
 
 .card-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
     padding: 3px 8px;
-    border-radius: 20px;
-    background-color: var(--blue);
-    color: white;
-    align-self: flex-start;
+    border-radius: 980px;
+    background: var(--blue);
+    color: #fff;
+    z-index: 1;
 }
 .card-tag.sinStock {
-    background-color: gray;
+    background: var(--text-muted);
 }
 .card-tag.oferta {
-    background-color: var(--bg-tertiary);
-    color: #e3500a; /* Se mantiene naranja para destacar la oferta */
+    background: #e3500a;
 }
 
 .card-info {
     display: flex;
     flex-direction: column;
+    gap: 3px;
+    flex: 1;
 }
 
 .card-nombre {
-    font-size: 13px; 
+    font-size: 13px;
     font-weight: 500;
-    color: var(--text-primary); /* CORREGIDO: antes usaba var(--bg-primary) y se volvía invisible */
+    color: var(--text-primary);
+    line-height: 1.35;
+    text-decoration: none;
+    display: block;
+    margin: 2px 0 6px;
+    transition: color 0.15s;
 }
+.card-nombre:hover { color: var(--blue); }
 
 .card-precio {
     font-size: 14px;
     font-weight: bold;
     color: var(--text-primary);
 }
-
-.card-boton {
+.card-precios {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-bottom: 6px;
+}
+.card-precio-anterior-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.card-precio-anterior {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+.card-descuento {
+    font-size: 11px;
+    font-weight: 700;
+    color: #e3500a;
+}
+.tema-oscuro .card-descuento {
+    color: #ff7832;
+}
+.card-precio {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+.card-cuotas {
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 500;
+    margin: 0;
+}
+/* Envío */
+.card-envio {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green);
+    margin: 4px 0 10px;
+}
+.card-acciones {
+    display: flex;
+    gap: 6px;
     margin-top: auto;
-    padding: 8px;
+}
+.card-boton {
+    flex: 1;
+    padding: 8px 10px;
     border: none;
     border-radius: 8px;
-    background-color: var(--blue);
-    color: white;
-    font-size: 13px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 12px;
     font-weight: 500;
     cursor: pointer;
-    transition: filter 0.2s ease;
+    transition: opacity 0.2s;
+    font-family: inherit;
+    margin: 10px 0;
 }
 
-.card-boton:hover {
-    filter: brightness(0.85);
+.card-boton:hover { opacity: 0.85; }
+.card-boton:disabled {
+    background: var(--bg-tertiary);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 1;
 }
 
 .cards-contenedor {

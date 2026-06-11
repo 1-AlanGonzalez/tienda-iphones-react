@@ -114,59 +114,132 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
     const productosMostrados = productosOrdenados.slice(0, visibles);
 
     return (
-        <div className="cards-contenedor">
-            <div className="cards-grid">
-                {productosMostrados.map(producto => {
-                    const stockActual = stocks[producto.id] ?? 0;
-                    return (
-                        <div key={producto.id} className={`card ${stockActual <= 0 ? "card-agotada" : ""}`}>
+    <div className="cards-contenedor">
 
-                            {stockActual <= 0 ? (
-                                <span className="card-tag sinStock">Sin stock</span>
-                            ) : producto.tag && (
-                                <span className={`card-tag ${producto.tag === "Oferta" ? "oferta" : ""}`}>
-                                    {producto.tag}
-                                </span>
-                            )}
+        <p className="cards-cantidad">
+            {productosOrdenados.length}{" "}
+            {productosOrdenados.length === 1 ? "producto" : "productos"}
+        </p>
 
-                            <img
-                                src={producto.imagen}
-                                alt={producto.nombre}
-                                className="card-imagen"
-                            />
+        <div className="cards-grid">
+            {productosMostrados.map(producto => {
+                const stockActual = stocks[producto.id] ?? 0;
 
-                            <div className="card-info">
-                                <p className="card-nombre">{producto.nombre}</p>
-                                <p className="card-subtitulo">
-                                    {[producto.color, producto.almacenamiento].filter(Boolean).join(" · ")}
+                const descuento = producto.precioOriginal
+                    ? Math.round(
+                        (1 - producto.precio / producto.precioOriginal) * 100
+                    )
+                    : null;
+
+                return (
+                    <div
+                        key={producto.id}
+                        className={`card ${stockActual <= 0 ? "card-agotada" : ""}`}
+                    >
+
+                        {/* Tag */}
+                        {stockActual <= 0 ? (
+                            <span className="card-tag sinStock">
+                                Sin stock
+                            </span>
+                        ) : producto.tag && (
+                            <span
+                                className={`card-tag ${
+                                    producto.tag === "Oferta" ? "oferta" : ""
+                                }`}
+                            >
+                                {producto.tag}
+                            </span>
+                        )}
+
+                        {/* Imagen */}
+                        <img
+                            src={producto.imagen}
+                            alt={producto.nombre}
+                            className="card-imagen"
+                            loading="lazy"
+                        />
+
+                        {/* Info */}
+                        <div className="card-info">
+
+                            <p className="card-subtitulo">
+                                {[producto.color, producto.almacenamiento]
+                                    .filter(Boolean)
+                                    .join(" · ")}
+                            </p>
+
+                            <p className="card-nombre">
+                                {producto.nombre}
+                            </p>
+
+                            {/* Precios */}
+                            <div className="card-precios">
+
+                                {producto.precioOriginal && (
+                                    <div className="card-precio-anterior-wrap">
+                                        <span className="card-precio-anterior">
+                                            USD $
+                                            {producto.precioOriginal.toLocaleString(
+                                                "es-AR"
+                                            )}
+                                        </span>
+
+                                        <span className="card-descuento">
+                                            {descuento}% OFF
+                                        </span>
+                                    </div>
+                                )}
+
+                                <p className="card-precio">
+                                    USD $
+                                    {producto.precio.toLocaleString("es-AR")}
                                 </p>
-                                <p className="card-precio">${producto.precio}</p>
+
+                                <p className="card-cuotas">
+                                    12x $
+                                    {Math.round(
+                                        producto.precio / 12
+                                    ).toLocaleString("es-AR")}{" "}
+                                    sin interés
+                                </p>
                             </div>
 
-                            <button
-                                className="card-detalles"
-                                onClick={() => navigate(`/producto/${producto.id}`)}
-                            >
-                                Ver detalles
-                            </button>
-
-                            <BotonAgregar
-                                producto={producto}
-                                agregarAlCarrito={agregarAlCarrito}
-                                stockActual={stockActual}
-                            />
+                            {/* Envío */}
+                            <p className="card-envio">
+                                🚚 Envío gratis
+                            </p>
                         </div>
-                    );
-                })}
-            </div>
 
-            {visibles < productosOrdenados.length && (
-                <button className="ver-mas-boton" onClick={() => setVisibles(visibles + 8)}>
-                    Ver más
-                </button>
-            )}
+                        {/* Acciones */}
+                        <button
+                            className="card-detalles"
+                            onClick={() =>
+                                navigate(`/producto/${producto.id}`)
+                            }
+                        >
+                            Ver detalles
+                        </button>
+
+                        <BotonAgregar
+                            producto={producto}
+                            agregarAlCarrito={agregarAlCarrito}
+                            stockActual={stockActual}
+                        />
+                    </div>
+                );
+            })}
         </div>
-    );
-}
+
+        {visibles < productosOrdenados.length && (
+            <button
+                className="ver-mas-boton"
+                onClick={() => setVisibles(visibles + 8)}
+            >
+                Ver más
+            </button>
+        )}
+    </div>
+);}
 
 export default Cards;
