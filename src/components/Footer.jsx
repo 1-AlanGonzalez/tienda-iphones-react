@@ -70,7 +70,7 @@ function Footer() {
         <div className="footer-col">
           <h4>Comprar</h4>
           <ul>
-            <li><a href="/">Ofertas</a></li>
+            <li><a href="/productos?cat=ofertas">Ofertas</a></li>
             <li><a href="/">Medios de pago</a></li>
             <li><a href="/">Envíos</a></li>
             <li><a href="/">Garantía</a></li>
@@ -86,14 +86,14 @@ function Footer() {
             <li><a href="/">Seguimiento de pedido</a></li>
             <li><a href="/">Servicio técnico</a></li>
             <li><a href="/">Preguntas frecuentes</a></li>
-            <li><a href="/">Contacto</a></li>
+            <li><a href="/contacto">Contacto</a></li>
           </ul>
         </div>
 
         <div className="footer-col">
           <h4>Compañía</h4>
           <ul>
-            <li><a href="/">Acerca de nosotros</a></li>
+            <li><a href="/nosotros">Acerca de nosotros</a></li>
             <li><a href="/">Sucursales</a></li>
             <li><a href="/">Trabajá con nosotros</a></li>
             <li><a href="/">Información legal</a></li>
