@@ -6,7 +6,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 const mapaCategoria = {
     iphone:       "iPhone",
     audio:        "Audio",
-    "computación": "Computación",
+    computación: "Computación",
     accesorios:   "Accesorios",
 };
 
