@@ -23,3 +23,7 @@ export const filtrosAccesorios = [
     { id: "compatible", titulo: "Compatible", campo: "compatible", opciones: ["Iphone", "iPad", "Mac"] },
 ]
 
+export const filtrosOfertas = [
+    {id: "categoria", titulo: "Categoría", campo: "categoria", exacto: true, opciones: ["iPhone", "Audio", "Computación", "Accesorios"]}
+]
+

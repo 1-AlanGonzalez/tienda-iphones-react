@@ -3,7 +3,7 @@ import Cards   from '../components/Cards'
 import Ordenar from '../components/Ordenar'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import {filtrosAccesorios, filtrosComputacion, filtrosAudio, filtrosMoviles } from '../data/filtros'
+import {filtrosOfertas, filtrosAccesorios, filtrosComputacion, filtrosAudio, filtrosMoviles } from '../data/filtros'
 
 
 const mapaFiltros = {
@@ -11,6 +11,7 @@ const mapaFiltros = {
     audio:       filtrosAudio,
     computación: filtrosComputacion,
     accesorios:  filtrosAccesorios,
+    ofertas:     filtrosOfertas,
 }
 
 const PRECIO_LIMITE = 2000
