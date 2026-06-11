@@ -11,32 +11,26 @@ export function CartProvider({ children }) {
     });
 
     const [stocks, setStocks] = useState(() => {
-    const guardado = localStorage.getItem("stocks");
     const inicial = {};
     productosIniciales.forEach(p => { inicial[p.id] = p.stock ?? 0 });
-
-    if (guardado) {
-        const parseado = JSON.parse(guardado);
-        // Si le faltan IDs respecto a productos.js, está desactualizado → resetea
-        const todasLasKeys = Object.keys(inicial);
-        const estaActualizado = todasLasKeys.every(id => id in parseado);
-        if (estaActualizado) return parseado;
+    
+    // Descontar lo que ya está en el carrito guardado
+    const carritoGuardado = localStorage.getItem("carrito");
+    if (carritoGuardado) {
+        const carritoParsed = JSON.parse(carritoGuardado);
+        carritoParsed.forEach(p => {
+            if (inicial[p.id] !== undefined) {
+                inicial[p.id] = Math.max(0, inicial[p.id] - p.cantidad);
+            }
+        });
     }
-
-    // Si no existe o está desactualizado, arranca desde productos.js
-    localStorage.removeItem("stocks");
-    localStorage.removeItem("carrito");
+    
     return inicial;
 });
 
     useEffect(() => {
         localStorage.setItem("carrito", JSON.stringify(carrito));
     }, [carrito]);
-
-    useEffect(() => {
-        localStorage.setItem("stocks", JSON.stringify(stocks));
-    }, [stocks]);
-
 
     const agregarAlCarrito = (producto) => {
         if ((stocks[producto.id] ?? 0) <= 0) return;
@@ -48,19 +42,14 @@ export function CartProvider({ children }) {
 
         setCarrito(prev => {
             const existe = prev.find(p => p.id === producto.id);
-
             if (existe) {
                 return prev.map(p =>
-                    p.id === producto.id
-                        ? { ...p, cantidad: p.cantidad + 1 }
-                        : p
+                    p.id === producto.id ? { ...p, cantidad: p.cantidad + 1 } : p
                 );
             }
-
             return [...prev, { ...producto, cantidad: 1 }];
         });
     };
-
 
     const aumentarCantidad = (id) => {
         const stockDisponible = stocks[id] ?? 0;
@@ -99,7 +88,6 @@ export function CartProvider({ children }) {
     };
 
     const confirmarCompra = () => {
-        // Stock ya descontado, solo vacía el carrito sin devolver stock
         setCarrito([]);
     };
 
