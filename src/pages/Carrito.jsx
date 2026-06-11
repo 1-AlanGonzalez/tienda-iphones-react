@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { BsTrash, BsArrowRight, BsBag, BsShieldCheck, BsTruck } from "react-icons/bs";
 import "../styles/carrito.css";
+import { productos } from "../data/productos";
 
 function Carrito() {
   const {
