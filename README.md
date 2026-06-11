@@ -47,8 +47,8 @@ npm run dev
 ---
 
 ## 👥 Integrantes del Grupo
-* Brandon Duce      - Licenciatura en Informática (UNAHUR)
-* Alan Gonzalez     - Licenciatura en Informática (UNAHUR)
-* Agustin Olavarria - Licenciatura en Informática (UNAHUR)
-* [Nombre y Apellido] - Licenciatura en Informática (UNAHUR)
-* [Nombre y Apellido] - Licenciatura en Informática (UNAHUR)
+* Brandon Duce       - Licenciatura en Informática (UNAHUR)
+* Alan Gonzalez      - Licenciatura en Informática (UNAHUR)
+* Agustin Olavarria  - Licenciatura en Informática (UNAHUR)
+* Damian Haberkorn   - Licenciatura en Informática (UNAHUR)
+* Jonathan Giacomini - Licenciatura en Informática (UNAHUR)
