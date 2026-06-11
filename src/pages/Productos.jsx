@@ -31,7 +31,7 @@ function Productos() {
         setPanelAbierto(prev => prev === nombre ? null : nombre)
     }
 
-    // Al elegir un orden en mobile, cierra el panel
+    
     const handleOrden = (valor) => {
         setOrden(valor)
         setPanelAbierto(null)
