@@ -3,7 +3,8 @@ import Cards   from '../components/Cards'
 import Ordenar from '../components/Ordenar'
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { filtroOtros, filtrosAccesorios, filtrosComputacion, filtrosAudio, filtrosMoviles } from '../data/filtros'
+import {filtrosAccesorios, filtrosComputacion, filtrosAudio, filtrosMoviles } from '../data/filtros'
+
 
 const mapaFiltros = {
     iphone:      filtrosMoviles,
