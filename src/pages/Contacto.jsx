@@ -85,7 +85,7 @@ const Contacto = () => {
   return (
     <main className="contacto-page">
 
-      {/* ── HERO ── */}
+      
       <div className="contacto-hero">
         <p className="eyebrow">{esModoCompra ? "Finalizá tu compra" : "Contacto"}</p>
         <h1 className="contacto-titulo">
