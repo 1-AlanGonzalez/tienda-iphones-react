@@ -10,13 +10,12 @@ const mapaCategoria = {
     accesorios:   "Accesorios",
 };
 
-// ── COMPONENTE INDEPENDIENTE PARA EL BOTÓN CON ANIMACIÓN ──
-function BotonAgregar({ producto, agregarAlCarrito }) {
-    const [estado, setEstado] = useState('normal'); 
+function BotonAgregar({ producto, agregarAlCarrito, stockActual }) {
+    const [estado, setEstado] = useState('normal');
 
-    const estaAgotado = producto.tag === "Sin stock";
+    const agotado = stockActual <= 0;
 
-    if (estaAgotado) {
+    if (agotado) {
         return (
             <button className="card-boton disabled" disabled>
                 Agotado
@@ -26,16 +25,11 @@ function BotonAgregar({ producto, agregarAlCarrito }) {
 
     const handleAgregar = () => {
         if (estado !== 'normal') return;
-
         setEstado('cargando');
-
         setTimeout(() => {
             agregarAlCarrito(producto);
             setEstado('exito');
-
-            setTimeout(() => {
-                setEstado('normal');
-            }, 2000);
+            setTimeout(() => setEstado('normal'), 2000);
         }, 1000);
     };
 
@@ -48,7 +42,7 @@ function BotonAgregar({ producto, agregarAlCarrito }) {
             {estado === 'normal' && "Agregar al carrito"}
             {estado === 'cargando' && (
                 <>
-                    <span className="spinner-carrito"></span> 
+                    <span className="spinner-carrito"></span>
                     Añadiendo...
                 </>
             )}
@@ -57,10 +51,9 @@ function BotonAgregar({ producto, agregarAlCarrito }) {
     );
 }
 
-// ── COMPONENTE PRINCIPAL DE CARDS ──
 function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
     const [visibles, setVisibles] = useState(8);
-    const { agregarAlCarrito } = useCart();
+    const { agregarAlCarrito, stocks } = useCart();
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
@@ -68,14 +61,12 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
 
     const categoriaActual = mapaCategoria[cat];
 
-    // 1. Filtrar por categoría
     let base = categoriaActual
         ? productos.filter(p => p.categoria === categoriaActual)
         : cat === "ofertas"
         ? productos.filter(p => p.tag === "Oferta")
         : productos;
 
-    // 2. Filtrar por texto de búsqueda
     if (busqueda.trim()) {
         const q = busqueda.toLowerCase();
         base = base.filter(p =>
@@ -86,10 +77,8 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
         );
     }
 
-    // 3. Filtrar por precio
     const porPrecio = base.filter(p => p.precio >= precioMin && p.precio <= precioMax);
 
-    // 4. Filtrar por checkboxes
     const hayFiltros = Object.values(seleccionados).some(v => v === true);
     const productosFiltrados = hayFiltros
         ? porPrecio.filter(p =>
@@ -105,65 +94,74 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
           )
         : porPrecio;
 
-    // 5. Ordenar
     const productosOrdenados = [...productosFiltrados].sort((a, b) => {
-        if (orden === "mayor") return b.precio - a.precio;
-        if (orden === "menor") return a.precio - b.precio;
-        return 0;
-    });
+
+    if (orden === "nuevos") {
+
+        if (a.tag === "Nuevo" && b.tag !== "Nuevo") return -1
+        if (a.tag !== "Nuevo" && b.tag === "Nuevo") return 1
+
+        return 0
+    }
+
+    if (orden === "mayor") return b.precio - a.precio
+
+    if (orden === "menor") return a.precio - b.precio
+
+    return 0
+})
 
     const productosMostrados = productosOrdenados.slice(0, visibles);
 
     return (
         <div className="cards-contenedor">
             <div className="cards-grid">
-                {productosMostrados.map(producto => (
-                    <div key={producto.id} className="card">
-                        
-                        {/* ✅ El tag ahora se renderiza aquí para superponerse correctamente */}
-                        {producto.tag && (
-                            <span className={`card-tag ${
-                                producto.tag === "Oferta" ? "oferta" : 
-                                producto.tag === "Sin stock" ? "sinStock" : ""
-                            }`}>
-                                {producto.tag}
-                            </span>
-                        )}
+                {productosMostrados.map(producto => {
+                    const stockActual = stocks[producto.id] ?? 0;
+                    return (
+                        <div key={producto.id} className={`card ${stockActual <= 0 ? "card-agotada" : ""}`}>
 
-                        <img
-                            src={producto.imagen}
-                            alt={producto.nombre}
-                            className="card-imagen"
-                        />
+                            {stockActual <= 0 ? (
+                                <span className="card-tag sinStock">Sin stock</span>
+                            ) : producto.tag && (
+                                <span className={`card-tag ${producto.tag === "Oferta" ? "oferta" : ""}`}>
+                                    {producto.tag}
+                                </span>
+                            )}
 
-                        <div className="card-info">
-                            <p className="card-nombre">{producto.nombre}</p>
-                            <p className="card-subtitulo">
-                                {[producto.color, producto.almacenamiento].filter(Boolean).join(" · ")}
-                            </p>
-                            <p className="card-precio">${producto.precio}</p>
+                            <img
+                                src={producto.imagen}
+                                alt={producto.nombre}
+                                className="card-imagen"
+                            />
+
+                            <div className="card-info">
+                                <p className="card-nombre">{producto.nombre}</p>
+                                <p className="card-subtitulo">
+                                    {[producto.color, producto.almacenamiento].filter(Boolean).join(" · ")}
+                                </p>
+                                <p className="card-precio">${producto.precio}</p>
+                            </div>
+
+                            <button
+                                className="card-detalles"
+                                onClick={() => navigate(`/producto/${producto.id}`)}
+                            >
+                                Ver detalles
+                            </button>
+
+                            <BotonAgregar
+                                producto={producto}
+                                agregarAlCarrito={agregarAlCarrito}
+                                stockActual={stockActual}
+                            />
                         </div>
-
-                        <button
-                            className="card-detalles"
-                            onClick={() => navigate(`/producto/${producto.id}`)}
-                        >
-                            Ver detalles
-                        </button>
-                        
-                        <BotonAgregar 
-                            producto={producto} 
-                            agregarAlCarrito={agregarAlCarrito} 
-                        />
-                    </div>
-                ))}
+                    );
+                })}
             </div>
 
             {visibles < productosOrdenados.length && (
-                <button
-                    className="ver-mas-boton"
-                    onClick={() => setVisibles(visibles + 8)}
-                >
+                <button className="ver-mas-boton" onClick={() => setVisibles(visibles + 8)}>
                     Ver más
                 </button>
             )}

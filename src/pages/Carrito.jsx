@@ -8,10 +8,12 @@ import { productos } from "../data/productos";
 function Carrito() {
   const {
     carrito,
+    stocks,
     aumentarCantidad,
     disminuirCantidad,
     eliminarProducto,
     vaciarCarrito,
+    confirmarCompra,
     cantidadTotal,
     total,
   } = useCart();
@@ -26,10 +28,10 @@ function Carrito() {
 
   const confirmarIrAContacto = () => {
     setMostrarModal(false);
+    confirmarCompra();
     navigate("/contacto");
   };
 
-  /* ── CARRITO VACÍO ── */
   if (carrito.length === 0) {
     return (
       <main className="carrito-page">
@@ -48,7 +50,6 @@ function Carrito() {
   return (
     <main className="carrito-page">
 
-      {/* HERO */}
       <div className="carrito-hero">
         <p className="eyebrow">Tu selección</p>
         <h1 className="carrito-titulo">Mi <em>carrito</em></h1>
@@ -57,8 +58,7 @@ function Carrito() {
 
       <div className="carrito-layout">
 
-        {/* ── LISTA DE PRODUCTOS ── */}
-        <div className="carrito-lista"> 
+        <div className="carrito-lista">
           {carrito.map(producto => (
             <div key={producto.id} className="carrito-item">
 
@@ -77,7 +77,11 @@ function Carrito() {
                   <div className="cantidad-control">
                     <button onClick={() => disminuirCantidad(producto.id)} aria-label="Disminuir">−</button>
                     <span>{producto.cantidad}</span>
-                    <button onClick={() => aumentarCantidad(producto.id)} aria-label="Aumentar">+</button>
+                    <button
+                      onClick={() => aumentarCantidad(producto.id)}
+                      aria-label="Aumentar"
+                      disabled={stocks[producto.id] <= 0}
+                    >+</button>
                   </div>
 
                   <div className="carrito-item-precios">
@@ -104,15 +108,12 @@ function Carrito() {
             </div>
           ))}
 
-          {/* Vaciar carrito */}
           <button className="carrito-vaciar" onClick={vaciarCarrito}>
             Vaciar carrito
           </button>
         </div>
 
-        {/* ── RESUMEN ── */}
         <aside className="carrito-resumen">
-
           <div className="resumen-card">
             <h3 className="resumen-titulo">Resumen del pedido</h3>
 
@@ -160,11 +161,9 @@ function Carrito() {
               <span><BsTruck /> Envíos a todo el país</span>
             </div>
           </div>
-
         </aside>
       </div>
 
-      {/* ── MODAL ── */}
       {mostrarModal && (
         <div className="carrito-modal-overlay" onClick={() => setMostrarModal(false)}>
           <div className="carrito-modal" onClick={e => e.stopPropagation()}>

@@ -7,7 +7,7 @@ import "../styles/detalleProducto.css";
 function DetalleProducto() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { agregarAlCarrito } = useCart();
+  const { agregarAlCarrito, stocks } = useCart();
 
   const producto = productos.find((p) => p.id === Number(id));
 
@@ -33,7 +33,7 @@ function DetalleProducto() {
     producto.categoria     && { label: "Categoría",             valor: producto.categoria },
   ].filter(Boolean);
 
-  const enStock = producto.stock === undefined || producto.stock > 0;
+  const enStock = (stocks[producto.id] ?? 0) > 0;
 
   return (
     <main className="detalle-page">

@@ -246,7 +246,7 @@ export const productos = [
     imagen: iphone16_blanco,
     descripcion: "iPhone 16 con chip A18, pantalla Super Retina XDR de 6.1 pulgadas, cámara principal de 48MP y excelente rendimiento para el uso diario.",
     stock: 10,
-    tag: "Oferta"
+    tag: "Nuevo"
 },
 
 {
@@ -315,8 +315,8 @@ export const productos = [
     precio: 599,
     imagen: iphone15_negro,
     descripcion: "iPhone 15 con chip A16 Bionic, pantalla Super Retina XDR de 6.1 pulgadas, cámara principal de 48MP y un diseño elegante con Dynamic Island.",
-    stock: 0,
-    tag: "Sin stock"
+    stock: 1,
+    tag: "Oferta"
 },
 
 {
@@ -330,7 +330,7 @@ export const productos = [
     imagen: iphone15_verde,
     descripcion: "iPhone 15 con chip A16 Bionic, pantalla Super Retina XDR de 6.1 pulgadas, cámara principal de 48MP y un diseño elegante con Dynamic Island.",
     stock: 3,
-    tag: "Oferta"
+    tag: "Nuevo"
 },
 
 {
@@ -372,7 +372,7 @@ export const productos = [
     imagen: iphone15pro_blanco,
     descripcion: "iPhone 15 Pro con chip A17 Pro, pantalla Super Retina XDR de 6.1 pulgadas con ProMotion de 120Hz, sistema de cámaras profesionales de 48MP y acabado premium en titanio.",
     stock: 3,
-    tag: "Oferta"
+    tag: "Nuevo"
 },
 
 {
@@ -385,8 +385,8 @@ export const productos = [
     precio: 1099,
     imagen: iphone15pro_negro,
     descripcion: "iPhone 15 Pro Max con chip A17 Pro, pantalla Super Retina XDR de 6.7 pulgadas con ProMotion de 120Hz, sistema de cámaras profesionales de 48MP, batería de larga duración y acabado premium en titanio.",
-    stock: 3,
-    tag: "Oferta"
+    stock: 1,
+    tag: "Nuevo"
 },
 
 {
@@ -456,7 +456,7 @@ export const productos = [
     imagen: airpods_3,
     descripcion: "AirPods 3 con audio espacial personalizado, chip H1, resistencia al agua IPX4 y hasta 30 horas de autonomía con el estuche de carga.",
     stock: 10,
-    tag: "Oferta"
+    tag: "Nuevo"
 },
 
 {   
@@ -508,7 +508,7 @@ export const productos = [
     imagen: airpods_max,
     descripcion: "AirPods Max con cancelación activa de ruido, audio espacial personalizado, sonido de alta fidelidad, conector USB-C y hasta 20 horas de autonomía. Su diseño premium de aluminio ofrece una experiencia de audio envolvente y cómoda para todo el día.",
     stock: 5,
-    tag: "Premium"
+    tag: "Nuevo"
 },
 
 // COMPUTACION
@@ -523,6 +523,7 @@ export const productos = [
     precio: 799,
     imagen: macbok_air_m1 ,
     descripcion: "MacBook Air con chip M1, pantalla Retina de 13.3 pulgadas, 8GB de memoria unificada y hasta 18 horas de autonomía. Ideal para estudio, trabajo y uso diario.",
+    stock : 4,
     tag: "Oferta"
 },
 
@@ -536,6 +537,7 @@ export const productos = [
     precio: 999,
     imagen: macbok_air_m2 ,
     descripcion: "MacBook Air con chip M2, pantalla Liquid Retina de 13.6 pulgadas, diseño ultradelgado y excelente rendimiento para productividad y creatividad.",
+    stock: 3,
     tag: "Oferta"
 },
 
@@ -549,7 +551,8 @@ export const productos = [
     precio: 1199,
     imagen: macbok_air_m3 ,
     descripcion: "MacBook Air con chip M3, pantalla Liquid Retina de 13.6 pulgadas, 16GB de memoria unificada y un rendimiento optimizado para multitarea y aplicaciones exigentes.",
-    tag: "Oferta"
+    stock : 5,
+    tag: "Nuevo"
 },
 
 {
@@ -562,6 +565,7 @@ export const productos = [
     precio: 1399,
     imagen: macbok_air_m4 ,
     descripcion: "MacBook Air con chip M4, pantalla Liquid Retina de 13.6 pulgadas, inteligencia avanzada, gran eficiencia energética y rendimiento excepcional para cualquier tarea.",
+    stock: 2,
     tag: "Nuevo"
 },
 
@@ -575,7 +579,8 @@ export const productos = [
     precio: 1299,
     imagen: macbok_pro_m1 ,
     descripcion: "MacBook Pro con chip M1, pantalla Retina de 13 pulgadas, batería de larga duración y rendimiento ideal para estudio, programación y edición ligera.",
-    tag: "Nuevo"
+    stock: 6,
+    tag: "Oferta"
 },
 
 {
@@ -588,6 +593,7 @@ export const productos = [
     precio: 1499,
     imagen: macbok_pro_m1 ,
     descripcion: "MacBook Pro con chip M2, pantalla Retina de 13 pulgadas, mayor potencia gráfica y excelente autonomía para trabajo y productividad.",
+    stock: 4,
     tag: "Oferta"
 },
 
@@ -601,6 +607,7 @@ export const productos = [
     precio: 1799,
     imagen: macbok_pro_m3 ,
     descripcion: "MacBook Pro con chip M3, pantalla Liquid Retina XDR, 16GB de memoria unificada y rendimiento avanzado para tareas profesionales.",
+    stock: 1,
     tag: "Nuevo"
 },
 
@@ -614,6 +621,7 @@ export const productos = [
     precio: 1299,
     imagen: imac_m1,
     descripcion: "iMac con chip M1, pantalla Retina 4.5K de 24 pulgadas, diseño ultradelgado y rendimiento ideal para estudio, trabajo y entretenimiento.",
+    stock: 2,
     tag: "Oferta"
 },
 
@@ -627,7 +635,8 @@ export const productos = [
     precio: 1499,
     imagen: imac_m2,
     descripcion: "iMac con chip M2, pantalla Retina 4.5K de 24 pulgadas, mayor rendimiento gráfico y excelente fluidez para productividad y creatividad.",
-    tag: "Oferta"
+    stock: 7,
+    tag: "Nuevo"
 },
 
 {
@@ -640,6 +649,7 @@ export const productos = [
     precio: 1799,
     imagen: imac_m3,
     descripcion: "iMac con chip M3, pantalla Retina 4.5K de 24 pulgadas, 16GB de memoria unificada y potencia avanzada para diseño, programación y edición multimedia.",
+    stock: 3,
     tag: "Nuevo"
 },
 
@@ -653,7 +663,8 @@ export const productos = [
     precio: 1999,
     imagen: imac_m4,
     descripcion: "iMac con chip M4, pantalla Retina 4.5K de 24 pulgadas, almacenamiento de 1TB y rendimiento profesional para trabajo creativo y multitarea exigente.",
-    tag: "Nuevo"
+    stock: 1,
+    tag: "Oferta"
 },
 
 
@@ -667,6 +678,7 @@ export const productos = [
     precio: 699,
     imagen: macmini_m1,
     descripcion: "Mac Mini con chip M1, diseño compacto, gran eficiencia energética y rendimiento ideal para estudio, oficina y programación.",
+    stock: 2,
     tag: "Oferta"
 },
 
@@ -680,6 +692,7 @@ export const productos = [
     precio: 899,
     imagen: macmini_m2,
     descripcion: "Mac Mini con chip M2, mayor potencia gráfica y excelente rendimiento para multitarea, productividad y desarrollo de software.",
+    stock: 2,
     tag: "Oferta"
 },
 
@@ -693,6 +706,7 @@ export const productos = [
     precio: 1099,
     imagen: macmini_m3,
     descripcion: "Mac Mini con chip M3, 16GB de memoria unificada y potencia avanzada para programación, diseño y edición de contenido.",
+    stock: 4,
     tag: "Nuevo"
 },
 
@@ -707,6 +721,7 @@ export const productos = [
     precio: 1299,
     imagen: macmini_m4,
     descripcion: "Mac Mini con chip M4, almacenamiento de 1TB y rendimiento profesional en un formato compacto ideal para flujos de trabajo exigentes.",
+    stock: 5,
     tag: "Nuevo"
 },
 
@@ -896,7 +911,7 @@ export const productos = [
 },
 
 {
-    id: 58,
+    id: 61,
     nombre: "Case de Silicona Iphone 15",
     tipo: "Cases",
     categoria: "Accesorios",
@@ -909,7 +924,7 @@ export const productos = [
 },
 
 {
-    id: 61,
+    id: 62,
     nombre: "Case transparente Iphone 14",
     tipo: "Cases",
     categoria: "Accesorios",
@@ -922,7 +937,7 @@ export const productos = [
 },
 
 {
-    id: 62,
+    id: 63,
     nombre: "Cable USB-C",
     tipo: "Cables",
     categoria: "Accesorios",
@@ -935,7 +950,7 @@ export const productos = [
 },
 
 {
-    id: 63,
+    id: 64,
     nombre: "Cable USB-A",
     tipo: "Cables",
     categoria: "Accesorios",
@@ -948,7 +963,7 @@ export const productos = [
 },
 
 {
-    id: 64,
+    id: 65,
     nombre: "Apple Watch SE",
     tipo: "Apple Watch",
     categoria: "Accesorios",
@@ -961,7 +976,7 @@ export const productos = [
 },
 
 {
-    id: 65,
+    id: 66,
     nombre: "Apple Watch Series 10",
     tipo: "Apple Watch",
     categoria: "Accesorios",
