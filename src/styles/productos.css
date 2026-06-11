@@ -109,7 +109,7 @@ ul {
     margin: 0;
 }
 .card {
-    background: var(--bg-secondary);
+    background: var(--bg-secondary) !important;
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 14px 12px 12px;
@@ -149,10 +149,10 @@ ul {
 .card-detalles {
     flex: 1;
     padding: 8px 10px;
-    border: 1px solid var(--border);
+    border: 1px solid var(--blue);
     border-radius: 8px;
     background: transparent;
-    color: var(--text-primary);
+    color: var(--blue);
     font-size: 12px;
     font-weight: 500;
     text-align: center;
