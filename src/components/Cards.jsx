@@ -205,6 +205,7 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
                                 </p>
                             </div>
 
+                            {/* Envío */}
                             <p className="card-envio">
                              Envío gratis
                             </p>

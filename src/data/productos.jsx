@@ -926,7 +926,7 @@ export const productos = [
     precio: 49,
     imagen: case_iphone15promax,
     descripcion: "Funda transparente diseñada por Apple para proteger tu iPhone manteniendo visible su color y diseño original.",
-    stock: 8,
+    stock: 2,
     tag: "Popular"
 },
 

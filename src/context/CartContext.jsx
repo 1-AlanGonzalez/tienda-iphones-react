@@ -38,10 +38,28 @@ export function CartProvider({ children }) {
     }, [stocks]);
 
     const agregarAlCarrito = (producto) => {
-        const stockDisponible = stocks[producto.id] ?? 0;
-        const enCarrito = carrito.find(p => p.id === producto.id);
-        const cantidadEnCarrito = enCarrito ? enCarrito.cantidad : 0;
-        if (cantidadEnCarrito >= stockDisponible) return;
+const agregarAlCarrito = (producto) => {
+    if ((stocks[producto.id] ?? 0) <= 0) return;
+
+    setStocks(prev => ({
+        ...prev,
+        [producto.id]: prev[producto.id] - 1
+    }));
+
+    setCarrito(prev => {
+        const existe = prev.find(p => p.id === producto.id);
+
+        if (existe) {
+            return prev.map(p =>
+                p.id === producto.id
+                    ? { ...p, cantidad: p.cantidad + 1 }
+                    : p
+            );
+        }
+
+        return [...prev, { ...producto, cantidad: 1 }];
+    });
+};
 
         setStocks(prev => ({ ...prev, [producto.id]: prev[producto.id] - 1 }));
         setCarrito(prev => {
