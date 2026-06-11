@@ -3,6 +3,24 @@ import { productos } from "../data/productos";
 import { useCart } from "../context/CartContext";
 import { BsArrowLeft, BsCartPlus, BsCheckCircle, BsXCircle } from "react-icons/bs";
 import "../styles/components/detalleProducto.css";
+import { useState } from "react";
+
+const handleAgregar = () => {
+  if (estadoBoton !== "normal" || !enStock) return;
+
+  setEstadoBoton("cargando");
+
+  setTimeout(() => {
+    agregarAlCarrito(producto);
+
+    setEstadoBoton("exito");
+
+    setTimeout(() => {
+      setEstadoBoton("normal");
+    }, 2000);
+
+  }, 1000);
+};
 
 function DetalleProducto() {
   const { id } = useParams();
@@ -39,6 +57,7 @@ function DetalleProducto() {
         (1 - producto.precio / producto.precioOriginal) * 100
       )
     : null;
+    const [estadoBoton, setEstadoBoton] = useState("normal");
   return (
     <main className="detalle-page">
 

@@ -12,7 +12,6 @@ const mapaCategoria = {
 
 function BotonAgregar({ producto, agregarAlCarrito, stockActual }) {
     const [estado, setEstado] = useState('normal');
-
     const agotado = stockActual <= 0;
 
     if (agotado) {
@@ -34,6 +33,7 @@ function BotonAgregar({ producto, agregarAlCarrito, stockActual }) {
     };
 
     return (
+        
         <button
             className={`card-boton ${estado === 'cargando' ? 'cargando' : ''} ${estado === 'exito' ? 'exito' : ''}`}
             onClick={handleAgregar}
@@ -124,7 +124,7 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
         <div className="cards-grid">
             {productosMostrados.map(producto => {
                 const stockActual = stocks[producto.id] ?? 0;
-
+console.log(producto.nombre, stockActual);
                 const descuento = producto.precioOriginal
                     ? Math.round(
                         (1 - producto.precio / producto.precioOriginal) * 100
