@@ -316,7 +316,7 @@ export const productos = [
     imagen: iphone15_negro,
     descripcion: "iPhone 15 con chip A16 Bionic, pantalla Super Retina XDR de 6.1 pulgadas, cámara principal de 48MP y un diseño elegante con Dynamic Island.",
     stock: 0,
-    tag: "Oferta"
+    tag: "Sin stock"
 },
 
 {

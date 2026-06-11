@@ -96,12 +96,12 @@ ul {
     padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
 }
 
 .card-imagen {
-    width: 100%;
     aspect-ratio: 1;
+    width: 100%;
     object-fit: contain;
     border-radius: 8px;
 }
@@ -121,7 +121,9 @@ ul {
     color: white;
     align-self: flex-start;
 }
-
+.card-tag.sinStock {
+    background-color: gray;
+}
 .card-tag.oferta {
     background-color: var(--bg-tertiary);
     color: #e3500a; /* Se mantiene naranja para destacar la oferta */
@@ -130,7 +132,6 @@ ul {
 .card-info {
     display: flex;
     flex-direction: column;
-    gap: 4px;
 }
 
 .card-nombre {

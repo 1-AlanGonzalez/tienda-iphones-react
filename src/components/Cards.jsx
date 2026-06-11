@@ -10,12 +10,60 @@ const mapaCategoria = {
     accesorios:   "Accesorios",
 };
 
+// ── COMPONENTE INDEPENDIENTE PARA EL BOTÓN CON ANIMACIÓN ──
+function BotonAgregar({ producto, agregarAlCarrito }) {
+    const [estado, setEstado] = useState('normal'); 
+
+    // Si el producto viene marcado como Sin stock desde los datos
+    const estaAgotado = producto.tag === "Sin stock";
+
+    if (estaAgotado) {
+        return (
+            <button className="card-boton disabled" disabled>
+                Agotado
+            </button>
+        );
+    }
+
+    const handleAgregar = () => {
+        if (estado !== 'normal') return;
+
+        setEstado('cargando');
+
+        setTimeout(() => {
+            agregarAlCarrito(producto);
+            setEstado('exito');
+
+            setTimeout(() => {
+                setEstado('normal');
+            }, 2000);
+        }, 1000);
+    };
+
+    return (
+        <button
+            className={`card-boton ${estado === 'cargando' ? 'cargando' : ''} ${estado === 'exito' ? 'exito' : ''}`}
+            onClick={handleAgregar}
+            disabled={estado !== 'normal'}
+        >
+            {estado === 'normal' && "Agregar al carrito"}
+            {estado === 'cargando' && (
+                <>
+                    <span className="spinner-carrito"></span> 
+                    Añadiendo...
+                </>
+            )}
+            {estado === 'exito' && "✓ ¡Añadido!"}
+        </button>
+    );
+}
+
+// ── COMPONENTE PRINCIPAL DE CARDS ──
 function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
     const [visibles, setVisibles] = useState(8);
     const { agregarAlCarrito } = useCart();
     const navigate = useNavigate();
 
-    // ✅ Lee el param ?busqueda= directamente desde la URL
     const [searchParams] = useSearchParams();
     const busqueda = searchParams.get("busqueda") || "";
 
@@ -28,7 +76,7 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
         ? productos.filter(p => p.tag === "Oferta")
         : productos;
 
-    // 2. ✅ Filtrar por texto de búsqueda
+    // 2. Filtrar por texto de búsqueda
     if (busqueda.trim()) {
         const q = busqueda.toLowerCase();
         base = base.filter(p =>
@@ -78,8 +126,12 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
                             className="card-imagen"
                         />
 
+                        {/* ✅ Validación de clases CSS dinámicas según el tag */}
                         {producto.tag && (
-                            <span className={`card-tag ${producto.tag === "Oferta" ? "oferta" : ""}`}>
+                            <span className={`card-tag ${
+                                producto.tag === "Oferta" ? "oferta" : 
+                                producto.tag === "Sin stock" ? "sinStock" : ""
+                            }`}>
                                 {producto.tag}
                             </span>
                         )}
@@ -98,12 +150,11 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
                         >
                             Ver detalles
                         </button>
-                        <button
-                            className="card-boton"
-                            onClick={() => agregarAlCarrito(producto)}
-                        >
-                            Agregar al carrito
-                        </button>
+                        
+                        <BotonAgregar 
+                            producto={producto} 
+                            agregarAlCarrito={agregarAlCarrito} 
+                        />
                     </div>
                 ))}
             </div>
