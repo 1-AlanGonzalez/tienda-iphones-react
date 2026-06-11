@@ -118,6 +118,10 @@ background: transparent;
   transition: border-color 0.2s, background 0.2s;
 
 }
+.card-detalles:hover {
+    filter: brightness(0.85);
+}
+
 
 .card-subtitulo {
     font-size: 12px;
