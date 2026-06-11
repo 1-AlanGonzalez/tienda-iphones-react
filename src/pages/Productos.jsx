@@ -55,19 +55,16 @@ function Productos() {
     return (
         <div className="pagina-productos">
 
-            {/* Sidebar desktop */}
             <div className="filtros-desktop">
                 <Filtros {...filtrosProps} />
             </div>
-
             <div className="cards-contenedor-wrapper">
 
-                {/* Ordenar desktop */}
                 <div className="ordenar-desktop">
                     <Ordenar orden={orden} setOrden={setOrden} />
                 </div>
 
-                {/* Toolbar mobile */}
+                // PARA MOBIL
                 <div className="mobile-toolbar">
                     <div className="mobile-toolbar-inner">
                         <button
