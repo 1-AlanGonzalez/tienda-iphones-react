@@ -24,7 +24,7 @@ function NavBar() {
   const { cantidadTotal } = useCart();
   const { oscuro, setOscuro } = useTema();
 
-  // ✅ Forma recomendada en React Router para leer parámetros sin instanciar New URLSearchParams manualmente
+  
   const [searchParams] = useSearchParams();
   const catActiva = searchParams.get("cat"); 
 
@@ -85,7 +85,7 @@ function NavBar() {
 
       {/* ── CATEGORÍAS DESKTOP ── */}
       <nav className="navbar-categorias">
-        {/* ✅ CORRECCIÓN: Evaluación estricta y limpia del string para evitar falsos positivos */}
+        
         <Link
           to="/productos?cat=ofertas"
           className={`cat-link hot ${catActiva === "ofertas" ? "active" : ""}`}
