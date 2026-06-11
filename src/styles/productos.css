@@ -639,3 +639,32 @@ ul {
     border-bottom: none;
 }
 
+.detalle-precio-anterior-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.detalle-precio-anterior {
+  text-decoration: line-through;
+  color: #8f8f8f;
+  font-size: 1rem;
+}
+
+.detalle-descuento {
+  color: #00b050;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.detalle-precio {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.detalle-cuotas {
+  color: #666;
+  margin-top: 4px;
+}

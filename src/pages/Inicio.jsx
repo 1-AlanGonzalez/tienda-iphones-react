@@ -1,5 +1,4 @@
 import CarruselProductos from "../components/CarruselProductos";
-import CarruselPublicidad from "../components/CarruselPublicidad";
 import FilaProductos from "../components/FilaProductos";
 import FilaProductosPocoStock from "../components/FilaProductosPocoStock";
 import Beneficios from "../components/Beneficios";
