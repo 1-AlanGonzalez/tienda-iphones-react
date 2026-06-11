@@ -5,23 +5,6 @@ import { BsArrowLeft, BsCartPlus, BsCheckCircle, BsXCircle } from "react-icons/b
 import "../styles/components/detalleProducto.css";
 import { useState } from "react";
 
-const handleAgregar = () => {
-  if (estadoBoton !== "normal" || !enStock) return;
-
-  setEstadoBoton("cargando");
-
-  setTimeout(() => {
-    agregarAlCarrito(producto);
-
-    setEstadoBoton("exito");
-
-    setTimeout(() => {
-      setEstadoBoton("normal");
-    }, 2000);
-
-  }, 1000);
-};
-
 function DetalleProducto() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -51,13 +34,28 @@ function DetalleProducto() {
     producto.categoria     && { label: "Categoría",             valor: producto.categoria },
   ].filter(Boolean);
 
-  const enStock = (stocks[producto.id] ?? 0) > 0;
-  const descuento = producto.precioOriginal
-    ? Math.round(
-        (1 - producto.precio / producto.precioOriginal) * 100
-      )
-    : null;
+    const enStock = (stocks[producto.id] ?? 0) > 0;
+    const descuento = producto.precioOriginal
+      ? Math.round(
+          (1 - producto.precio / producto.precioOriginal) * 100
+        )
+      : null;
+
     const [estadoBoton, setEstadoBoton] = useState("normal");
+    const handleAgregar = () => { if (estadoBoton !== "normal" || !enStock) return;
+
+    setEstadoBoton("cargando");
+
+    setTimeout(() => {
+      agregarAlCarrito(producto);
+
+      setEstadoBoton("exito");
+
+      setTimeout(() => {
+        setEstadoBoton("normal");
+      }, 2000);
+    }, 1000);
+  };
   return (
     <main className="detalle-page">
 
@@ -120,11 +118,30 @@ function DetalleProducto() {
           </p>
 
           <button
-            className="detalle-boton"
-            disabled={!enStock}
-            onClick={() => agregarAlCarrito(producto)}
+            className={`detalle-boton ${
+              estadoBoton === "cargando" ? "cargando" : ""
+            } ${
+              estadoBoton === "exito" ? "exito" : ""
+            }`}
+            disabled={!enStock || estadoBoton !== "normal"}
+            onClick={handleAgregar}
           >
-            <BsCartPlus /> Agregar al carrito
+            {estadoBoton === "normal" && (
+              <>
+                <BsCartPlus /> Agregar al carrito
+              </>
+            )}
+
+            {estadoBoton === "cargando" && (
+              <>
+                <span className="spinner-carrito"></span>
+                Añadiendo...
+              </>
+            )}
+
+            {estadoBoton === "exito" && (
+              <>✓ ¡Añadido!</>
+            )}
           </button>
 
           {/* ESPECIFICACIONES */}

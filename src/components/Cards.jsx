@@ -124,7 +124,7 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
         <div className="cards-grid">
             {productosMostrados.map(producto => {
                 const stockActual = stocks[producto.id] ?? 0;
-console.log(producto.nombre, stockActual);
+
                 const descuento = producto.precioOriginal
                     ? Math.round(
                         (1 - producto.precio / producto.precioOriginal) * 100
