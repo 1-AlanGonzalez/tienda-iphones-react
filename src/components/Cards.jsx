@@ -95,10 +95,21 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
         : porPrecio;
 
     const productosOrdenados = [...productosFiltrados].sort((a, b) => {
-        if (orden === "mayor") return b.precio - a.precio;
-        if (orden === "menor") return a.precio - b.precio;
-        return 0;
-    });
+
+    if (orden === "nuevos") {
+
+        if (a.tag === "Nuevo" && b.tag !== "Nuevo") return -1
+        if (a.tag !== "Nuevo" && b.tag === "Nuevo") return 1
+
+        return 0
+    }
+
+    if (orden === "mayor") return b.precio - a.precio
+
+    if (orden === "menor") return a.precio - b.precio
+
+    return 0
+})
 
     const productosMostrados = productosOrdenados.slice(0, visibles);
 

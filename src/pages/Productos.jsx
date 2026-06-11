@@ -24,7 +24,7 @@ function Productos() {
     const [seleccionados, setSeleccionados] = useState({})
     const [precioMin,     setPrecioMin]     = useState(0)
     const [precioMax,     setPrecioMax]     = useState(PRECIO_LIMITE)
-    const [orden,         setOrden]         = useState("destacados")
+    const [orden,         setOrden]         = useState("nuevos")
     const [panelAbierto,  setPanelAbierto]  = useState(null)
 
     const togglePanel = (nombre) => {

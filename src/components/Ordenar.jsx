@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 const opciones = [
-    { valor: "destacados", label: "Destacados" },
+    { valor: "nuevos", label: "Nuevos" },
     { valor: "mayor",      label: "Mayor precio" },
     { valor: "menor",      label: "Menor precio" },
 ]
@@ -32,7 +32,7 @@ function Ordenar({ orden, setOrden, inline = false }) {
     return (
         <div className="ordenar-contenedor">
             <div className="ordenar-selector" onClick={() => setAbierto(!abierto)}>
-                <span>{labelActual}</span>
+                <span>Ordenar por : {labelActual}</span>
             </div>
 
             {abierto && (
