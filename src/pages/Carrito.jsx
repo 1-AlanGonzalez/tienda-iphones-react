@@ -29,6 +29,7 @@ function Carrito() {
 
   const confirmarIrAContacto = () => {
     setMostrarModal(false);
+    window.scrollTo(0, 0);
     navigate("/contacto");
   };
 
