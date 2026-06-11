@@ -53,10 +53,30 @@ function CarruselProductos() {
             <p className="carrusel-desc">{p.descripcion}</p>
 
             <div className="carrusel-precio-wrap">
-              <p className="carrusel-precio">USD ${p.precio.toLocaleString("es-AR")}</p>
-              <p className="carrusel-cuotas">
-                12 cuotas sin interés de ${Math.round(p.precio / 12).toLocaleString("es-AR")}
+
+              {p.precioOriginal && (
+                <div className="carrusel-precio-anterior-wrap">
+                  <span className="carrusel-precio-anterior">
+                    USD ${p.precioOriginal.toLocaleString("es-AR")}
+                  </span>
+
+                  <span className="carrusel-descuento">
+                    {Math.round(
+                      (1 - p.precio / p.precioOriginal) * 100
+                    )}% OFF
+                  </span>
+                </div>
+              )}
+
+              <p className="carrusel-precio">
+                USD ${p.precio.toLocaleString("es-AR")}
               </p>
+
+              <p className="carrusel-cuotas">
+                12 cuotas sin interés de $
+                {Math.round(p.precio / 12).toLocaleString("es-AR")}
+              </p>
+
             </div>
 
             <div className="carrusel-btns">

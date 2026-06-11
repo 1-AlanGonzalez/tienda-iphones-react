@@ -34,7 +34,11 @@ function DetalleProducto() {
   ].filter(Boolean);
 
   const enStock = (stocks[producto.id] ?? 0) > 0;
-
+  const descuento = producto.precioOriginal
+    ? Math.round(
+        (1 - producto.precio / producto.precioOriginal) * 100
+      )
+    : null;
   return (
     <main className="detalle-page">
 
@@ -62,10 +66,30 @@ function DetalleProducto() {
             </p>
           )}
 
-          <p className="detalle-precio">${producto.precio}</p>
-          <p className="detalle-cuotas">
-            12 cuotas sin interés de ${(producto.precio / 12).toFixed(2)}
-          </p>
+         <div className="detalle-precios">
+
+            {producto.precioOriginal && (
+              <div className="detalle-precio-anterior-wrap">
+                <span className="detalle-precio-anterior">
+                  USD ${producto.precioOriginal.toLocaleString("es-AR")}
+                </span>
+
+                <span className="detalle-descuento">
+                  {descuento}% OFF
+                </span>
+              </div>
+            )}
+
+            <p className="detalle-precio">
+              USD ${producto.precio.toLocaleString("es-AR")}
+            </p>
+
+            <p className="detalle-cuotas">
+              12 cuotas sin interés de $
+              {Math.round(producto.precio / 12).toLocaleString("es-AR")}
+            </p>
+
+          </div>
 
           <p className="detalle-descripcion">{producto.descripcion}</p>
 

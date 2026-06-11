@@ -9,6 +9,7 @@ import Carrito from "./pages/Carrito";
 import ScrollToTop from "./components/ScrollToTop";
 import { CartProvider } from "./context/CartContext";
 import DetalleProducto from "./pages/DetalleProducto";
+import BtnScrollTop from "./components/BtnScrollTop";
 
 import "./App.css";
 
@@ -27,7 +28,7 @@ function App() {
           <Route path="/carrito" element={<Carrito />} />
           
         </Routes>
-
+        <BtnScrollTop />
         <Footer />
       </BrowserRouter>
     </CartProvider>

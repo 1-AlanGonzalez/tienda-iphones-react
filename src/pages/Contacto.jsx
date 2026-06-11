@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState} from "react";
 import {
   BsPerson, BsEnvelope, BsTelephone, BsGeoAlt,
   BsTruck, BsChat, BsArrowRight
@@ -225,9 +225,9 @@ const Contacto = () => {
           {/* Resumen carrito / aviso */}
           {esModoCompra ? (
             <div className="contacto-resumen">
-              <span className="resumen-label">Productos en el carrito</span>
+              <span className="resumen-label">Productos en el carrito </span>
               <span className="resumen-count">
-                {carrito.length} {carrito.length === 1 ? "artículo" : "artículos"}
+                {carrito.length} {carrito.length === 1 ?  "artículo" : "artículos"}
               </span>
             </div>
           ) : (
