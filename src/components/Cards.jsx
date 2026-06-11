@@ -14,7 +14,6 @@ const mapaCategoria = {
 function BotonAgregar({ producto, agregarAlCarrito }) {
     const [estado, setEstado] = useState('normal'); 
 
-    // Si el producto viene marcado como Sin stock desde los datos
     const estaAgotado = producto.tag === "Sin stock";
 
     if (estaAgotado) {
@@ -120,13 +119,8 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
             <div className="cards-grid">
                 {productosMostrados.map(producto => (
                     <div key={producto.id} className="card">
-                        <img
-                            src={producto.imagen}
-                            alt={producto.nombre}
-                            className="card-imagen"
-                        />
-
-                        {/* ✅ Validación de clases CSS dinámicas según el tag */}
+                        
+                        {/* ✅ El tag ahora se renderiza aquí para superponerse correctamente */}
                         {producto.tag && (
                             <span className={`card-tag ${
                                 producto.tag === "Oferta" ? "oferta" : 
@@ -135,6 +129,12 @@ function Cards({ seleccionados, datos, cat, precioMin, precioMax, orden }) {
                                 {producto.tag}
                             </span>
                         )}
+
+                        <img
+                            src={producto.imagen}
+                            alt={producto.nombre}
+                            className="card-imagen"
+                        />
 
                         <div className="card-info">
                             <p className="card-nombre">{producto.nombre}</p>
