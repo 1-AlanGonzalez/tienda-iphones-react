@@ -35,11 +35,7 @@ function DetalleProducto() {
   ].filter(Boolean);
 
     const enStock = (stocks[producto.id] ?? 0) > 0;
-    const descuento = producto.precioOriginal
-      ? Math.round(
-          (1 - producto.precio / producto.precioOriginal) * 100
-        )
-      : null;
+    const descuento = producto.precioOriginal ? Math.round((1 - producto.precio / producto.precioOriginal) * 100): null;
 
     const [estadoBoton, setEstadoBoton] = useState("normal");
     const handleAgregar = () => { if (estadoBoton !== "normal" || !enStock) return;
