@@ -1,16 +1,54 @@
-# React + Vite
+# Apple Store - TP Construcción de Interfaces de Usuario
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📝 Descripción del Proyecto
+Este proyecto es una plataforma de comercio electrónico desarrollada en **React** y compilada con **Vite**, diseñada específicamente para la materia *Construcción de Interfaces de Usuario* de la **Universidad Nacional de Hurlingham (UNAHUR)**.
 
-Currently, two official plugins are available:
+La aplicación simula la experiencia completa de una tienda online de dispositivos móviles y accesorios Apple. Cuenta con una interfaz moderna, fluida y totalmente **responsive** (adaptable a celulares, tablets y computadoras) utilizando **Bootstrap**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Funcionalidades Principales
+* **Página de Inicio:** Presentación estética de la marca con banners representativos y acceso directo al catálogo.
+* **Catálogo Dinámico:** Renderizado de productos desde un array de objetos con control estricto de stock (bloqueo de botones si el stock es 0).
+* **Vista de Detalle:** Rutas dinámicas para explorar las características técnicas de cada iPhone.
+* **Carrito de Compras Completo:** Gestión de productos en tiempo real, cálculo automatizado de subtotales, totales y cantidades.
+* **Filtros y Buscador:** Búsqueda funcional de productos por nombre y categorías.
+* **Formulario de Checkout Controlado:** Formulario de contacto con manejo de estado (`useState`), validaciones en tiempo real con Expresiones Regulares (RegEx) para nombre y teléfono, y bloqueo de envío en caso de carrito vacío.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologías Utilizadas
+* [React](https://react.dev/) - Biblioteca de JavaScript para construir interfaces de usuario.
+* [Vite](https://vitejs.dev/) - Entorno de desarrollo rápido para el frontend.
+* [React Router DOM](https://reactrouter.com/) - Gestión de enrutamiento dinámico sin recarga de página.
+* [Bootstrap](https://getbootstrap.com/) - Framework CSS para el diseño adaptativo y componentes visuales.
+* JavaScript (ES6+) / HTML5 / CSS3
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📦 Instrucciones de Instalación y Ejecución
+
+Para clonar y correr este proyecto de forma local en tu computadora, seguí estos pasos:
+
+1. Clonar el repositorio:
+git clone https://github.com/Brandonduce67/tienda-iphones-react.git
+
+2. Ingresar a la carpeta del proyecto:
+cd tienda-iphones-react
+
+3. Instalar las dependencias (node_modules):
+npm install
+
+4. Iniciar el servidor de desarrollo local:
+npm run dev
+
+5. Abrir el navegador en la dirección local que indique la terminal (usualmente http://localhost:5173).
+
+---
+
+## 👥 Integrantes del Grupo
+* Brandon Duce - Licenciatura en Informática (UNAHUR)
+* [Nombre y Apellido] - Licenciatura en Informática (UNAHUR)
+* [Nombre y Apellido] - Licenciatura en Informática (UNAHUR)
+* [Nombre y Apellido] - Licenciatura en Informática (UNAHUR)
+* [Nombre y Apellido] - Licenciatura en Informática (UNAHUR)
