@@ -85,6 +85,11 @@ function Carrito() {
                   </div>
 
                   <div className="carrito-item-precios">
+                    {producto.tag === "Oferta" && (
+                      <span className="carrito-item-precio-original">
+                        USD ${(Math.round(producto.precio * 1.2) * producto.cantidad).toLocaleString("es-AR")}
+                      </span>
+                    )}
                     <span className="carrito-item-subtotal">
                       USD ${(producto.precio * producto.cantidad).toLocaleString("es-AR")}
                     </span>
