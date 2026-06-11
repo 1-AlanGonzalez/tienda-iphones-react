@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { productos } from "../data/productos";
 import { useCart } from "../context/CartContext";
 import { BsArrowLeft, BsCartPlus, BsCheckCircle, BsXCircle } from "react-icons/bs";
-import "../styles/detalleProducto.css";
+import "../styles/components/detalleProducto.css";
 
 function DetalleProducto() {
   const { id } = useParams();

@@ -3,7 +3,8 @@ import {
   BsPerson, BsEnvelope, BsTelephone, BsGeoAlt,
   BsTruck, BsChat, BsArrowRight
 } from "react-icons/bs";
-import "../styles/contacto.css";
+
+import "../styles/pages/contacto.css";
 import { useCart } from "../context/CartContext";
 import { productos } from "../data/productos";
 

@@ -1,4 +1,4 @@
-import "../styles/nosotros.css";
+import "../styles/pages/nosotros.css";
 import { BsCreditCard, BsTruck, BsShieldCheck, BsShop, BsStarFill, BsAward } from "react-icons/bs";
 
 function Nosotros() {

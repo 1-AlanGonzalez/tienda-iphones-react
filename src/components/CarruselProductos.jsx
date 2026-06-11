@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { productos } from "../data/productos.jsx";
-import "../styles/inicio.css";
+import "../styles/pages/inicio.css";
 
 function CarruselProductos() {
   const ofertas = productos.filter(p => p.tag === "Oferta");

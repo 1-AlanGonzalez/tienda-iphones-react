@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "../styles/inicio.css";
+import "../styles/pages/inicio.css";
 // importar imagenes de publicidad
 
 import mac from "../assets/images/mac.jpg";

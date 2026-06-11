@@ -1,4 +1,4 @@
-import "../styles/inicio.css";
+import "../styles/pages/inicio.css";
 import {
   BsCreditCard,
   BsTruck,

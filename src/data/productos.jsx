@@ -985,7 +985,7 @@ export const productos = [
     imagen: watch_s10,
     descripcion: "Apple Watch Series 10 con pantalla avanzada, sensores de salud mejorados y rendimiento optimizado.",
     stock: 8,
-    tag: "Nuevo"
+    tag: "Popular"
 },
 
 

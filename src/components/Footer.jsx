@@ -61,10 +61,8 @@ function Footer() {
           <h4>Productos</h4>
           <ul>
             <li><a href="/productos?cat=iphone">iPhone</a></li>
-            <li><a href="/productos?cat=mac">Mac</a></li>
-            <li><a href="/productos?cat=ipad">iPad</a></li>
-            <li><a href="/productos?cat=watch">Apple Watch</a></li>
-            <li><a href="/productos?cat=airpods">AirPods</a></li>
+            <li><a href="/productos?cat=audio">Audio</a></li>
+            <li><a href="/productos?cat=computación">Computacion</a></li>
             <li><a href="/productos?cat=accesorios">Accesorios</a></li>
           </ul>
         </div>
