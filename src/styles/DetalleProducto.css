@@ -83,7 +83,7 @@
 }
 
 .detalle-nombre {
-  font-family: 'Playfair Display', serif;
+  font-family: "Figtree" , sans-serif !important;
   font-size: clamp(28px, 3.5vw, 44px);
   font-weight: 700;
   color: var(--text-primary);

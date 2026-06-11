@@ -19,7 +19,6 @@
 }
 
 .fila-titulo {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(22px, 3vw, 32px);
   font-weight: 700;
   color: var(--text-primary);

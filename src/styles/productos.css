@@ -382,7 +382,6 @@ background: transparent;
         font-weight: 600;
         color: var(--text-primary);
         cursor: pointer;
-        font-family: inherit;
         border-bottom: 1px solid var(--border);
     }
 
@@ -438,7 +437,6 @@ background: transparent;
         font-size: 13px;
         font-weight: 600;
         cursor: pointer;
-        font-family: inherit;
         transition: background 0.15s, color 0.15s;
     }
 

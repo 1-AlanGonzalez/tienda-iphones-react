@@ -4,7 +4,6 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
   background: var(--navbar-bg);
   backdrop-filter: blur(20px);
   border-bottom: 0.5px solid var(--border);
@@ -33,11 +32,9 @@ color: var(--text-primary);
 .navbar-logo:hover { opacity: 0.7; }
 
 .logo-text {
-  /* fuente de samsung */
-  font-family: 'SF Pro Display', 'Helvetica Neue', sans-serif;
   font-size: 20px;
   font-weight: 800;
-color: var(--text-primary);
+  color: var(--text-primary);
 }
 
 .navbar-busqueda {
@@ -70,7 +67,6 @@ color: var(--text-primary);
   outline: none;
   color: var(--text-primary);
   font-size: 13px;
-  font-family: inherit;
   width: 100%;
 }
 .navbar-busqueda input::placeholder { color: #a1a1a6; }

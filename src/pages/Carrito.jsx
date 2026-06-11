@@ -5,6 +5,7 @@ import { BsTrash, BsArrowRight, BsBag, BsShieldCheck, BsTruck } from "react-icon
 import "../styles/carrito.css";
 import { productos } from "../data/productos";
 
+
 function Carrito() {
   const {
     carrito,
@@ -28,7 +29,6 @@ function Carrito() {
 
   const confirmarIrAContacto = () => {
     setMostrarModal(false);
-    confirmarCompra();
     navigate("/contacto");
   };
 

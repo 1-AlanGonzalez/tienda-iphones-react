@@ -16,7 +16,6 @@
 }
 
 .carrito-titulo {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(36px, 5vw, 60px);
   font-weight: 700;
   line-height: 1.05;
@@ -218,7 +217,6 @@
   text-underline-offset: 3px;
   align-self: flex-start;
   transition: color 0.2s;
-  font-family: inherit;
 }
 
 .carrito-vaciar:hover {
@@ -242,7 +240,6 @@
 }
 
 .resumen-titulo {
-  font-family: 'Playfair Display', serif;
   font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
@@ -329,7 +326,6 @@
   cursor: pointer;
   text-decoration: none;
   transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
-  font-family: inherit;
 }
 
 .carrito-btn-primario:hover {
@@ -368,7 +364,6 @@
 }
 
 .carrito-vacio h2 {
-  font-family: 'Playfair Display', serif;
   font-size: 28px;
   font-weight: 700;
   color: var(--text-primary);
@@ -423,7 +418,6 @@
 }
 
 .carrito-modal h3 {
-  font-family: 'Playfair Display', serif;
   font-size: 22px;
   font-weight: 700;
   color: var(--text-primary);
@@ -480,7 +474,6 @@
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s;
-  font-family: inherit;
 }
 
 .modal-btn-secundario:hover {
@@ -502,7 +495,6 @@
   font-weight: 500;
   cursor: pointer;
   transition: opacity 0.2s;
-  font-family: inherit;
 }
 
 .modal-btn-primario:hover {

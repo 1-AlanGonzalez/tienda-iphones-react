@@ -5,9 +5,11 @@ import {
 } from "react-icons/bs";
 import "../styles/contacto.css";
 import { useCart } from "../context/CartContext";
+import { productos } from "../data/productos";
 
 const Contacto = () => {
-  const { carrito } = useCart();
+  
+  const { carrito, confirmarCompra } = useCart();
   const esModoCompra = carrito && carrito.length > 0;
 
   const [formData, setFormData] = useState({
@@ -57,8 +59,8 @@ const Contacto = () => {
       setErrores(nuevosErrores);
       return;
     }
-
     setEnviado(true);
+    if(esModoCompra) { return confirmarCompra()}
   };
 
   /* ── PANTALLA DE ÉXITO ── */

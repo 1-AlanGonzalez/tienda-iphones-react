@@ -22,7 +22,6 @@
 }
 
 .nos-titulo {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(44px, 5.5vw, 72px);
   font-weight: 700;
   line-height: 1.02;
@@ -118,7 +117,6 @@
 }
 
 .nos-mv-card h2 {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(20px, 2.2vw, 28px);
   font-weight: 700;
   color: var(--text-primary);
@@ -157,7 +155,6 @@
 }
 
 .nos-num {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(32px, 3.5vw, 48px);
   font-weight: 700;
   color: #0071e3;
@@ -179,7 +176,6 @@
 }
 
 .nos-porque-titulo {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 3.5vw, 40px);
   font-weight: 700;
   color: var(--text-primary);

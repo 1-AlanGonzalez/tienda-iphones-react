@@ -21,7 +21,6 @@
 }
 
 .carrusel-titulo {
-  font-family: 'Playfair Display', serif;
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
   color: var(--text-primary);
