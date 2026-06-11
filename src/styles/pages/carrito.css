@@ -518,3 +518,9 @@
 }
 
 
+
+.carrito-item-precio-original {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
