@@ -4,9 +4,11 @@ import {
   BsTruck, BsChat, BsArrowRight
 } from "react-icons/bs";
 import "../styles/contacto.css";
+import { useCart } from "../context/CartContext";
 
-const Contacto = ({ carrito = [] }) => {
-  const esModoCompra = carrito.length > 0;
+const Contacto = () => {
+  const { carrito } = useCart();
+  const esModoCompra = carrito && carrito.length > 0;
 
   const [formData, setFormData] = useState({
     nombre:    "",
