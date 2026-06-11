@@ -255,3 +255,21 @@
   .carrusel-precio { font-size: 24px; }
   .carrusel-section { padding: 36px 1rem 28px; }
 }
+.carrusel-precio-anterior-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.carrusel-precio-anterior {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.carrusel-descuento {
+  color: #00b050;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
